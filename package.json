@@ -1,0 +1,35 @@
+{
+  "name": "traktapi2",
+  "version": "1.0.0",
+  "description": "A Trakt.tv API wrapper for their new APIv2",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PatrickE94/traktapi2"
+  },
+  "keywords": [
+    "Trakt.tv",
+    "Trakt",
+    "Tv",
+    "API",
+    "wrapper"
+  ],
+  "author": "Patrick Engström",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PatrickE94/traktapi2/issues"
+  },
+  "homepage": "https://github.com/PatrickE94/traktapi2",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  },
+  "dependencies": {
+    "extend": "^2.0.0",
+    "q": "^1.1.2",
+    "request": "^2.51.0"
+  }
+}
