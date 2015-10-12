@@ -3,7 +3,7 @@ A Trakt.tv API wrapper for their new APIv2 for Node.js
 
 ## Todo
 * Verify functions
-* OAuth web flow
+* Write documentation
 * Check required parameters
 
 ## Comments
