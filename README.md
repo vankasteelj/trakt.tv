@@ -3,11 +3,8 @@ A Trakt.tv API wrapper for their new APIv2 for Node.js
 
 ## Todo
 * Verify functions
-* Test media center authorization (I don't have an approved application yet.)
-
-## Quick tips
-* Use debug mode if you don't have an approved application (media center authorization), this will send the Authorization bearer with every request.
-* Modify API functions in methods.json where they are defined, fill in generally default values etc.
+* OAuth web flow
+* Check required parameters
 
 ## Comments
 I haven't publish the npm module yet since it's still WIP, but please feel free to clone to project and use it at your own risk.
