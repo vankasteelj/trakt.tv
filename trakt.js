@@ -92,7 +92,7 @@
     prototype.authorizeCode = function authorizeCode(code, state) {
       if (state && state != this._authState)
         throw new Error("Invalid CSRF (State)");
-        
+
       return this._authRequest({
         method: 'POST',
         url: BASE_URL + "/oauth/token",
@@ -110,7 +110,7 @@
     };
     prototype.authorizePin = prototype.authorizeCode;
 
-    prototype.refreshToken = function refreshToken(refresh_token, callback) {
+    prototype.refreshToken = function refreshToken() {
       return this._authRequest({
         method: 'POST',
         url: BASE_URL + "/oauth/token",
@@ -118,7 +118,7 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          refresh_token: refresh_token,
+          refresh_token: this._refresh_token,
           client_id: this._client_id,
           client_secret: this._client_secret,
           redirect_uri: this._redirect_uri,

@@ -1,13 +1,85 @@
 # TraktApi2
-A Trakt.tv API wrapper for their new APIv2 for Node.js
+A Trakt.tv API wrapper for their new APIv2 for Node.js.
+
+Using [Q library](http://documentup.com/kriskowal/q/).
 
 ## Todo
 * Verify functions
-* Write documentation
 * Check required parameters
 
-## Comments
-I haven't publish the npm module yet since it's still WIP, but please feel free to clone to project and use it at your own risk.
+## Example usage
+
+### Generate Auth URL
+```
+var url = trakt.authUrl();
+```
+
+### Verify code (and optionally state) from returned auth
+```
+trakt
+  .authorizeCode("code", "csrf token (state)")
+  .catch(function(err) { /* Handle error */ })
+  .done(function(result) {
+    if (result == true) {
+      /* API can now be used with authorized requests */
+    } else {
+      /* Bad code */
+    }
+  });
+```
+
+### Verify PIN
+```
+trakt
+  .authorizePin("pin")
+  .catch(function(err) { /* Handle error */ })
+  .done(function(result) {
+    if (result == true) {
+      /* API can now be used with authorized requests */
+    } else {
+      /* Bad Pin */
+    }
+  });
+```
+
+### Refresh token
+```
+trakt
+  .refreshToken()
+  .catch(function(err) { /* Handle error */ })
+  .done(function(result) {
+    if (result == true) {
+      /* API now has an updated access token */
+    } else {
+      /* Bad refresh token or expired */
+    }
+  });
+```
+
+### Storing token over sessions
+```
+var tokenObj = trakt.serializeToken(); // get token
+/* Do storage and reloading etc here */
+trakt.setAccessToken(tokenObj); // restore token
+```
+
+### Actual API requests
+See methods in methods.json.
+
+```
+trakt
+  .calendars.shows.new.start_date.days({
+    start_date: "today",
+    days: "7",
+    extended: "images"
+  })
+  .catch(function(err) {
+    /* Handle any error */
+  })
+  .done(function(shows) {
+    /* shows now contain body response from API (actual show data). */
+  });
+```
 
 ## LICENSE
 
