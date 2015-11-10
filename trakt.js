@@ -63,7 +63,8 @@
       var rThis = this;
       rThis._printRequest(req);
       return got(req.url, req)
-        .then(function(body) {
+        .then(function(response) {
+          var body = JSON.parse(response.body);
           rThis._refreshToken = body.refresh_token;
           rThis._accessToken = body.access_token;
           rThis._tokenExpires = Date.now() + body.expires_in;
@@ -132,10 +133,11 @@
     };
 
     prototype.serializeToken = function serializeToken() {
+      var rthis = this;
       return {
-        access_token: this._accessToken,
-        expires: this._tokenExpires,
-        refresh_token: this._refreshToken
+        access_token: rthis._accessToken,
+        expires: rthis._tokenExpires,
+        refresh_token: rthis._refreshToken
       };
     };
 
@@ -208,7 +210,9 @@
       req.body = JSON.stringify(req.body);
 
       rThis._printRequest(req);
-      return got(req.url, req);
+      return got(req.url, req).then(function(response) {
+        return JSON.parse(response.body);
+      });
     };
 
     module.exports = Trakt;
