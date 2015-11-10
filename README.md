@@ -9,6 +9,16 @@ Using [Q library](http://documentup.com/kriskowal/q/).
 
 ## Example usage
 
+### Initialize
+```
+var Trakt = require('traktapi2');
+var trakt = new Trakt({
+  client_id: '',
+  client_secret: '',
+  redirect_uri: null // Fallback to urn:ietf:wg:oauth:2.0:oob
+});
+```
+
 ### Generate Auth URL
 ```
 var url = trakt.authUrl();

@@ -1,7 +1,6 @@
 (function(exports){
     "use strict";
-    var Q = require('q');
-    var request = Q.denodeify(require('request'));
+    var got = require('got');
     var crypto = require('crypto');
     var reqs = require('./methods.json');
 
@@ -63,21 +62,19 @@
     prototype._authRequest = function authRequest(req) {
       var rThis = this;
       rThis._printRequest(req);
-      return request(req)
-        .then(function(it) {
-          if (it[0].statusCode == 200) {
-            var body = JSON.parse(it[0].body);
-            rThis._refreshToken = body.refresh_token;
-            rThis._accessToken = body.access_token;
-            rThis._tokenExpires = Date.now() + body.expires_in;
-          }
-          return it;
+      return got(req.url, req)
+        .then(function(body) {
+          rThis._refreshToken = body.refresh_token;
+          rThis._accessToken = body.access_token;
+          rThis._tokenExpires = Date.now() + body.expires_in;
+          return body;
         })
-        .then(function(it){
-          if (it[0].statusCode == 401) return it[0].headers["www-authenticate"];
-          else if (it[0].statusCode == 200) return true;
-          else throw new Error("Unexpected statusCode: " + it[0].statusCode);
-          return false;
+        .catch(function(error){
+          if (error.response.statusCode == 401) {
+            throw new Error(error.response.headers["www-authenticate"]);
+          } else {
+            throw new Error(error);
+          }
         });
     };
 
@@ -211,14 +208,7 @@
       req.body = JSON.stringify(req.body);
 
       rThis._printRequest(req);
-      return request(req).then(function(it){
-        it = it[0]; // it comes as an array, if so, select first.
-        if (it.statusCode == 200) {
-          return JSON.parse(it.body);
-        } else {
-          throw it.error;
-        }
-      });
+      return got(req.url, req);
     };
 
     module.exports = Trakt;

@@ -1,6 +1,6 @@
 {
   "name": "traktapi2",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "A Trakt.tv API wrapper for their new APIv2",
   "main": "trakt.js",
   "scripts": {
@@ -28,8 +28,6 @@
     "mocha": "^2.1.0"
   },
   "dependencies": {
-    "extend": "^2.0.0",
-    "q": "^1.1.2",
-    "request": "^2.51.0"
+    "got": "^5.1.0"
   }
 }

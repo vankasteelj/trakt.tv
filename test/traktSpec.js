@@ -48,7 +48,7 @@ describe("TraktAPI2", function(){
           extended: 'full'
       }).catch(function(err) {
         done(err);
-      }).done(function(data) {
+      }).then(function(data) {
         done();
       });
     });
@@ -60,7 +60,7 @@ describe("TraktAPI2", function(){
             limit: 10
         }).catch(function(err) {
           done(err);
-        }).done(function(data) {
+        }).then(function(data) {
           done();
         });
     });
