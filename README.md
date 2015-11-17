@@ -4,7 +4,6 @@ A Trakt.tv API wrapper for their new APIv2 for Node.js.
 Using [Q library](http://documentup.com/kriskowal/q/).
 
 ## Todo
-* Verify functions
 * Check required parameters
 
 ## Example usage
@@ -64,7 +63,7 @@ See methods in methods.json.
 
 ```
 trakt
-  .calendars.shows.new.start_date.days({
+  .calendars.all.new_shows({
     start_date: "today",
     days: "7",
     extended: "images"

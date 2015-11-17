@@ -5,17 +5,19 @@
     var reqs = require('./methods.json');
 
     var Trakt;
-    var BASE_URL = "https://api-v2launch.trakt.tv";
+    var URI = "https://api-v2launch.trakt.tv";
 
     function Trakt(settings, debug) {
-      this._client_id = settings.client_id;
-      this._client_secret = settings.client_secret;
-      this._redirect_uri = settings.redirect_uri ? settings.redirect_uri : "urn:ietf:wg:oauth:2.0:oob";
+      this._authentication = {};
+      this._settings = {
+          client_id: settings.client_id,
+          client_secret: settings.client_secret,
+          redirect_uri: settings.redirect_uri ? settings.redirect_uri : "urn:ietf:wg:oauth:2.0:oob",
+          debug: debug === true ? true : false,
+          endpoint: debug && settings.api_url ? settings.api_url : URI
+      };
 
-      this._debug = debug;
-      if (debug && settings.api_url) BASE_URL = settings.api_url;
-
-      if (!this._client_id || !this._client_secret)
+      if (!this._settings.client_id || !this._settings.client_secret)
         throw new Error("Missing client credentials");
 
       this._construct();
@@ -25,7 +27,7 @@
     var prototype = Trakt.prototype;
 
     prototype._printRequest = function printReq(req) {
-      if (!this._debug) return;
+      if (!this._settings.debug) return;
       var out = "";
       if (req.headers["Authorization"]) out += "(AUTHED) ";
 
@@ -65,9 +67,9 @@
       return got(req.url, req)
         .then(function(response) {
           var body = JSON.parse(response.body);
-          rThis._refreshToken = body.refresh_token;
-          rThis._accessToken = body.access_token;
-          rThis._tokenExpires = Date.now() + body.expires_in;
+          rThis._authentication.refresh_token = body.refresh_token;
+          rThis._authentication.access_token = body.access_token;
+          rThis._authentication.expires = Date.now() + body.expires_in;
           return body;
         })
         .catch(function(error){
@@ -80,64 +82,63 @@
     };
 
     prototype.authUrl = function() {
-      this._authState = crypto.randomBytes(6).toString('hex');
+      this._authentication.state = crypto.randomBytes(6).toString('hex');
       return "https://trakt.tv/oauth/authorize?response_type=code&client_id="
         + this._client_id
-        + "&redirect_uri=" + this._redirect_uri
-        + "&state=" + this._authState;
+        + "&redirect_uri=" + this._settings.redirect_uri
+        + "&state=" + this._authentication.state;
     };
 
-    prototype.authorizeCode = function authorizeCode(code, state) {
-      if (state && state != this._authState)
+    prototype.authorizeCode = function(code, state) {
+      if (state && state != this._authentication.state)
         throw new Error("Invalid CSRF (State)");
 
       return this._authRequest({
         method: 'POST',
-        url: BASE_URL + "/oauth/token",
+        url: this._settings.endpoint + "/oauth/token",
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           code: code,
-          client_id: this._client_id,
-          client_secret: this._client_secret,
-          redirect_uri: this._redirect_uri,
+          client_id: this._settings.client_id,
+          client_secret: this._settings.client_secret,
+          redirect_uri: this._settings.redirect_uri,
           grant_type: "authorization_code"
         })
       });
     };
-    prototype.authorizePin = prototype.authorizeCode;
 
     prototype.refreshToken = function refreshToken() {
       return this._authRequest({
         method: 'POST',
-        url: BASE_URL + "/oauth/token",
+        url: this._settings.endpoint + "/oauth/token",
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          refresh_token: this._refresh_token,
-          client_id: this._client_id,
-          client_secret: this._client_secret,
-          redirect_uri: this._redirect_uri,
+          refresh_token: this._authentication.refresh_token,
+          client_id: this._settings.client_id,
+          client_secret: this._settings.client_secret,
+          redirect_uri: this._settings.redirect_uri,
           grant_type: "authorization_code"
         })
       });
     };
 
     prototype.setAccessToken = function setAccessToken(token) {
-      this._accessToken = token.access_token;
-      this._tokenExpires = token.expires;
-      this._refreshToken = token.refresh_token;
+      this._authentication.access_token = token.access_token;
+      this._authentication.expires = token.expires;
+      this._authentication.refresh_token = token.refresh_token;
       return this;
     };
 
     prototype.serializeToken = function serializeToken() {
       var rthis = this;
       return {
-        access_token: rthis._accessToken,
-        expires: rthis._tokenExpires,
-        refresh_token: rthis._refreshToken
+        access_token: rthis._authentication.access_token,
+        expires: rthis._authentication.expires,
+        refresh_token: rthis._authentication.refresh_token
       };
     };
 
@@ -178,7 +179,7 @@
         }
       }
 
-      var url = BASE_URL + pathParts.join('/');
+      var url = this._settings.endpoint + pathParts.join('/');
       if (queryParts.length) url += "?" + queryParts.join('&');
       return url;
     };
@@ -186,7 +187,7 @@
     prototype._apiCall = function apiCall(method, params) {
       var rThis = this;
 
-      if (method.opts["auth"] === true && !rThis._accessToken)
+      if (method.opts["auth"] === true && !rThis._authentication.access_token)
         throw new Error("Auth required");
 
       var req = {
@@ -195,13 +196,13 @@
         headers: {
           'Content-Type': 'application/json',
           'trakt-api-version': '2',
-          'trakt-api-key': rThis._client_id
+          'trakt-api-key': rThis._settings.client_id
         },
         body: (method.body ? method.body : {})
       };
 
       if (method.opts["auth"]) {
-        req.headers['Authorization'] = 'Bearer ' + rThis._accessToken;
+        req.headers['Authorization'] = 'Bearer ' + rThis._authentication.access_token;
       }
 
       for(var k in params) if (k in req.body) req.body[k] = params[k];
