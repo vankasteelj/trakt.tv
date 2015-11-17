@@ -28,6 +28,7 @@
     "mocha": "^2.1.0"
   },
   "dependencies": {
-    "got": "^5.1.0"
+    "got": "^5.1.0",
+    "sanitizer": "^0.1.2"
   }
 }

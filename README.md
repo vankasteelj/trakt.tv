@@ -26,7 +26,7 @@ var url = trakt.authUrl();
 ### Verify code/PIN (and optionally state) from returned auth
 ```
 trakt
-  .authorizeCode("code/PIN", "csrf token (state)")
+  .authorizeCode('code/PIN', 'csrf token (state)')
   .catch(function(err) { /* Handle error */ })
   .done(function(result) {
     if (result == true) {
@@ -64,9 +64,9 @@ See methods in methods.json.
 ```
 trakt
   .calendars.all.new_shows({
-    start_date: "today",
-    days: "7",
-    extended: "images"
+    start_date: 'today',
+    days: '7',
+    extended: 'images'
   })
   .catch(function(err) {
     /* Handle any error */
