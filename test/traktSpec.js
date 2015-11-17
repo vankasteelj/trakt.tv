@@ -42,7 +42,7 @@ describe("TraktAPI2", function(){
 
     it("should deliver watchlist for movies", function(done){
       this.timeout(30000);
-      trakt.users.username.watchlist.type({
+      trakt.users.watchlist({
           username: 'PatrickE94',
           type: 'movies',
           extended: 'full'

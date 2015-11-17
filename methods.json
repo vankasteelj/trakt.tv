@@ -1,30 +1,54 @@
 {
-  "/calendars/shows/start_date/days": {
-      "opts": { "auth": "optional", "pagination": false },
+  "/calendars/my/shows": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
-      "url": "/calendars/shows/:start_date/:days",
+      "url": "/calendars/my/shows/:start_date/:days",
       "optional": [ "start_date", "days" ]
   },
-  "/calendars/shows/new/start_date/days": {
-      "opts": { "auth": "optional", "pagination": false },
+  "/calendars/my/new_shows": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
-      "url": "/calendars/shows/new/:start_date/:days",
+      "url": "/calendars/my/shows/new/:start_date/:days",
       "optional": [ "start_date", "days" ]
   },
-  "/calendars/shows/premieres/start_date/days": {
-      "opts": { "auth": "optional", "pagination": false },
+  "/calendars/my/premieres_shows": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
-      "url": "/calendars/shows/premieres/:start_date/:days",
+      "url": "/calendars/my/shows/premieres/:start_date/:days",
       "optional": [ "start_date", "days" ]
   },
-  "/calendars/movies/start_date/days": {
-      "opts": { "auth": "optional", "pagination": false },
+  "/calendars/my/movies": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
-      "url": "/calendars/movies/:start_date/:days",
+      "url": "/calendars/my/movies/:start_date/:days",
       "optional": [ "start_date", "days" ]
   },
-  "/checkin": {
+  "/calendars/all/shows": {
       "opts": { "auth": false, "pagination": false },
+      "method": "GET",
+      "url": "/calendars/all/shows/:start_date/:days",
+      "optional": [ "start_date", "days" ]
+  },
+  "/calendars/all/new_shows": {
+      "opts": { "auth": false, "pagination": false },
+      "method": "GET",
+      "url": "/calendars/all/shows/new/:start_date/:days",
+      "optional": [ "start_date", "days" ]
+  },
+  "/calendars/all/premieres_shows": {
+      "opts": { "auth": false, "pagination": false },
+      "method": "GET",
+      "url": "/calendars/all/shows/premieres/:start_date/:days",
+      "optional": [ "start_date", "days" ]
+  },
+  "/calendars/all/movies": {
+      "opts": { "auth": false, "pagination": false },
+      "method": "GET",
+      "url": "/calendars/all/movies/:start_date/:days",
+      "optional": [ "start_date", "days" ]
+  },
+  "/checkin/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/checkin",
       "body": {
@@ -38,14 +62,14 @@
       },
       "optional": []
   },
-  "/checkin": {
-      "opts": { "auth": false, "pagination": false },
+  "/checkin/delete": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/checkin",
       "optional": []
   },
-  "/comments": {
-      "opts": { "auth": false, "pagination": false },
+  "/comments/comment/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/comments",
       "body": {
@@ -56,14 +80,14 @@
       },
       "optional": []
   },
-  "/comments/id": {
+  "/comments/comment/get": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/comments/:id",
       "optional": []
   },
-  "/comments/id": {
-      "opts": { "auth": false, "pagination": false },
+  "/comments/comment/update": {
+      "opts": { "auth": true, "pagination": false },
       "method": "PUT",
       "url": "/comments/:id",
       "body": {
@@ -74,20 +98,20 @@
       },
       "optional": [ ]
   },
-  "/comments/id": {
-      "opts": { "auth": false, "pagination": false },
+  "/comments/comment/remove": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/comments/:id",
       "optional": []
   },
-  "/comments/id/replies": {
-      "opts": { "auth": false, "pagination": true },
+  "/comments/replies/get": {
+      "opts": { "auth": true, "pagination": true },
       "method": "GET",
       "url": "/comments/:id/replies",
       "optional": []
   },
-  "/comments/id/replies": {
-      "opts": { "auth": false, "pagination": false },
+  "/comments/replies/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/comments/:id/replies",
       "body": {
@@ -97,28 +121,22 @@
       },
       "optional": [ ]
   },
-  "/: nullcomments/id/like": {
-      "opts": { "auth": false, "pagination": false },
+  "/comments/like/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/comments/:id/like",
       "optional": []
   },
-  "/comments/id/like": {
-      "opts": { "auth": false, "pagination": false },
+  "/comments/like/remove": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/comments/:id/like",
       "optional": []
   },
-  "/genres/type": {
+  "/genres": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/genres/:type",
-      "optional": []
-  },
-  "/movies/popular": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/popular",
       "optional": []
   },
   "/movies/trending": {
@@ -127,116 +145,152 @@
       "url": "/movies/trending",
       "optional": []
   },
-  "/movies/updates/start_date": {
+  "/movies/popular": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/movies/popular",
+      "optional": []
+  },
+  "/movies/played": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/movies/played/:period",
+      "optional": []
+  },
+  "/movies/watched": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/movies/watched/:period",
+      "optional": []
+  },
+  "/movies/collected": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/movies/collected/:period",
+      "optional": []
+  },
+  "/movies/anticipated": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/movies/anticipated",
+      "optional": []
+  },
+  "/movies/boxoffice": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/movies/boxoffice",
+      "optional": []
+  },
+  "/movies/updates": {
       "opts": { "auth": false, "pagination": true },
       "method": "GET",
       "url": "/movies/updates/:start_date",
       "optional": [ "start_date" ]
   },
-  "/movies/id": {
+  "/movies/summary": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/movies/:id",
       "optional": []
   },
-  "/movies/id/aliases": {
+  "/movies/aliases": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/movies/:id/aliases",
       "optional": []
   },
-  "/movies/id/releases/country": {
+  "/movies/releases": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/movies/:id/releases/:country",
       "optional": [ "country" ]
   },
-  "/movies/id/translations/language": {
+  "/movies/translations": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/movies/:id/translations/:language",
       "optional": [ "language" ]
   },
-  "/movies/id/comments": {
+  "/movies/comments": {
       "opts": { "auth": false, "pagination": true },
       "method": "GET",
       "url": "/movies/:id/comments",
       "optional": []
   },
-  "/movies/id/people": {
+  "/movies/people": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/movies/:id/people",
       "optional": []
   },
-  "/movies/id/ratings": {
+  "/movies/ratings": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
-      "url": "/movies/:id/ratings",
-      "optional": []
+      "url": "/movies/:id/ratings?limit=",
+      "optional": [ "limit" ]
   },
-  "/movies/id/related": {
+  "/movies/related": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/movies/:id/related",
       "optional": []
   },
-  "/movies/id/stats": {
+  "/movies/stats": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/movies/:id/stats",
       "optional": []
   },
-  "/movies/id/watching": {
+  "/movies/watching": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/movies/:id/watching",
       "optional": []
   },
-  "/people/id": {
+  "/people/summary": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/people/:id",
       "optional": []
   },
-  "/people/id/movies": {
+  "/people/movies": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/people/:id/movies",
       "optional": []
   },
-  "/people/id/shows": {
+  "/people/shows": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/people/:id/shows",
       "optional": []
   },
-  "/recommendations/movies": {
-      "opts": { "auth": false, "pagination": false },
+  "/recommendations/movies/get": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/recommendations/movies",
       "optional": []
   },
-  "/recommendations/movies/id": {
-      "opts": { "auth": false, "pagination": false },
+  "/recommendations/movies/hide": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/recommendations/movies/:id",
       "optional": []
   },
-  "/recommendations/shows": {
-      "opts": { "auth": false, "pagination": false },
+  "/recommendations/shows/get": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/recommendations/shows",
       "optional": []
   },
-  "/recommendations/shows/id": {
-      "opts": { "auth": false, "pagination": false },
+  "/recommendations/shows/hide": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/recommendations/shows/:id",
       "optional": []
   },
   "/scrobble/start": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/scrobble/start",
       "body": {
@@ -248,7 +302,7 @@
       "optional": []
   },
   "/scrobble/pause": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/scrobble/pause",
       "body": {
@@ -260,7 +314,7 @@
       "optional": []
   },
   "/scrobble/stop": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/scrobble/stop",
       "body": {
@@ -277,170 +331,200 @@
       "url": "/search?query=&type=&year=&id=&id_type=",
       "optional": [ "type", "query", "id", "id_type" ]
   },
-  "/shows/popular": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/popular",
-      "optional": []
-  },
   "/shows/trending": {
       "opts": { "auth": false, "pagination": true },
       "method": "GET",
       "url": "/shows/trending",
       "optional": []
   },
-  "/shows/updates/start_date": {
+  "/shows/popular": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/shows/popular",
+      "optional": []
+  },
+  "/shows/played": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/shows/played/:period",
+      "optional": [ "period" ]
+  },
+  "/shows/watched": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/shows/watched/:period",
+      "optional": [ "period" ]
+  },
+  "/shows/collected": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/shows/collected",
+      "optional": [ "period" ]
+  },
+  "/shows/anticipated": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/shows/anticipated",
+      "optional": []
+  },
+  "/shows/updates": {
       "opts": { "auth": false, "pagination": true },
       "method": "GET",
       "url": "/shows/updates/:start_date",
       "optional": [ "start_date" ]
   },
-  "/shows/id": {
+  "/shows/summary": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id",
       "optional": []
   },
-  "/shows/id/aliases": {
+  "/shows/aliases": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/aliases",
       "optional": []
   },
-  "/shows/id/translations/language": {
+  "/shows/translations": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/translations/:language",
       "optional": [ "language" ]
   },
-  "/shows/id/comments": {
+  "/shows/comments": {
       "opts": { "auth": false, "pagination": true },
       "method": "GET",
       "url": "/shows/:id/comments",
       "optional": []
   },
-  "/shows/id/progress/collection": {
-      "opts": { "auth": false, "pagination": false },
+  "/shows/progress/collection": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
-      "url": "/shows/:id/progress/collection",
-      "optional": []
+      "url": "/shows/:id/progress/collection?hidden=&specials=",
+      "optional": [ "hidden", "specials" ]
   },
-  "/shows/id/progress/watched": {
-      "opts": { "auth": false, "pagination": false },
+  "/shows/progress/watched": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
-      "url": "/shows/:id/progress/watched",
-      "optional": []
+      "url": "/shows/:id/progress/watched?hidden=&specials=",
+      "optional": [ "hidden", "specials" ]
   },
-  "/shows/id/people": {
+  "/shows/people": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/people",
       "optional": []
   },
-  "/shows/id/ratings": {
+  "/shows/ratings": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/ratings",
       "optional": []
   },
-  "/shows/id/related": {
+  "/shows/related": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/related",
       "optional": []
   },
-  "/shows/id/stats": {
+  "/shows/stats": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/stats",
       "optional": []
   },
-  "/shows/id/watching": {
+  "/shows/watching": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/watching",
       "optional": []
   },
-  "/shows/id/seasons": {
+  "/seasons/summary": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/seasons",
       "optional": []
   },
-  "/shows/id/seasons/season": {
+  "/seasons/season": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/seasons/:season",
       "optional": []
   },
-  "/shows/id/seasons/season/comments": {
+  "/seasons/comments": {
       "opts": { "auth": false, "pagination": true },
       "method": "GET",
       "url": "/shows/:id/seasons/:season/comments",
       "optional": []
   },
-  "/shows/id/seasons/season/ratings": {
+  "/seasons/ratings": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/seasons/:season/ratings",
       "optional": []
   },
-  "/shows/id/seasons/season/watching": {
+  "/seasons/watching": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/seasons/:season/watching",
       "optional": []
   },
-  "/shows/id/seasons/season/episodes/episode": {
+  "/episodes/summary": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/seasons/:season/episodes/:episode",
       "optional": []
   },
-  "/shows/id/seasons/season/episodes/episode/comments": {
+  "/episodes/comments": {
       "opts": { "auth": false, "pagination": true },
       "method": "GET",
       "url": "/shows/:id/seasons/:season/episodes/:episode/comments",
       "optional": []
   },
-  "/shows/id/seasons/season/episodes/episode/ratings": {
+  "/episodes/ratings": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/seasons/:season/episodes/:episode/ratings",
       "optional": []
   },
-  "/shows/id/seasons/season/episodes/episode/stats": {
+  "/episodes/stats": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/seasons/:season/episodes/:episode/stats",
       "optional": []
   },
-  "/shows/id/seasons/season/episodes/episode/watching": {
+  "/episodes/watching": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
       "url": "/shows/:id/seasons/:season/episodes/:episode/watching",
       "optional": []
   },
   "/sync/last_activities": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/sync/last_activities",
       "optional": []
   },
-  "/sync/playback": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/playback/get": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/sync/playback",
       "optional": []
   },
-  "/sync/collection/type": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/playback/remove": {
+      "opts": { "auth": true, "pagination": false },
+      "method": "DELETE",
+      "url": "/sync/playback/:id",
+      "optional": []
+  },
+  "/sync/collection/get": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/sync/collection/:type",
       "optional": []
   },
-  "/sync/collection": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/collection/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/sync/collection",
       "body": {
@@ -452,7 +536,7 @@
       "optional": [ ]
   },
   "/sync/collection/remove": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/sync/collection/remove",
       "body": {
@@ -462,14 +546,20 @@
       },
       "optional": [ ]
   },
-  "/sync/watched/type": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/watched": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/sync/watched/:type",
       "optional": []
   },
-  "/sync/history": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/history/get": {
+      "opts": { "auth": true, "pagination": true },
+      "method": "GET",
+      "url": "/sync/history/:type/:id",
+      "optional": [ "type", "id" ]
+  },
+  "/sync/history/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/sync/history",
       "body": {
@@ -480,7 +570,7 @@
       "optional": [ ]
   },
   "/sync/history/remove": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/sync/history/remove",
       "body": {
@@ -490,14 +580,14 @@
       },
       "optional": [ ]
   },
-  "/sync/ratings/type/rating": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/ratings/get": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/sync/ratings/:type/rating",
       "optional": [ "rating" ]
   },
-  "/sync/ratings": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/ratings/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/sync/ratings",
       "body": {
@@ -509,7 +599,7 @@
       "optional": [ ]
   },
   "/sync/ratings/remove": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/sync/ratings/remove",
       "body": {
@@ -520,14 +610,14 @@
       },
       "optional": [ ]
   },
-  "/sync/watchlist/type": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/watchlist/get": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/sync/watchlist/:type",
       "optional": []
   },
-  "/sync/watchlist": {
-      "opts": { "auth": false, "pagination": false },
+  "/sync/watchlist/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/sync/watchlist",
       "body": {
@@ -539,7 +629,7 @@
       "optional": [ ]
   },
   "/sync/watchlist/remove": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/sync/watchlist/remove",
       "body": {
@@ -551,55 +641,55 @@
       "optional": [ ]
   },
   "/users/settings": {
-      "opts": { "auth": false, "pagination": false },
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/users/settings",
       "optional": []
   },
-  "/users/settings": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "PUT",
-      "url": "/users/settings",
-      "optional": []
-  },
-  "/users/requests": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/requests/get": {
+      "opts": { "auth": true, "pagination": false },
       "method": "GET",
       "url": "/users/requests",
       "optional": []
   },
-  "/users/requests/id": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/requests/approve": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/users/requests/:id",
       "optional": []
   },
-  "/users/requests/id": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/requests/deny": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/users/requests/:id",
       "optional": []
   },
-  "/users/username": {
+  "/users/profile": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username",
       "optional": []
   },
-  "/users/username/collection/type": {
+  "/users/collection": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/collection/:type",
       "optional": []
   },
-  "/users/username/lists": {
+  "/users/comment": {
+      "opts": { "auth": "optional", "pagination": true },
+      "method": "GET",
+      "url": "/users/:username/comments/:comment_type/:type",
+      "optional": [ "comment_type", "type" ]
+  },
+  "/users/lists/get": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/lists",
       "optional": []
   },
-  "/users/username/lists": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/lists/create": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/users/:username/lists",
       "body": {
@@ -611,14 +701,14 @@
       },
       "optional": []
   },
-  "/users/username/lists/id": {
+  "/users/list/get": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/lists/:id",
       "optional": []
   },
-  "/users/username/lists/id": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/list/update": {
+      "opts": { "auth": true, "pagination": false },
       "method": "PUT",
       "url": "/users/:username/lists/:id",
       "body": {
@@ -630,100 +720,112 @@
       },
       "optional": []
   },
-  "/users/username/lists/id": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/list/delete": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/users/:username/lists/:id",
       "optional": []
   },
-  "/users/username/lists/id/like": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/list/like/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/users/:username/lists/:id/like",
       "optional": []
   },
-  "/users/username/lists/id/like": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/list/like/remove": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/users/:username/lists/:id/like",
       "optional": []
   },
-  "/users/username/lists/id/items": {
+  "/users/list/items/get": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/lists/:id/items",
       "optional": []
   },
-  "/users/username/lists/id/items": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/list/items/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/users/:username/lists/:id/items",
       "optional": []
   },
-  "/users/username/lists/id/items/remove": {
+  "/users/list/items/remove": {
       "opts": { "auth": false, "pagination": false },
       "method": "POST",
       "url": "/users/:username/lists/:id/items/remove",
       "optional": []
   },
-  "/users/username/follow": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/list/comments": {
+      "opts": { "auth": false, "pagination": true },
+      "method": "GET",
+      "url": "/users/:username/lists/:id/comments",
+      "optional": []
+  },
+  "/users/follow/add": {
+      "opts": { "auth": true, "pagination": false },
       "method": "POST",
       "url": "/users/:username/follow",
       "optional": []
   },
-  "/users/username/follow": {
-      "opts": { "auth": false, "pagination": false },
+  "/users/follow/remove": {
+      "opts": { "auth": true, "pagination": false },
       "method": "DELETE ",
       "url": "/users/:username/follow",
       "optional": []
   },
-  "/users/username/followers": {
+  "/users/followers": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/followers",
       "optional": []
   },
-  "/users/username/following": {
+  "/users/following": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/following",
       "optional": []
   },
-  "/users/username/friends": {
+  "/users/friends": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/friends",
       "optional": []
   },
-  "/users/username/history/type": {
-      "opts": { "auth": "optional", "pagination": false },
+  "/users/history": {
+      "opts": { "auth": "optional", "pagination": true },
       "method": "GET",
       "url": "/users/:username/history/:type",
       "optional": []
   },
-  "/users/username/ratings/type/rating": {
+  "/users/ratings": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/ratings/:type/:rating",
       "optional": [ "rating" ]
   },
-  "/users/username/watchlist/type": {
+  "/users/watchlist": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/watchlist/:type",
       "optional": []
   },
-  "/users/username/watching": {
+  "/users/watching": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/watching",
       "optional": []
   },
-  "/users/username/watched/type": {
+  "/users/watched": {
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/watched/:type",
+      "optional": []
+  },
+  "/users/stats": {
+      "opts": { "auth": "optional", "pagination": false },
+      "method": "GET",
+      "url": "/users/:username/stats",
       "optional": []
   }
 }

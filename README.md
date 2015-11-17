@@ -24,30 +24,16 @@ var trakt = new Trakt({
 var url = trakt.authUrl();
 ```
 
-### Verify code (and optionally state) from returned auth
+### Verify code/PIN (and optionally state) from returned auth
 ```
 trakt
-  .authorizeCode("code", "csrf token (state)")
+  .authorizeCode("code/PIN", "csrf token (state)")
   .catch(function(err) { /* Handle error */ })
   .done(function(result) {
     if (result == true) {
       /* API can now be used with authorized requests */
     } else {
-      /* Bad code */
-    }
-  });
-```
-
-### Verify PIN
-```
-trakt
-  .authorizePin("pin")
-  .catch(function(err) { /* Handle error */ })
-  .done(function(result) {
-    if (result == true) {
-      /* API can now be used with authorized requests */
-    } else {
-      /* Bad Pin */
+      /* Bad code/PIN */
     }
   });
 ```
