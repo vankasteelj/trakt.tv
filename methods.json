@@ -226,14 +226,14 @@
   "/movies/ratings": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
-      "url": "/movies/:id/ratings?limit=",
-      "optional": [ "limit" ]
+      "url": "/movies/:id/ratings",
+      "optional": []
   },
   "/movies/related": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
-      "url": "/movies/:id/related",
-      "optional": []
+      "url": "/movies/:id/related?limit=",
+      "optional": [ "limit" ]
   },
   "/movies/stats": {
       "opts": { "auth": false, "pagination": false },
@@ -424,8 +424,8 @@
   "/shows/related": {
       "opts": { "auth": false, "pagination": false },
       "method": "GET",
-      "url": "/shows/:id/related",
-      "optional": []
+      "url": "/shows/:id/related?limit=",
+      "optional": [ "limit" ]
   },
   "/shows/stats": {
       "opts": { "auth": false, "pagination": false },

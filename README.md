@@ -1,61 +1,48 @@
-# TraktApi2
-A Trakt.tv API wrapper for their new APIv2 for Node.js.
-
-Using [Q library](http://documentup.com/kriskowal/q/).
-
-## Todo
-* Check required parameters
+# trakt.tv
+A Trakt.tv API wrapper for Node.js.
 
 ## Example usage
 
 ### Initialize
 ```
-var Trakt = require('traktapi2');
+var Trakt = require('trakt.tv');
 var trakt = new Trakt({
   client_id: '',
   client_secret: '',
-  redirect_uri: null // Fallback to urn:ietf:wg:oauth:2.0:oob
+  redirect_uri: null // fallbacks to urn:ietf:wg:oauth:2.0:oob
 });
 ```
 
 ### Generate Auth URL
 ```
-var url = trakt.authUrl();
+var url = trakt.get_url();
 ```
 
 ### Verify code/PIN (and optionally state) from returned auth
 ```
 trakt
-  .authorizeCode('code/PIN', 'csrf token (state)')
-  .catch(function(err) { /* Handle error */ })
-  .done(function(result) {
-    if (result == true) {
+  .exchange_code('code/PIN', 'csrf token (state)')
+  .then(function(result) {
       /* API can now be used with authorized requests */
-    } else {
-      /* Bad code/PIN */
-    }
-  });
+  })
+  .catch(function(err) { /* Handle error */ });
 ```
 
 ### Refresh token
 ```
 trakt
   .refreshToken()
-  .catch(function(err) { /* Handle error */ })
-  .done(function(result) {
-    if (result == true) {
-      /* API now has an updated access token */
-    } else {
-      /* Bad refresh token or expired */
-    }
-  });
+  .then(function(result) {
+    /* API now has an updated access token */
+  })
+  .catch(function(err) { /* Handle error */ });
 ```
 
 ### Storing token over sessions
 ```
-var tokenObj = trakt.serializeToken(); // get token
+var token = trakt.export_token(); // get token
 /* Do storage and reloading etc here */
-trakt.setAccessToken(tokenObj); // restore token
+trakt.import_token(token); // restore token
 ```
 
 ### Actual API requests
@@ -76,11 +63,15 @@ trakt
   });
 ```
 
+### Notes
+You can use 'me' as username if the user is authenticated.
+
 ## LICENSE
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Patrick Engström
+Copyright (c) 2015 vankasteelj
+Copyright (c) 2015 Patrick Engström (skeleton & logics)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

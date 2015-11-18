@@ -3,8 +3,9 @@
 
     var got = require('got'),
         crypto = require('crypto'),
-        reqs = require('./methods.json'),
+        methods = require('./methods.json'),
         sanitizer = require('sanitizer'),
+        PinkiePromise = require('pinkie-promise'),
         Url = 'https://api-v2launch.trakt.tv',
         Urn = 'urn:ietf:wg:oauth:2.0:oob';
 
@@ -19,7 +20,7 @@
             client_secret: settings.client_secret,
             redirect_uri: settings.redirect_uri ? settings.redirect_uri : Urn,
             debug: debug === true ? true : false,
-            endpoint: debug && settings.api_url ? settings.api_url : Url
+            endpoint: settings.api_url ? settings.api_url : Url
         };
 
         this._construct();
@@ -32,7 +33,7 @@
     // Creates methods for all requests
     Trakt.prototype._construct = function() {
         var that = this;
-        for (var url in reqs) {
+        for (var url in methods) {
             var urlParts = url.split('/');
             var name = urlParts.pop(); // key for function
 
@@ -42,34 +43,44 @@
             }
 
             tmp[name] = function() {
-                var method = reqs[url]; // closure forces copy
-                return function(params, callback) {
-                    return that._apiCall(method, params, callback);
+                var method = methods[url]; // closure forces copy
+                return function(params) {
+                    return that._call(method, params);
                 };
             }();
         }
     };
 
     // Debug & Print
-    Trakt.prototype._printRequest = function(req) {
+    Trakt.prototype._debug = function(req) {
         if (!this._settings.debug) return;
         console.log(req.method + (req.headers['Authorization'] ? ' (oauth)' : '') + ': ' + req.url);
     };
 
     // Authentication calls
-    Trakt.prototype._authRequest = function(req) {
+    Trakt.prototype._exchange = function(str) {
         var that = this;
-        this._printRequest(req);
+
+        var req = {
+            method: 'POST',
+            url: this._settings.endpoint + '/oauth/token',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: str
+        };
+
+        this._debug(req);
         return got(req.url, req)
             .then(function(response) {
                 var body = JSON.parse(response.body);
                 that._authentication.refresh_token = body.refresh_token;
                 that._authentication.access_token = body.access_token;
-                that._authentication.expires = Date.now() + body.expires_in;
-                return that.sanitize(body);
+                that._authentication.expires = (body.created_at * 1000) + (body.expires_in * 1000); // Date.now() is the reference
+                return that._sanitize(body);
             })
             .catch(function(error) {
-                if (error.response.statusCode == 401) {
+                if (error.response && error.response.statusCode == 401) {
                     throw new Error(error.response.headers['www-authenticate']);
                 } else {
                     throw error;
@@ -78,7 +89,7 @@
     };
 
     // Parse url before api call
-    Trakt.prototype._parseUrl = function(method, params) {
+    Trakt.prototype._parse = function(method, params) {
         if (!params) params = {};
         var queryParts = [],
             pathParts = [];
@@ -120,7 +131,7 @@
     };
 
     // Parse methods then hit trakt
-    Trakt.prototype._apiCall = function(method, params) {
+    Trakt.prototype._call = function(method, params) {
         if (method.opts['auth'] === true && !this._authentication.access_token) {
             throw new Error('Auth required');
         }
@@ -128,7 +139,7 @@
 
         var req = {
             method: method.method,
-            url: this._parseUrl(method, params),
+            url: this._parse(method, params),
             headers: {
                 'Content-Type': 'application/json',
                 'trakt-api-version': '2',
@@ -154,14 +165,14 @@
 
         req.body = JSON.stringify(req.body);
 
-        this._printRequest(req);
+        this._debug(req);
         return got(req.url, req).then(function(response) {
-            return that.sanitize(JSON.parse(response.body));
+            return that._sanitize(JSON.parse(response.body));
         });
     };
 
     // Sanitize output (xss)
-    Trakt.prototype.sanitize = function (input) {
+    Trakt.prototype._sanitize = function(input) {
         function sanitizeString(string) {
             return sanitizer.sanitize(string);
         }
@@ -193,61 +204,64 @@
      * External functions
      */
 
+    Trakt.prototype.oauth = {
+        get_url: function() {
+            this._authentication.state = crypto.randomBytes(6).toString('hex');
+            return 'https://trakt.tv/oauth/authorize?response_type=code&client_id=' + this._settings.client_id + '&redirect_uri=' + this._settings.redirect_uri + '&state=' + this._authentication.state;
+        }
+    }
     // Get authentication url for browsers
-    Trakt.prototype.authUrl = function() {
+    Trakt.prototype.get_url = function() {
         this._authentication.state = crypto.randomBytes(6).toString('hex');
-        return 'https://trakt.tv/oauth/authorize?response_type=code&client_id=' + this._client_id + '&redirect_uri=' + this._settings.redirect_uri + '&state=' + this._authentication.state;
+        return 'https://trakt.tv/oauth/authorize?response_type=code&client_id=' + this._settings.client_id + '&redirect_uri=' + this._settings.redirect_uri + '&state=' + this._authentication.state;
     };
 
-    // Verify code or pin
-    Trakt.prototype.authorizeCode = function(code, state) {
+    // Verify code or pin; optionnal state
+    Trakt.prototype.exchange_code = function(code, state) {
         if (state && state != this._authentication.state) {
             throw new Error('Invalid CSRF (State)');
         }
 
-        return this._authRequest({
-            method: 'POST',
-            url: this._settings.endpoint + '/oauth/token',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+        return this._exchange(JSON.stringify({
                 code: code,
                 client_id: this._settings.client_id,
                 client_secret: this._settings.client_secret,
                 redirect_uri: this._settings.redirect_uri,
                 grant_type: 'authorization_code'
-            })
-        });
+            }));
     };
 
     // Refresh access token
-    Trakt.prototype.refreshToken = function() {
-        return this._authRequest({
-            method: 'POST',
-            url: this._settings.endpoint + '/oauth/token',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+    Trakt.prototype.refresh_token = function() {
+        return this._exchange(JSON.stringify({
                 refresh_token: this._authentication.refresh_token,
                 client_id: this._settings.client_id,
                 client_secret: this._settings.client_secret,
                 redirect_uri: this._settings.redirect_uri,
-                grant_type: 'authorization_code'
-            })
-        });
+                grant_type: 'refresh_token'
+            }));
     };
 
     // Import token
-    Trakt.prototype.setAccessToken = function(token) {
-        this._authentication.access_token = token.access_token;
-        this._authentication.expires = token.expires;
-        this._authentication.refresh_token = token.refresh_token;
+    Trakt.prototype.import_token = function(token) {
+        var that = this;
+        return new PinkiePromise(function (resolve, reject) {
+            if (token.expires < Date.now()) {
+                that.refresh_token()
+                    .then(that.export_token)
+                    .then(resolve)
+                    .catch(reject);
+            } else {
+                that._authentication.access_token = token.access_token;
+                that._authentication.expires = token.expires;
+                that._authentication.refresh_token = token.refresh_token;
+                resolve(that.export_token());
+            }
+        });
     };
 
     // Export token
-    Trakt.prototype.serializeToken = function() {
+    Trakt.prototype.export_token = function() {
         return {
             access_token: this._authentication.access_token,
             expires: this._authentication.expires,
