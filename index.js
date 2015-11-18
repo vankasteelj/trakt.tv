@@ -11,7 +11,7 @@
 
     var Trakt = function(settings, debug) {
         if (!settings.client_id || !settings.client_secret) {
-            throw new Error('Missing client credentials');
+            throw new Error('Missing client_id or client_secret');
         }
 
         this._authentication = {};
@@ -27,17 +27,17 @@
     };
 
     /**
-     * Internal Functions
+     * Internal functions
      */
 
     // Creates methods for all requests
     Trakt.prototype._construct = function() {
-        var that = this;
+        var self = this;
         for (var url in methods) {
             var urlParts = url.split('/');
             var name = urlParts.pop(); // key for function
 
-            var tmp = that;
+            var tmp = self;
             for (var p = 1; p < urlParts.length; ++p) { // acts like mkdir -p
                 tmp = tmp[urlParts[p]] || (tmp[urlParts[p]] = {});
             }
@@ -45,7 +45,7 @@
             tmp[name] = function() {
                 var method = methods[url]; // closure forces copy
                 return function(params) {
-                    return that._call(method, params);
+                    return self._call(method, params);
                 };
             }();
         }
@@ -59,7 +59,7 @@
 
     // Authentication calls
     Trakt.prototype._exchange = function(str) {
-        var that = this;
+        var self = this;
 
         var req = {
             method: 'POST',
@@ -67,17 +67,17 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: str
+            body: JSON.stringify(str)
         };
 
         this._debug(req);
         return got(req.url, req)
             .then(function(response) {
                 var body = JSON.parse(response.body);
-                that._authentication.refresh_token = body.refresh_token;
-                that._authentication.access_token = body.access_token;
-                that._authentication.expires = (body.created_at * 1000) + (body.expires_in * 1000); // Date.now() is the reference
-                return that._sanitize(body);
+                self._authentication.refresh_token = body.refresh_token;
+                self._authentication.access_token = body.access_token;
+                self._authentication.expires = (body.created_at + body.expires_in) * 1000; // Epoch in milliseconds
+                return self._sanitize(body);
             })
             .catch(function(error) {
                 if (error.response && error.response.statusCode == 401) {
@@ -135,7 +135,7 @@
         if (method.opts['auth'] === true && !this._authentication.access_token) {
             throw new Error('OAuth required');
         }
-        var that = this;
+        var self = this;
 
         var req = {
             method: method.method,
@@ -167,7 +167,7 @@
 
         this._debug(req);
         return got(req.url, req).then(function(response) {
-            return that._sanitize(JSON.parse(response.body));
+            return self._sanitize(JSON.parse(response.body));
         });
     };
 
@@ -216,29 +216,29 @@
             throw new Error('Invalid CSRF (State)');
         }
 
-        return this._exchange(JSON.stringify({
+        return this._exchange({
                 code: code,
                 client_id: this._settings.client_id,
                 client_secret: this._settings.client_secret,
                 redirect_uri: this._settings.redirect_uri,
                 grant_type: 'authorization_code'
-            }));
+            });
     };
 
     // Refresh access token
     Trakt.prototype.refresh_token = function() {
-        return this._exchange(JSON.stringify({
+        return this._exchange({
                 refresh_token: this._authentication.refresh_token,
                 client_id: this._settings.client_id,
                 client_secret: this._settings.client_secret,
                 redirect_uri: this._settings.redirect_uri,
                 grant_type: 'refresh_token'
-            }));
+            });
     };
 
     // Import token
     Trakt.prototype.import_token = function(token) {
-        var that = this;
+        var self = this;
 
         this._authentication.access_token = token.access_token;
         this._authentication.expires = token.expires;
@@ -246,13 +246,13 @@
 
         return new PinkiePromise(function (resolve, reject) {
             if (token.expires < Date.now()) {
-                that.refresh_token()
+                self.refresh_token()
                     .then(function () {
-                        resolve(that.export_token());
+                        resolve(self.export_token());
                     })
                     .catch(reject);
             } else {
-                resolve(that.export_token());
+                resolve(self.export_token());
             }
         });
     };

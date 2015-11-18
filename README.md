@@ -24,7 +24,6 @@ var trakt = new Trakt({
   client_secret: 'the_client_secret',
   redirect_uri: null    // fallbacks to 'urn:ietf:wg:oauth:2.0:oob'
   api_url: null         // fallbacks to 'api-v2launch.trakt.tv'
-  debug: false
 });
 ```
 
@@ -60,8 +59,7 @@ trakt.refresh_token()
 ```js
 var token = trakt.export_token(); // Gets token, store it safely.
 
-trakt.
-    import_token(token) // Injects stored token.
+trakt.import_token(token) // Injects stored token.
     .then(function(shows) {
         // Contains token, refreshed if needed (store it back)
     })
@@ -71,11 +69,10 @@ trakt.
 ```
 
 #### Actual API requests
-See methods in [methods.json](https://github.com/vankasteelj/trakt.tv/blob/master/methods.json).
+See methods in [methods.json](https://github.com/vankasteelj/trakt.tv/blob/master/methods.json) or [wiki](https://github.com/vankasteelj/trakt.tv/wiki/Supported-methods).
 
 ```js
-trakt
-    .calendars.all.shows({
+trakt.calendars.all.shows({
         start_date: '2015-11-13',
         days: '7',
         extended: 'images'
