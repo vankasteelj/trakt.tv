@@ -5,8 +5,8 @@
 
 - [All Trakt.tv API v2 methods](https://github.com/vankasteelj/trakt.tv/wiki/Supported-methods)
 - Promises
-- Enhanced protection agains: CSRF ('session riding') and XSS ('content spoofing') attacks, using Crypto and Sanitizer
 - Forget JSON, use Objects, Arrays and Strings directly
+- Enhanced protection against: CSRF (session riding) and XSS (content spoofing) attacks, using Crypto and Sanitizer
 
 *For more information about Trakt.tv API, read http://docs.trakt.apiary.io/*
 
