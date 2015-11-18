@@ -1,70 +1,96 @@
 # trakt.tv
-A Trakt.tv API wrapper for Node.js.
+<img src="http://walter.trakt.us/public/favicon.svg" width="100" height="100" />
+
+**Trakt.tv API wrapper for Node.js, featuring:**
+
+- [All Trakt.tv API v2 methods](https://github.com/vankasteelj/trakt.tv/wiki/Supported-methods)
+- Promises
+- Enhanced protection agains: CSRF ('session riding') and XSS ('content spoofing') attacks, using Crypto and Sanitizer
+- Forget JSON, use Objects, Arrays and Strings directly
+
+*For more information about Trakt.tv API, read http://docs.trakt.apiary.io/*
 
 ## Example usage
 
-### Initialize
-```
+#### Setup
+
+    npm install trakt.tv
+
+#### Initialize
+```js
 var Trakt = require('trakt.tv');
 var trakt = new Trakt({
-  client_id: '',
-  client_secret: '',
-  redirect_uri: null // fallbacks to urn:ietf:wg:oauth:2.0:oob
+  client_id: 'the_client_id',
+  client_secret: 'the_client_secret',
+  redirect_uri: null    // fallbacks to 'urn:ietf:wg:oauth:2.0:oob'
+  api_url: null         // fallbacks to 'api-v2launch.trakt.tv'
+  debug: false
 });
 ```
 
-### Generate Auth URL
-```
+#### Generate Auth URL
+```js
 var url = trakt.get_url();
 ```
 
-### Verify code/PIN (and optionally state) from returned auth
+#### Verify code/PIN (and optionally state) from returned auth
+```js
+trakt.exchange_code('code/PIN', 'csrf token (state)')
+    .then(function(result) {
+        // contains tokens & session information
+        // API can now be used with authorized requests
+    })
+    .catch(function(err) { 
+        // Handles errors 
+    });
 ```
+
+#### Refresh token
+```js
+trakt.refresh_token()
+    .then(function(results) {
+        // API now has an updated access token
+    })
+    .catch(function(err) { 
+        // Handles errors 
+    });
+```
+
+#### Storing token over sessions
+```js
+var token = trakt.export_token(); // Gets token, store it safely.
+
+trakt.
+    import_token(token) // Injects stored token.
+    .then(function(shows) {
+        // Contains token, refreshed if needed (store it back)
+    })
+    .catch(function(err) { 
+        // Handles errors 
+    });
+```
+
+#### Actual API requests
+See methods in [methods.json](https://github.com/vankasteelj/trakt.tv/blob/master/methods.json).
+
+```js
 trakt
-  .exchange_code('code/PIN', 'csrf token (state)')
-  .then(function(result) {
-      /* API can now be used with authorized requests */
-  })
-  .catch(function(err) { /* Handle error */ });
+    .calendars.all.shows({
+        start_date: '2015-11-13',
+        days: '7',
+        extended: 'images'
+    })
+    .then(function(shows) {
+        // Contains Object{} response from API (show data)
+    })
+    .catch(function(err) { 
+        // Handles errors 
+    });
 ```
 
-### Refresh token
-```
-trakt
-  .refreshToken()
-  .then(function(result) {
-    /* API now has an updated access token */
-  })
-  .catch(function(err) { /* Handle error */ });
-```
-
-### Storing token over sessions
-```
-var token = trakt.export_token(); // get token
-/* Do storage and reloading etc here */
-trakt.import_token(token); // restore token
-```
-
-### Actual API requests
-See methods in methods.json.
-
-```
-trakt
-  .calendars.all.new_shows({
-    start_date: 'today',
-    days: '7',
-    extended: 'images'
-  })
-  .then(function(shows) {
-    /* shows now contain body response from API (actual show data). */
-  });
-  .catch(function(err) {
-    /* Handle any error */
-  })
-```
-
-### Notes
-You can use 'me' as username if the user is authenticated.
+#### Notes
+- You can use 'me' as username if the user is authenticated.
+- Timestamps (such as token _expires_ property) are Epoch in milliseconds.
 
 ## LICENSE
 
