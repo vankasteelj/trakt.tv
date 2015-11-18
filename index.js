@@ -133,7 +133,7 @@
     // Parse methods then hit trakt
     Trakt.prototype._call = function(method, params) {
         if (method.opts['auth'] === true && !this._authentication.access_token) {
-            throw new Error('Auth required');
+            throw new Error('OAuth required');
         }
         var that = this;
 
@@ -204,12 +204,6 @@
      * External functions
      */
 
-    Trakt.prototype.oauth = {
-        get_url: function() {
-            this._authentication.state = crypto.randomBytes(6).toString('hex');
-            return 'https://trakt.tv/oauth/authorize?response_type=code&client_id=' + this._settings.client_id + '&redirect_uri=' + this._settings.redirect_uri + '&state=' + this._authentication.state;
-        }
-    }
     // Get authentication url for browsers
     Trakt.prototype.get_url = function() {
         this._authentication.state = crypto.randomBytes(6).toString('hex');
@@ -245,16 +239,19 @@
     // Import token
     Trakt.prototype.import_token = function(token) {
         var that = this;
+
+        this._authentication.access_token = token.access_token;
+        this._authentication.expires = token.expires;
+        this._authentication.refresh_token = token.refresh_token;
+
         return new PinkiePromise(function (resolve, reject) {
             if (token.expires < Date.now()) {
                 that.refresh_token()
-                    .then(that.export_token)
-                    .then(resolve)
+                    .then(function () {
+                        resolve(that.export_token());
+                    })
                     .catch(reject);
             } else {
-                that._authentication.access_token = token.access_token;
-                that._authentication.expires = token.expires;
-                that._authentication.refresh_token = token.refresh_token;
                 resolve(that.export_token());
             }
         });

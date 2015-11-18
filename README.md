@@ -55,12 +55,12 @@ trakt
     days: '7',
     extended: 'images'
   })
+  .then(function(shows) {
+    /* shows now contain body response from API (actual show data). */
+  });
   .catch(function(err) {
     /* Handle any error */
   })
-  .done(function(shows) {
-    /* shows now contain body response from API (actual show data). */
-  });
 ```
 
 ### Notes
@@ -70,8 +70,9 @@ You can use 'me' as username if the user is authenticated.
 
 The MIT License (MIT)
 
-Copyright (c) 2015 vankasteelj
-Copyright (c) 2015 Patrick Engström (skeleton & logics)
+- Copyright (c) 2015 vankasteelj
+
+- Copyright (c) 2015 Patrick Engström
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
