@@ -52,7 +52,8 @@
       "method": "POST",
       "url": "/checkin",
       "body": {
-        "item": null,
+        "movie": null,
+        "episode": null,
         "sharing": null,
         "message": null,
         "venue_id": null,
@@ -73,7 +74,11 @@
       "method": "POST",
       "url": "/comments",
       "body": {
-        "item": null,
+        "movie": null,
+        "show": null,
+        "season": null,
+        "episode": null,
+        "list": null,
         "comment": null,
         "spoiler": null,
         "review": null
@@ -294,7 +299,8 @@
       "method": "POST",
       "url": "/scrobble/start",
       "body": {
-        "item": null,
+        "movie": null,
+        "episode": null,
         "progress": null,
         "app_version": null,
         "app_date": null
@@ -306,7 +312,8 @@
       "method": "POST",
       "url": "/scrobble/pause",
       "body": {
-        "item": null,
+        "movie": null,
+        "episode": null,
         "progress": null,
         "app_version": null,
         "app_date": null
@@ -318,7 +325,8 @@
       "method": "POST",
       "url": "/scrobble/stop",
       "body": {
-        "item": null,
+        "movie": null,
+        "episode": null,
         "progress": null,
         "app_version": null,
         "app_date": null
