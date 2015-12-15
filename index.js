@@ -137,6 +137,10 @@
         }
         var self = this;
 
+        if (method.body && ((method.body.episode && params.movie) || (method.body.movie && params.episode))) {
+            method.body = params;
+        }
+
         var req = {
             method: method.method,
             url: this._parse(method, params),
