@@ -145,7 +145,7 @@
                 'trakt-api-version': '2',
                 'trakt-api-key': this._settings.client_id
             },
-            body: (method.body ? method.body : {})
+            body: (method.body ? Object.assign({}, method.body) : {})
         };
 
         if (method.opts['auth']) {
