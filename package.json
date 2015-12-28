@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "got": "5.x.x",
+        "object-assign": "^4.0.1",
         "pinkie-promise": "1.x.x",
         "sanitizer": "0.x.x"
     }
