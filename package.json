@@ -1,6 +1,6 @@
 {
     "name": "trakt.tv",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Node.js Trakt.tv api wrapper",
     "main": "index.js",
     "repository": {
