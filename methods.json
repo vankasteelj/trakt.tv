@@ -591,8 +591,8 @@
   "/sync/ratings/get": {
       "opts": { "auth": true, "pagination": false },
       "method": "GET",
-      "url": "/sync/ratings/:type/rating",
-      "optional": [ "rating" ]
+      "url": "/sync/ratings/:type/:rating",
+      "optional": [ "rating", "type" ]
   },
   "/sync/ratings/add": {
       "opts": { "auth": true, "pagination": false },
@@ -810,7 +810,7 @@
       "opts": { "auth": "optional", "pagination": false },
       "method": "GET",
       "url": "/users/:username/ratings/:type/:rating",
-      "optional": [ "rating" ]
+      "optional": [ "rating", "type" ]
   },
   "/users/watchlist": {
       "opts": { "auth": "optional", "pagination": false },
