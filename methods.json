@@ -271,7 +271,7 @@
       "optional": []
   },
   "/recommendations/movies/get": {
-      "opts": { "auth": true, "pagination": false },
+      "opts": { "auth": true, "pagination": true },
       "method": "GET",
       "url": "/recommendations/movies",
       "optional": []
@@ -283,7 +283,7 @@
       "optional": []
   },
   "/recommendations/shows/get": {
-      "opts": { "auth": true, "pagination": false },
+      "opts": { "auth": true, "pagination": true },
       "method": "GET",
       "url": "/recommendations/shows",
       "optional": []
