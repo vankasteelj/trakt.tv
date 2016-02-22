@@ -89,6 +89,33 @@
             });
     };
 
+    Trakt.prototype._device_code = function(str, type) {
+        var self = this;
+
+        var req = {
+            method: 'POST',
+            url: this._settings.endpoint + '/oauth/device/' + type,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(str)
+        };
+
+        this._debug(req);
+        return got(req.url, req)
+            .then(function(response) {
+                var body = JSON.parse(response.body);
+                return self._sanitize(body);
+            })
+            .catch(function(error) {
+                if (error.response && error.response.statusCode == 401) {
+                    throw new Error(error.response.headers['www-authenticate']);
+                } else {
+                    throw error;
+                }
+            });
+    };
+
     // Parse url before api call
     Trakt.prototype._parse = function(method, params) {
         if (!params) params = {};
@@ -224,6 +251,54 @@
                 redirect_uri: this._settings.redirect_uri,
                 grant_type: 'authorization_code'
             });
+    };
+
+    // Get authentification codes for devices
+    Trakt.prototype.get_codes = function () {
+        return this._device_code({
+            client_id: this._settings.client_id
+        }, 'code');
+    };
+
+    Trakt.prototype.poll_access = function (poll) {
+        var self = this;
+        if (!poll || (poll && poll.constructor !== Object)) {
+            throw new Error('Invalid Poll object');
+        }
+
+        var begin = Date.now();
+
+        return new PinkiePromise(function (resolve, reject) {
+            var call = function () {
+                if (begin + (poll.expires_in * 1000) <= Date.now()) {
+                    clearInterval(polling);
+                    reject(new Error('Expired'));
+                } else {
+                    self._device_code({
+                        code: poll.device_code,
+                        client_id: self._settings.client_id,
+                        client_secret: self._settings.client_secret
+                    }, 'token').then(function (body) {
+                        self._authentication.refresh_token = body.refresh_token;
+                        self._authentication.access_token = body.access_token;
+                        self._authentication.expires = Date.now() + (body.expires_in * 1000); // Epoch in milliseconds
+
+                        clearInterval(polling);
+                        resolve(body);
+                    }).catch(function (error) {
+                        if (error.response && error.response.statusCode === 400) {
+                            // do nothing on 400
+                        } else {
+                            clearInterval(polling);
+                            reject(error);
+                        }
+                    });
+                }
+            };
+            var polling = setInterval(function () {
+                call();
+            }, (poll.interval * 1000));
+        });
     };
 
     // Refresh access token
