@@ -44,6 +44,23 @@ trakt.exchange_code('code/PIN', 'csrf token (state)')
     });
 ```
 
+#### Alternate OAUTH "device" method
+```js
+trakt.get_codes()
+    .then(function (poll) {
+        // Poll contains 'verification_url' you need to visit
+        // and the 'user_code' you need to use on that url
+        
+        return trakt.poll_access(poll);
+        // this second call is required to verify if app was authorized
+    })
+    .catch(function (error) {
+        // Handles errors
+        // specific error.message == 'Expired' will be thrown
+        // in case the verification_url was not used in time
+    });
+```
+
 #### Refresh token
 ```js
 trakt.refresh_token()
