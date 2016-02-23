@@ -123,8 +123,8 @@
             pathParts = [];
 
         // Pagination
-        if (method.opts['pagination'] && params['page']) {
-            queryParts.push('page=' + params['page']);
+        if (method.opts['pagination']) {
+            if (params['page']) queryParts.push('page=' + params['page']);
             if (params['limit']) queryParts.push('limit=' + params['limit']);
         }
 
