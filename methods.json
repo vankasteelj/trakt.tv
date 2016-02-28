@@ -644,7 +644,6 @@
         "movies": null,
         "shows": null,
         "episodes": null
-
       },
       "optional": [ ]
   },
@@ -653,6 +652,12 @@
       "method": "GET",
       "url": "/users/settings",
       "optional": []
+  },
+  "/users/hidden": {
+      "opts": { "auth": true, "pagination": true },
+      "method": "GET",
+      "url": "/users/hidden/:section?type=",
+      "optional": ["type"]
   },
   "/users/requests/get": {
       "opts": { "auth": true, "pagination": false },
