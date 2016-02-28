@@ -7,6 +7,7 @@
 - Promises
 - Forget JSON, use Objects, Arrays and Strings directly
 - Enhanced protection against: CSRF (session riding) and XSS (content spoofing) attacks, using Crypto and Sanitizer
+- Plugin extension
 
 *For more information about Trakt.tv API, read http://docs.trakt.apiary.io/*
 
@@ -101,6 +102,20 @@ trakt.calendars.all.shows({
         // Handles errors 
     });
 ```
+
+#### Load plugins
+When calling `new Trakt()`, include desired plugins (must be installed from npm):
+
+```js
+var trakt = new Trakt({
+    client_id: '',
+    client_secret: '',
+    plugins: ['ondeck'] // 'ondeck' refers to npm 'trakt.tv-ondeck' plugin
+});
+```
+
+#### Write plugins
+See the [wiki page](https://github.com/vankasteelj/trakt.tv/wiki/Write-plugins-for-trakt.tv).
 
 #### Notes
 - You can use 'me' as username if the user is authenticated.
