@@ -164,7 +164,7 @@
             var queryParams = queryPart.split('&');
             for (var i in queryParams) {
                 var name = queryParams[i].split('=')[0];
-                if (params[name]) queryParts.push(name + '=' + params[name]);
+                if (params[name] || params[name] === 0) queryParts.push(name + '=' + params[name]);
             }
         }
 
@@ -176,7 +176,7 @@
                 pathParts.push(pathParams[k]);
             } else {
                 var param = params[pathParams[k].substr(1)];
-                if (param) pathParts.push(param);
+                if (param || param === 0) pathParts.push(param);
             }
         }
 
