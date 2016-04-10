@@ -7,7 +7,7 @@
 - Promises
 - Forget JSON, use Objects, Arrays and Strings directly
 - Enhanced protection against: CSRF (session riding) and XSS (content spoofing) attacks, using Crypto and Sanitizer
-- Plugin extension
+- [Plugin extension](https://github.com/vankasteelj/trakt.tv/wiki/Available-plugins)
 
 *For more information about Trakt.tv API, read http://docs.trakt.apiary.io/*
 
