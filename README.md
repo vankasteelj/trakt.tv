@@ -152,7 +152,7 @@ See the [wiki page](https://github.com/vankasteelj/trakt.tv/wiki/Write-plugins-f
 
 The MIT License (MIT)
 
-- Copyright (c) 2015 vankasteelj
+- Copyright (c) 2015-2016 vankasteelj
 
 - Copyright (c) 2015 Patrick Engström
 
