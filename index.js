@@ -222,8 +222,34 @@
 
         this._debug(req);
         return got(req.url, req).then(function(response) {
-            return self._sanitize(JSON.parse(response.body));
+            return self._parseResponse(method, params, response);
         });
+    };
+
+    // Parse trakt response: pagination & stuff
+    Trakt.prototype._parseResponse = function (method, params, response) {
+        var parsed,
+            data = JSON.parse(response.body);
+
+        if (params && params.pagination) {
+            parsed = {
+                data: data
+            };
+
+            if (method.opts.pagination) {
+                parsed.pagination = {
+                    'item-count': response.headers['x-pagination-item-count'],
+                    'limit': response.headers['x-pagination-limit'],
+                    'page': response.headers['x-pagination-page'],
+                    'page-count': response.headers['x-pagination-page-count'],
+                };
+            } else {
+                parsed.pagination = false;
+            }
+        } else {
+            parsed = data;
+        }
+        return this._sanitize(parsed);
     };
 
     // Sanitize output (xss)

@@ -103,6 +103,33 @@ trakt.calendars.all.shows({
     });
 ```
 
+#### Using pagination
+You can extend your calls with `pagination: true` to get the extra pagination info from headers.
+
+```js
+trakt.movies.popular({
+        pagination: true
+    })
+    .then(function(movies) {
+        /**
+        movies = Object {
+            data: [<actual data from API>],
+            pagination: {
+                item-count: "80349",
+                limit: "10",
+                page: "1",
+                page-count: "8035"
+            }
+        }
+        **/
+    })
+    .catch(function(err) { 
+        // Handles errors 
+    });
+```
+
+Note: _this will contain `data` and `pagination` for all calls, even if no pagination is available. it's typically for really advanced use only_
+
 #### Load plugins
 When calling `new Trakt()`, include desired plugins (must be installed from npm):
 
