@@ -315,8 +315,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/movies/:id/comments",
-        "optional": []
+        "url": "/movies/:id/comments?sort=",
+        "optional": ["sort"]
     },
     "/movies/people": {
         "opts": {
@@ -579,8 +579,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/shows/:id/comments",
-        "optional": []
+        "url": "/shows/:id/comments?sort=",
+        "optional": ["sort"]
     },
     "/shows/progress/collection": {
         "opts": {
@@ -669,8 +669,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/shows/:id/seasons/:season/comments",
-        "optional": []
+        "url": "/shows/:id/seasons/:season/comments?sort=",
+        "optional": ["sort"]
     },
     "/seasons/ratings": {
         "opts": {
@@ -705,8 +705,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/shows/:id/seasons/:season/episodes/:episode/comments",
-        "optional": []
+        "url": "/shows/:id/seasons/:season/episodes/:episode/comments?sort=",
+        "optional": ["sort"]
     },
     "/episodes/ratings": {
         "opts": {
@@ -1105,8 +1105,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/users/:username/lists/:id/comments",
-        "optional": []
+        "url": "/users/:username/lists/:id/comments?sort=",
+        "optional": ["sort"]
     },
     "/users/follow/add": {
         "opts": {
