@@ -1078,8 +1078,8 @@
             "pagination": false
         },
         "method": "GET",
-        "url": "/users/:username/lists/:id/items",
-        "optional": []
+        "url": "/users/:username/lists/:id/items?type=",
+        "optional": ["type"]
     },
     "/users/list/items/add": {
         "opts": {
