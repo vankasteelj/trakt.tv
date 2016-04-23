@@ -33,9 +33,9 @@ var trakt = new Trakt({
 var url = trakt.get_url();
 ```
 
-#### Verify code/PIN (and optionally state) from returned auth
+#### Verify code (and optionally state) from returned auth
 ```js
-trakt.exchange_code('code/PIN', 'csrf token (state)')
+trakt.exchange_code('code', 'csrf token (state)')
     .then(function(result) {
         // contains tokens & session information
         // API can now be used with authorized requests

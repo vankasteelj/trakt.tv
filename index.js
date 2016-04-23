@@ -265,7 +265,7 @@
         return 'https://trakt.tv/oauth/authorize?response_type=code&client_id=' + this._settings.client_id + '&redirect_uri=' + this._settings.redirect_uri + '&state=' + this._authentication.state;
     };
 
-    // Verify code or pin; optionnal state
+    // Verify code; optionnal state
     Trakt.prototype.exchange_code = function(code, state) {
         if (state && state != this._authentication.state) {
             throw new Error('Invalid CSRF (State)');
