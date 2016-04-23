@@ -1,844 +1,1210 @@
 {
-  "/calendars/my/shows": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/calendars/my/shows/:start_date/:days",
-      "optional": [ "start_date", "days" ]
-  },
-  "/calendars/my/new_shows": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/calendars/my/shows/new/:start_date/:days",
-      "optional": [ "start_date", "days" ]
-  },
-  "/calendars/my/premieres_shows": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/calendars/my/shows/premieres/:start_date/:days",
-      "optional": [ "start_date", "days" ]
-  },
-  "/calendars/my/movies": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/calendars/my/movies/:start_date/:days",
-      "optional": [ "start_date", "days" ]
-  },
-  "/calendars/all/shows": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/calendars/all/shows/:start_date/:days",
-      "optional": [ "start_date", "days" ]
-  },
-  "/calendars/all/new_shows": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/calendars/all/shows/new/:start_date/:days",
-      "optional": [ "start_date", "days" ]
-  },
-  "/calendars/all/premieres_shows": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/calendars/all/shows/premieres/:start_date/:days",
-      "optional": [ "start_date", "days" ]
-  },
-  "/calendars/all/movies": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/calendars/all/movies/:start_date/:days",
-      "optional": [ "start_date", "days" ]
-  },
-  "/checkin/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/checkin",
-      "body": {
-        "movie": null,
-        "episode": null,
-        "sharing": null,
-        "message": null,
-        "venue_id": null,
-        "venue_name": null,
-        "app_version": null,
-        "app_date": null
-      },
-      "optional": []
-  },
-  "/checkin/delete": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/checkin",
-      "optional": []
-  },
-  "/comments/comment/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/comments",
-      "body": {
-        "movie": null,
-        "show": null,
-        "season": null,
-        "episode": null,
-        "list": null,
-        "comment": null,
-        "spoiler": null,
-        "review": null
-      },
-      "optional": []
-  },
-  "/comments/comment/get": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/comments/:id",
-      "optional": []
-  },
-  "/comments/comment/update": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "PUT",
-      "url": "/comments/:id",
-      "body": {
-        "comment": null,
-        "spoiler": null,
-        "review": null
+    "/calendars/my/shows": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/my/shows/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/calendars/my/new_shows": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/my/shows/new/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/calendars/my/premieres_shows": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/my/shows/premieres/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/calendars/my/movies": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/my/movies/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/calendars/all/shows": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/all/shows/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/calendars/all/new_shows": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/all/shows/new/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/calendars/all/premieres_shows": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/all/shows/premieres/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/calendars/all/movies": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/all/movies/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/checkin/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/checkin",
+        "body": {
+            "movie": null,
+            "episode": null,
+            "sharing": null,
+            "message": null,
+            "venue_id": null,
+            "venue_name": null,
+            "app_version": null,
+            "app_date": null
+        },
+        "optional": []
+    },
+    "/checkin/delete": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/checkin",
+        "optional": []
+    },
+    "/comments/comment/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/comments",
+        "body": {
+            "movie": null,
+            "show": null,
+            "season": null,
+            "episode": null,
+            "list": null,
+            "comment": null,
+            "spoiler": null,
+            "review": null
+        },
+        "optional": []
+    },
+    "/comments/comment/get": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/comments/:id",
+        "optional": []
+    },
+    "/comments/comment/update": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "PUT",
+        "url": "/comments/:id",
+        "body": {
+            "comment": null,
+            "spoiler": null,
+            "review": null
 
-      },
-      "optional": [ ]
-  },
-  "/comments/comment/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/comments/:id",
-      "optional": []
-  },
-  "/comments/replies/get": {
-      "opts": { "auth": true, "pagination": true },
-      "method": "GET",
-      "url": "/comments/:id/replies",
-      "optional": []
-  },
-  "/comments/replies/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/comments/:id/replies",
-      "body": {
-        "comment": null,
-        "spoiler": null
+        },
+        "optional": []
+    },
+    "/comments/comment/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/comments/:id",
+        "optional": []
+    },
+    "/comments/replies/get": {
+        "opts": {
+            "auth": true,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/comments/:id/replies",
+        "optional": []
+    },
+    "/comments/replies/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/comments/:id/replies",
+        "body": {
+            "comment": null,
+            "spoiler": null
 
-      },
-      "optional": [ ]
-  },
-  "/comments/like/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/comments/:id/like",
-      "optional": []
-  },
-  "/comments/like/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/comments/:id/like",
-      "optional": []
-  },
-  "/genres": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/genres/:type",
-      "optional": []
-  },
-  "/movies/trending": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/trending",
-      "optional": []
-  },
-  "/movies/popular": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/popular",
-      "optional": []
-  },
-  "/movies/played": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/played/:period",
-      "optional": []
-  },
-  "/movies/watched": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/watched/:period",
-      "optional": []
-  },
-  "/movies/collected": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/collected/:period",
-      "optional": []
-  },
-  "/movies/anticipated": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/anticipated",
-      "optional": []
-  },
-  "/movies/boxoffice": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/boxoffice",
-      "optional": []
-  },
-  "/movies/updates": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/updates/:start_date",
-      "optional": [ "start_date" ]
-  },
-  "/movies/summary": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id",
-      "optional": []
-  },
-  "/movies/aliases": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id/aliases",
-      "optional": []
-  },
-  "/movies/releases": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id/releases/:country",
-      "optional": [ "country" ]
-  },
-  "/movies/translations": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id/translations/:language",
-      "optional": [ "language" ]
-  },
-  "/movies/comments": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/movies/:id/comments",
-      "optional": []
-  },
-  "/movies/people": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id/people",
-      "optional": []
-  },
-  "/movies/ratings": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id/ratings",
-      "optional": []
-  },
-  "/movies/related": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id/related?limit=",
-      "optional": [ "limit" ]
-  },
-  "/movies/stats": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id/stats",
-      "optional": []
-  },
-  "/movies/watching": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/movies/:id/watching",
-      "optional": []
-  },
-  "/people/summary": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/people/:id",
-      "optional": []
-  },
-  "/people/movies": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/people/:id/movies",
-      "optional": []
-  },
-  "/people/shows": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/people/:id/shows",
-      "optional": []
-  },
-  "/recommendations/movies/get": {
-      "opts": { "auth": true, "pagination": true },
-      "method": "GET",
-      "url": "/recommendations/movies",
-      "optional": []
-  },
-  "/recommendations/movies/hide": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/recommendations/movies/:id",
-      "optional": []
-  },
-  "/recommendations/shows/get": {
-      "opts": { "auth": true, "pagination": true },
-      "method": "GET",
-      "url": "/recommendations/shows",
-      "optional": []
-  },
-  "/recommendations/shows/hide": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/recommendations/shows/:id",
-      "optional": []
-  },
-  "/scrobble/start": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/scrobble/start",
-      "body": {
-        "movie": null,
-        "episode": null,
-        "progress": null,
-        "app_version": null,
-        "app_date": null
-      },
-      "optional": []
-  },
-  "/scrobble/pause": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/scrobble/pause",
-      "body": {
-        "movie": null,
-        "episode": null,
-        "progress": null,
-        "app_version": null,
-        "app_date": null
-      },
-      "optional": []
-  },
-  "/scrobble/stop": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/scrobble/stop",
-      "body": {
-        "movie": null,
-        "episode": null,
-        "progress": null,
-        "app_version": null,
-        "app_date": null
-      },
-      "optional": []
-  },
-  "/search": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/search?query=&type=&year=&id=&id_type=",
-      "optional": [ "type", "query", "id", "id_type" ]
-  },
-  "/shows/trending": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/trending",
-      "optional": []
-  },
-  "/shows/popular": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/popular",
-      "optional": []
-  },
-  "/shows/played": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/played/:period",
-      "optional": [ "period" ]
-  },
-  "/shows/watched": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/watched/:period",
-      "optional": [ "period" ]
-  },
-  "/shows/collected": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/collected",
-      "optional": [ "period" ]
-  },
-  "/shows/anticipated": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/anticipated",
-      "optional": []
-  },
-  "/shows/updates": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/updates/:start_date",
-      "optional": [ "start_date" ]
-  },
-  "/shows/summary": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id",
-      "optional": []
-  },
-  "/shows/aliases": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/aliases",
-      "optional": []
-  },
-  "/shows/translations": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/translations/:language",
-      "optional": [ "language" ]
-  },
-  "/shows/comments": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/:id/comments",
-      "optional": []
-  },
-  "/shows/progress/collection": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/progress/collection?hidden=&specials=",
-      "optional": [ "hidden", "specials" ]
-  },
-  "/shows/progress/watched": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/progress/watched?hidden=&specials=",
-      "optional": [ "hidden", "specials" ]
-  },
-  "/shows/people": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/people",
-      "optional": []
-  },
-  "/shows/ratings": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/ratings",
-      "optional": []
-  },
-  "/shows/related": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/related?limit=",
-      "optional": [ "limit" ]
-  },
-  "/shows/stats": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/stats",
-      "optional": []
-  },
-  "/shows/watching": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/watching",
-      "optional": []
-  },
-  "/seasons/summary": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/seasons",
-      "optional": []
-  },
-  "/seasons/season": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season",
-      "optional": []
-  },
-  "/seasons/comments": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season/comments",
-      "optional": []
-  },
-  "/seasons/ratings": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season/ratings",
-      "optional": []
-  },
-  "/seasons/watching": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season/watching",
-      "optional": []
-  },
-  "/episodes/summary": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season/episodes/:episode",
-      "optional": []
-  },
-  "/episodes/comments": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season/episodes/:episode/comments",
-      "optional": []
-  },
-  "/episodes/ratings": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season/episodes/:episode/ratings",
-      "optional": []
-  },
-  "/episodes/stats": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season/episodes/:episode/stats",
-      "optional": []
-  },
-  "/episodes/watching": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "GET",
-      "url": "/shows/:id/seasons/:season/episodes/:episode/watching",
-      "optional": []
-  },
-  "/sync/last_activities": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/sync/last_activities",
-      "optional": []
-  },
-  "/sync/playback/get": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/sync/playback",
-      "optional": []
-  },
-  "/sync/playback/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE",
-      "url": "/sync/playback/:id",
-      "optional": []
-  },
-  "/sync/collection/get": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/sync/collection/:type",
-      "optional": []
-  },
-  "/sync/collection/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/sync/collection",
-      "body": {
-        "movies": null,
-        "shows": null,
-        "episodes": null
+        },
+        "optional": []
+    },
+    "/comments/like/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/comments/:id/like",
+        "optional": []
+    },
+    "/comments/like/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/comments/:id/like",
+        "optional": []
+    },
+    "/genres": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/genres/:type",
+        "optional": []
+    },
+    "/movies/trending": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/trending",
+        "optional": []
+    },
+    "/movies/popular": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/popular",
+        "optional": []
+    },
+    "/movies/played": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/played/:period",
+        "optional": []
+    },
+    "/movies/watched": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/watched/:period",
+        "optional": []
+    },
+    "/movies/collected": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/collected/:period",
+        "optional": []
+    },
+    "/movies/anticipated": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/anticipated",
+        "optional": []
+    },
+    "/movies/boxoffice": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/boxoffice",
+        "optional": []
+    },
+    "/movies/updates": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/updates/:start_date",
+        "optional": ["start_date"]
+    },
+    "/movies/summary": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id",
+        "optional": []
+    },
+    "/movies/aliases": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id/aliases",
+        "optional": []
+    },
+    "/movies/releases": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id/releases/:country",
+        "optional": ["country"]
+    },
+    "/movies/translations": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id/translations/:language",
+        "optional": ["language"]
+    },
+    "/movies/comments": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/:id/comments",
+        "optional": []
+    },
+    "/movies/people": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id/people",
+        "optional": []
+    },
+    "/movies/ratings": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id/ratings",
+        "optional": []
+    },
+    "/movies/related": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id/related?limit=",
+        "optional": ["limit"]
+    },
+    "/movies/stats": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id/stats",
+        "optional": []
+    },
+    "/movies/watching": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/movies/:id/watching",
+        "optional": []
+    },
+    "/people/summary": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/people/:id",
+        "optional": []
+    },
+    "/people/movies": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/people/:id/movies",
+        "optional": []
+    },
+    "/people/shows": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/people/:id/shows",
+        "optional": []
+    },
+    "/recommendations/movies/get": {
+        "opts": {
+            "auth": true,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/recommendations/movies",
+        "optional": []
+    },
+    "/recommendations/movies/hide": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/recommendations/movies/:id",
+        "optional": []
+    },
+    "/recommendations/shows/get": {
+        "opts": {
+            "auth": true,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/recommendations/shows",
+        "optional": []
+    },
+    "/recommendations/shows/hide": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/recommendations/shows/:id",
+        "optional": []
+    },
+    "/scrobble/start": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/scrobble/start",
+        "body": {
+            "movie": null,
+            "episode": null,
+            "progress": null,
+            "app_version": null,
+            "app_date": null
+        },
+        "optional": []
+    },
+    "/scrobble/pause": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/scrobble/pause",
+        "body": {
+            "movie": null,
+            "episode": null,
+            "progress": null,
+            "app_version": null,
+            "app_date": null
+        },
+        "optional": []
+    },
+    "/scrobble/stop": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/scrobble/stop",
+        "body": {
+            "movie": null,
+            "episode": null,
+            "progress": null,
+            "app_version": null,
+            "app_date": null
+        },
+        "optional": []
+    },
+    "/search": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/search?query=&type=&year=&id=&id_type=",
+        "optional": ["type", "query", "id", "id_type"]
+    },
+    "/shows/trending": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/trending",
+        "optional": []
+    },
+    "/shows/popular": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/popular",
+        "optional": []
+    },
+    "/shows/played": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/played/:period",
+        "optional": ["period"]
+    },
+    "/shows/watched": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/watched/:period",
+        "optional": ["period"]
+    },
+    "/shows/collected": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/collected",
+        "optional": ["period"]
+    },
+    "/shows/anticipated": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/anticipated",
+        "optional": []
+    },
+    "/shows/updates": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/updates/:start_date",
+        "optional": ["start_date"]
+    },
+    "/shows/summary": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id",
+        "optional": []
+    },
+    "/shows/aliases": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/aliases",
+        "optional": []
+    },
+    "/shows/translations": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/translations/:language",
+        "optional": ["language"]
+    },
+    "/shows/comments": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/comments",
+        "optional": []
+    },
+    "/shows/progress/collection": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/progress/collection?hidden=&specials=",
+        "optional": ["hidden", "specials"]
+    },
+    "/shows/progress/watched": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/progress/watched?hidden=&specials=",
+        "optional": ["hidden", "specials"]
+    },
+    "/shows/people": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/people",
+        "optional": []
+    },
+    "/shows/ratings": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/ratings",
+        "optional": []
+    },
+    "/shows/related": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/related?limit=",
+        "optional": ["limit"]
+    },
+    "/shows/stats": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/stats",
+        "optional": []
+    },
+    "/shows/watching": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/watching",
+        "optional": []
+    },
+    "/seasons/summary": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons",
+        "optional": []
+    },
+    "/seasons/season": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season",
+        "optional": []
+    },
+    "/seasons/comments": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/comments",
+        "optional": []
+    },
+    "/seasons/ratings": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/ratings",
+        "optional": []
+    },
+    "/seasons/watching": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/watching",
+        "optional": []
+    },
+    "/episodes/summary": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode",
+        "optional": []
+    },
+    "/episodes/comments": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode/comments",
+        "optional": []
+    },
+    "/episodes/ratings": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode/ratings",
+        "optional": []
+    },
+    "/episodes/stats": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode/stats",
+        "optional": []
+    },
+    "/episodes/watching": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode/watching",
+        "optional": []
+    },
+    "/sync/last_activities": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/sync/last_activities",
+        "optional": []
+    },
+    "/sync/playback/get": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/sync/playback",
+        "optional": []
+    },
+    "/sync/playback/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE",
+        "url": "/sync/playback/:id",
+        "optional": []
+    },
+    "/sync/collection/get": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/sync/collection/:type",
+        "optional": []
+    },
+    "/sync/collection/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/sync/collection",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
 
-      },
-      "optional": [ ]
-  },
-  "/sync/collection/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/sync/collection/remove",
-      "body": {
-        "movies": null,
-        "shows": null,
-        "episodes": null
-      },
-      "optional": [ ]
-  },
-  "/sync/watched": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/sync/watched/:type",
-      "optional": []
-  },
-  "/sync/history/get": {
-      "opts": { "auth": true, "pagination": true },
-      "method": "GET",
-      "url": "/sync/history/:type/:id",
-      "optional": [ "type", "id" ]
-  },
-  "/sync/history/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/sync/history",
-      "body": {
-        "movies": null,
-        "shows": null,
-        "episodes": null
-      },
-      "optional": [ ]
-  },
-  "/sync/history/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/sync/history/remove",
-      "body": {
-        "movies": null,
-        "shows": null,
-        "episodes": null
-      },
-      "optional": [ ]
-  },
-  "/sync/ratings/get": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/sync/ratings/:type/:rating",
-      "optional": [ "rating", "type" ]
-  },
-  "/sync/ratings/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/sync/ratings",
-      "body": {
-        "movies": null,
-        "shows": null,
-        "episodes": null
+        },
+        "optional": []
+    },
+    "/sync/collection/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/sync/collection/remove",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
+        },
+        "optional": []
+    },
+    "/sync/watched": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/sync/watched/:type",
+        "optional": []
+    },
+    "/sync/history/get": {
+        "opts": {
+            "auth": true,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/sync/history/:type/:id",
+        "optional": ["type", "id"]
+    },
+    "/sync/history/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/sync/history",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
+        },
+        "optional": []
+    },
+    "/sync/history/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/sync/history/remove",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
+        },
+        "optional": []
+    },
+    "/sync/ratings/get": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/sync/ratings/:type/:rating",
+        "optional": ["rating", "type"]
+    },
+    "/sync/ratings/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/sync/ratings",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
 
-      },
-      "optional": [ ]
-  },
-  "/sync/ratings/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/sync/ratings/remove",
-      "body": {
-        "movies": null,
-        "shows": null,
-        "episodes": null
+        },
+        "optional": []
+    },
+    "/sync/ratings/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/sync/ratings/remove",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
 
-      },
-      "optional": [ ]
-  },
-  "/sync/watchlist/get": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/sync/watchlist/:type",
-      "optional": []
-  },
-  "/sync/watchlist/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/sync/watchlist",
-      "body": {
-        "movies": null,
-        "shows": null,
-        "episodes": null
+        },
+        "optional": []
+    },
+    "/sync/watchlist/get": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/sync/watchlist/:type",
+        "optional": []
+    },
+    "/sync/watchlist/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/sync/watchlist",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
 
-      },
-      "optional": [ ]
-  },
-  "/sync/watchlist/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/sync/watchlist/remove",
-      "body": {
-        "movies": null,
-        "shows": null,
-        "episodes": null
-      },
-      "optional": [ ]
-  },
-  "/users/settings": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/users/settings",
-      "optional": []
-  },
-  "/users/hidden": {
-      "opts": { "auth": true, "pagination": true },
-      "method": "GET",
-      "url": "/users/hidden/:section?type=",
-      "optional": ["type"]
-  },
-  "/users/requests/get": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "GET",
-      "url": "/users/requests",
-      "optional": []
-  },
-  "/users/requests/approve": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/users/requests/:id",
-      "optional": []
-  },
-  "/users/requests/deny": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/users/requests/:id",
-      "optional": []
-  },
-  "/users/profile": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username",
-      "optional": []
-  },
-  "/users/collection": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/collection/:type",
-      "optional": []
-  },
-  "/users/comment": {
-      "opts": { "auth": "optional", "pagination": true },
-      "method": "GET",
-      "url": "/users/:username/comments/:comment_type/:type",
-      "optional": [ "comment_type", "type" ]
-  },
-  "/users/lists/get": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/lists",
-      "optional": []
-  },
-  "/users/lists/create": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/users/:username/lists",
-      "body": {
-        "name": null,
-        "description": null,
-        "privacy": null,
-        "display_numbers": null,
-        "allow_comments": null
-      },
-      "optional": []
-  },
-  "/users/list/get": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/lists/:id",
-      "optional": []
-  },
-  "/users/list/update": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "PUT",
-      "url": "/users/:username/lists/:id",
-      "body": {
-        "name": null,
-        "description": null,
-        "privacy": null,
-        "display_numbers": null,
-        "allow_comments": null
-      },
-      "optional": []
-  },
-  "/users/list/delete": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/users/:username/lists/:id",
-      "optional": []
-  },
-  "/users/list/like/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/users/:username/lists/:id/like",
-      "optional": []
-  },
-  "/users/list/like/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/users/:username/lists/:id/like",
-      "optional": []
-  },
-  "/users/list/items/get": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/lists/:id/items",
-      "optional": []
-  },
-  "/users/list/items/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/users/:username/lists/:id/items",
-      "optional": []
-  },
-  "/users/list/items/remove": {
-      "opts": { "auth": false, "pagination": false },
-      "method": "POST",
-      "url": "/users/:username/lists/:id/items/remove",
-      "optional": []
-  },
-  "/users/list/comments": {
-      "opts": { "auth": false, "pagination": true },
-      "method": "GET",
-      "url": "/users/:username/lists/:id/comments",
-      "optional": []
-  },
-  "/users/follow/add": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "POST",
-      "url": "/users/:username/follow",
-      "optional": []
-  },
-  "/users/follow/remove": {
-      "opts": { "auth": true, "pagination": false },
-      "method": "DELETE ",
-      "url": "/users/:username/follow",
-      "optional": []
-  },
-  "/users/followers": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/followers",
-      "optional": []
-  },
-  "/users/following": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/following",
-      "optional": []
-  },
-  "/users/friends": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/friends",
-      "optional": []
-  },
-  "/users/history": {
-      "opts": { "auth": "optional", "pagination": true },
-      "method": "GET",
-      "url": "/users/:username/history/:type",
-      "optional": []
-  },
-  "/users/ratings": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/ratings/:type/:rating",
-      "optional": [ "rating", "type" ]
-  },
-  "/users/watchlist": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/watchlist/:type",
-      "optional": []
-  },
-  "/users/watching": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/watching",
-      "optional": []
-  },
-  "/users/watched": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/watched/:type",
-      "optional": []
-  },
-  "/users/stats": {
-      "opts": { "auth": "optional", "pagination": false },
-      "method": "GET",
-      "url": "/users/:username/stats",
-      "optional": []
-  }
+        },
+        "optional": []
+    },
+    "/sync/watchlist/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/sync/watchlist/remove",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
+        },
+        "optional": []
+    },
+    "/users/settings": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/settings",
+        "optional": []
+    },
+    "/users/hidden": {
+        "opts": {
+            "auth": true,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/users/hidden/:section?type=",
+        "optional": ["type"]
+    },
+    "/users/requests/get": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/requests",
+        "optional": []
+    },
+    "/users/requests/approve": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/requests/:id",
+        "optional": []
+    },
+    "/users/requests/deny": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/users/requests/:id",
+        "optional": []
+    },
+    "/users/profile": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username",
+        "optional": []
+    },
+    "/users/collection": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/collection/:type",
+        "optional": []
+    },
+    "/users/comment": {
+        "opts": {
+            "auth": "optional",
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/users/:username/comments/:comment_type/:type",
+        "optional": ["comment_type", "type"]
+    },
+    "/users/lists/get": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/lists",
+        "optional": []
+    },
+    "/users/lists/create": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/:username/lists",
+        "body": {
+            "name": null,
+            "description": null,
+            "privacy": null,
+            "display_numbers": null,
+            "allow_comments": null
+        },
+        "optional": []
+    },
+    "/users/list/get": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/lists/:id",
+        "optional": []
+    },
+    "/users/list/update": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "PUT",
+        "url": "/users/:username/lists/:id",
+        "body": {
+            "name": null,
+            "description": null,
+            "privacy": null,
+            "display_numbers": null,
+            "allow_comments": null
+        },
+        "optional": []
+    },
+    "/users/list/delete": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/users/:username/lists/:id",
+        "optional": []
+    },
+    "/users/list/like/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/:username/lists/:id/like",
+        "optional": []
+    },
+    "/users/list/like/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/users/:username/lists/:id/like",
+        "optional": []
+    },
+    "/users/list/items/get": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/lists/:id/items",
+        "optional": []
+    },
+    "/users/list/items/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/:username/lists/:id/items",
+        "optional": []
+    },
+    "/users/list/items/remove": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/:username/lists/:id/items/remove",
+        "optional": []
+    },
+    "/users/list/comments": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/users/:username/lists/:id/comments",
+        "optional": []
+    },
+    "/users/follow/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/:username/follow",
+        "optional": []
+    },
+    "/users/follow/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE ",
+        "url": "/users/:username/follow",
+        "optional": []
+    },
+    "/users/followers": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/followers",
+        "optional": []
+    },
+    "/users/following": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/following",
+        "optional": []
+    },
+    "/users/friends": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/friends",
+        "optional": []
+    },
+    "/users/history": {
+        "opts": {
+            "auth": "optional",
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/users/:username/history/:type",
+        "optional": []
+    },
+    "/users/ratings": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/ratings/:type/:rating",
+        "optional": ["rating", "type"]
+    },
+    "/users/watchlist": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/watchlist/:type",
+        "optional": []
+    },
+    "/users/watching": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/watching",
+        "optional": []
+    },
+    "/users/watched": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/watched/:type",
+        "optional": []
+    },
+    "/users/stats": {
+        "opts": {
+            "auth": "optional",
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/:username/stats",
+        "optional": []
+    }
 }

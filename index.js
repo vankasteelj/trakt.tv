@@ -56,7 +56,7 @@
         }
     };
 
-    Trakt.prototype._plugins = function (plugins) {
+    Trakt.prototype._plugins = function(plugins) {
         if (typeof plugins === 'string') plugins = [plugins];
         if (typeof plugins !== 'object') return;
 
@@ -73,7 +73,7 @@
                 errors.push(name);
             }
         }
-        
+
         if (errors.length > 0) {
             throw new Error(errors.join() + ': invalid plugin(s)');
         }
@@ -272,22 +272,22 @@
         }
 
         return this._exchange({
-                code: code,
-                client_id: this._settings.client_id,
-                client_secret: this._settings.client_secret,
-                redirect_uri: this._settings.redirect_uri,
-                grant_type: 'authorization_code'
-            });
+            code: code,
+            client_id: this._settings.client_id,
+            client_secret: this._settings.client_secret,
+            redirect_uri: this._settings.redirect_uri,
+            grant_type: 'authorization_code'
+        });
     };
 
     // Get authentification codes for devices
-    Trakt.prototype.get_codes = function () {
+    Trakt.prototype.get_codes = function() {
         return this._device_code({
             client_id: this._settings.client_id
         }, 'code');
     };
 
-    Trakt.prototype.poll_access = function (poll) {
+    Trakt.prototype.poll_access = function(poll) {
         var self = this;
         if (!poll || (poll && poll.constructor !== Object)) {
             throw new Error('Invalid Poll object');
@@ -295,8 +295,8 @@
 
         var begin = Date.now();
 
-        return new PinkiePromise(function (resolve, reject) {
-            var call = function () {
+        return new PinkiePromise(function(resolve, reject) {
+            var call = function() {
                 if (begin + (poll.expires_in * 1000) <= Date.now()) {
                     clearInterval(polling);
                     reject(new Error('Expired'));
@@ -305,14 +305,14 @@
                         code: poll.device_code,
                         client_id: self._settings.client_id,
                         client_secret: self._settings.client_secret
-                    }, 'token').then(function (body) {
+                    }, 'token').then(function(body) {
                         self._authentication.refresh_token = body.refresh_token;
                         self._authentication.access_token = body.access_token;
                         self._authentication.expires = Date.now() + (body.expires_in * 1000); // Epoch in milliseconds
 
                         clearInterval(polling);
                         resolve(body);
-                    }).catch(function (error) {
+                    }).catch(function(error) {
                         if (error.response && error.response.statusCode === 400) {
                             // do nothing on 400
                         } else {
@@ -322,7 +322,7 @@
                     });
                 }
             };
-            var polling = setInterval(function () {
+            var polling = setInterval(function() {
                 call();
             }, (poll.interval * 1000));
         });
@@ -331,12 +331,12 @@
     // Refresh access token
     Trakt.prototype.refresh_token = function() {
         return this._exchange({
-                refresh_token: this._authentication.refresh_token,
-                client_id: this._settings.client_id,
-                client_secret: this._settings.client_secret,
-                redirect_uri: this._settings.redirect_uri,
-                grant_type: 'refresh_token'
-            });
+            refresh_token: this._authentication.refresh_token,
+            client_id: this._settings.client_id,
+            client_secret: this._settings.client_secret,
+            redirect_uri: this._settings.redirect_uri,
+            grant_type: 'refresh_token'
+        });
     };
 
     // Import token
@@ -347,10 +347,10 @@
         this._authentication.expires = token.expires;
         this._authentication.refresh_token = token.refresh_token;
 
-        return new PinkiePromise(function (resolve, reject) {
+        return new PinkiePromise(function(resolve, reject) {
             if (token.expires < Date.now()) {
                 self.refresh_token()
-                    .then(function () {
+                    .then(function() {
                         resolve(self.export_token());
                     })
                     .catch(reject);
