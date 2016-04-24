@@ -11,8 +11,8 @@
         Urn = 'urn:ietf:wg:oauth:2.0:oob';
 
     var Trakt = function(settings, debug) {
-        if (!settings.client_id || !settings.client_secret) {
-            throw new Error('Missing client_id or client_secret');
+        if (!settings.client_id) {
+            throw new Error('Missing client_id');
         }
 
         this._authentication = {};
@@ -187,7 +187,7 @@
 
     // Parse methods then hit trakt
     Trakt.prototype._call = function(method, params) {
-        if (method.opts['auth'] === true && !this._authentication.access_token) {
+        if (method.opts['auth'] === true && (!this._authentication.access_token || !this._settings.client_secret)) {
             throw new Error('OAuth required');
         }
         var self = this;
