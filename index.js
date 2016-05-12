@@ -176,7 +176,14 @@
                 pathParts.push(pathParams[k]);
             } else {
                 var param = params[pathParams[k].substr(1)];
-                if (param || param === 0) pathParts.push(param);
+                if (param || param === 0) {
+                    pathParts.push(param);
+                } else {
+                    // check for missing required params
+                    if (method.optional && method.optional.indexOf(pathParams[k].substr(1)) === -1) {
+                        throw new Error('Missing mandatory paramater: ' + pathParams[k].substr(1));
+                    }
+                }
             }
         }
 
