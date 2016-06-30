@@ -15,12 +15,12 @@
 
 #### Setup
 
-    npm install trakt.tv
+    npm install trakt.tv --save
 
 #### Initialize
 ```js
-var Trakt = require('trakt.tv');
-var trakt = new Trakt({
+import Trakt from 'trakt.tv';
+const trakt = new Trakt({
   client_id: 'the_client_id',
   client_secret: 'the_client_secret',
   redirect_uri: null    // fallbacks to 'urn:ietf:wg:oauth:2.0:oob'
@@ -30,7 +30,7 @@ var trakt = new Trakt({
 
 #### Generate Auth URL
 ```js
-var url = trakt.get_url();
+const url = trakt.get_url();
 ```
 
 #### Verify code (and optionally state) from returned auth
@@ -75,7 +75,7 @@ trakt.refresh_token()
 
 #### Storing token over sessions
 ```js
-var token = trakt.export_token(); // Gets token, store it safely.
+const token = trakt.export_token(); // Gets token, store it safely.
 
 trakt.import_token(token) // Injects stored token.
     .then(function(shows) {
@@ -134,7 +134,7 @@ Note: _this will contain `data` and `pagination` for all calls, even if no pagin
 When calling `new Trakt()`, include desired plugins (must be installed from npm):
 
 ```js
-var trakt = new Trakt({
+const trakt = new Trakt({
     client_id: '',
     client_secret: '',
     plugins: ['ondeck'] // 'ondeck' refers to npm 'trakt.tv-ondeck' plugin
