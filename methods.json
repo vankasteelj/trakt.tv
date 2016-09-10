@@ -897,7 +897,7 @@
     "/sync/watchlist/get": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "pagination": "optionnal"
         },
         "method": "GET",
         "url": "/sync/watchlist/:type",
@@ -1084,7 +1084,7 @@
     "/users/list/items/get": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "pagination": "optional"
         },
         "method": "GET",
         "url": "/users/:username/lists/:id/items?type=",
@@ -1183,7 +1183,7 @@
     "/users/watchlist": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "pagination": "optional"
         },
         "method": "GET",
         "url": "/users/:username/watchlist/:type",
