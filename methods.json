@@ -481,7 +481,7 @@
         },
         "method": "GET",
         "url": "/search/:type?query=",
-        "optional": ["type", "query"]
+        "optional": ["type"]
     },
     "/search/id": {
         "opts": {
