@@ -15,12 +15,13 @@
 
 #### Setup
 
-    npm install trakt.tv
+    npm install trakt.tv --save
 
 #### Initialize
 ```js
-var Trakt = require('trakt.tv');
-var trakt = new Trakt({
+import Trakt from 'trakt.tv';
+
+const trakt = new Trakt({
   client_id: 'the_client_id',
   client_secret: 'the_client_secret',
   redirect_uri: null    // fallbacks to 'urn:ietf:wg:oauth:2.0:oob'
@@ -30,17 +31,17 @@ var trakt = new Trakt({
 
 #### Generate Auth URL
 ```js
-var url = trakt.get_url();
+const url = trakt.get_url();
 ```
 
 #### Verify code (and optionally state) from returned auth
 ```js
 trakt.exchange_code('code', 'csrf token (state)')
-    .then(function(result) {
+    .then(result => {
         // contains tokens & session information
         // API can now be used with authorized requests
     })
-    .catch(function(err) { 
+    .catch(err => {
         // Handles errors 
     });
 ```
@@ -48,14 +49,14 @@ trakt.exchange_code('code', 'csrf token (state)')
 #### Alternate OAUTH "device" method
 ```js
 trakt.get_codes()
-    .then(function (poll) {
+    .then(poll => {
         // Poll contains 'verification_url' you need to visit
         // and the 'user_code' you need to use on that url
         
         return trakt.poll_access(poll);
         // this second call is required to verify if app was authorized
     })
-    .catch(function (error) {
+    .catch(error {
         // Handles errors
         // specific error.message == 'Expired' will be thrown
         // in case the verification_url was not used in time
@@ -65,23 +66,23 @@ trakt.get_codes()
 #### Refresh token
 ```js
 trakt.refresh_token()
-    .then(function(results) {
+    .then(results => {
         // API now has an updated access token
     })
-    .catch(function(err) { 
+    .catch(err => {
         // Handles errors 
     });
 ```
 
 #### Storing token over sessions
 ```js
-var token = trakt.export_token(); // Gets token, store it safely.
+const token = trakt.export_token(); // Gets token, store it safely.
 
 trakt.import_token(token) // Injects stored token.
-    .then(function(shows) {
+    .then(shows => {
         // Contains token, refreshed if needed (store it back)
     })
-    .catch(function(err) { 
+    .catch(err => {
         // Handles errors 
     });
 ```
@@ -95,10 +96,10 @@ trakt.calendars.all.shows({
         days: '7',
         extended: 'images'
     })
-    .then(function(shows) {
+    .then(shows => {
         // Contains Object{} response from API (show data)
     })
-    .catch(function(err) { 
+    .catch(err => {
         // Handles errors 
     });
 ```
@@ -136,7 +137,7 @@ You can extend your calls with `pagination: true` to get the extra pagination in
 trakt.movies.popular({
         pagination: true
     })
-    .then(function(movies) {
+    .then(movies => {
         /**
         movies = Object {
             data: [<actual data from API>],
@@ -149,7 +150,7 @@ trakt.movies.popular({
         }
         **/
     })
-    .catch(function(err) { 
+    .catch(err => {
         // Handles errors 
     });
 ```
@@ -160,7 +161,7 @@ Note: _this will contain `data` and `pagination` for all calls, even if no pagin
 When calling `new Trakt()`, include desired plugins (must be installed from npm):
 
 ```js
-var trakt = new Trakt({
+const trakt = new Trakt({
     client_id: '',
     client_secret: '',
     plugins: ['ondeck'] // 'ondeck' refers to npm 'trakt.tv-ondeck' plugin
