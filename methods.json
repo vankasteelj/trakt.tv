@@ -815,8 +815,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/sync/history/:type/:id",
-        "optional": ["type", "id"]
+        "url": "/sync/history/:type/:id?start_at=&end_at=",
+        "optional": ["type", "id", "start_at", "end_at"]
     },
     "/sync/history/add": {
         "opts": {
@@ -1159,8 +1159,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/users/:username/history/:type",
-        "optional": []
+        "url": "/users/:username/history/:type/:item_id?start_at=&end_at=",
+        "optional": ["type", "item_id", "start_at", "end_at"]
     },
     "/users/ratings": {
         "opts": {
