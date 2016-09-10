@@ -103,6 +103,32 @@ trakt.calendars.all.shows({
     });
 ```
 
+```js
+trakt.search.text({
+        query: 'tron',
+        type: 'movie,person'
+    })
+    .then(function(response) {
+        // Contains Array[] response from API (search data)
+    })
+    .catch(function(err) { 
+        // Handles errors 
+    });
+```
+
+```js
+trakt.search.id({
+        id_type: 'imdb',
+        id: 'tt0084827'
+    })
+    .then(function(response) {
+        // Contains Array[] response from API (imdb data)
+    })
+    .catch(function(err) { 
+        // Handles errors 
+    });
+```
+
 #### Using pagination
 You can extend your calls with `pagination: true` to get the extra pagination info from headers.
 

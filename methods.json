@@ -474,14 +474,23 @@
         },
         "optional": []
     },
-    "/search": {
+    "/search/text": {
         "opts": {
             "auth": false,
             "pagination": true
         },
         "method": "GET",
-        "url": "/search?query=&type=&year=&id=&id_type=",
-        "optional": ["type", "query", "id", "id_type"]
+        "url": "/search/:type?query=",
+        "optional": ["type", "query"]
+    },
+    "/search/id": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/search/:id_type/:id?type=",
+        "optional": ["type"]
     },
     "/shows/trending": {
         "opts": {
