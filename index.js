@@ -149,15 +149,6 @@
         var queryParts = [],
             pathParts = [];
 
-        // Pagination
-        if (method.opts['pagination']) {
-            if (params['page']) queryParts.push('page=' + params['page']);
-            if (params['limit']) queryParts.push('limit=' + params['limit']);
-        }
-
-        // Extended
-        if (params['extended']) queryParts.push('extended=' + params['extended']);
-
         // ?Part
         var queryPart = method.url.split('?')[1];
         if (queryPart) {
@@ -186,6 +177,23 @@
                 }
             }
         }
+
+        // Filters
+        for (var p in params) {
+            var filters = ['query', 'years', 'genres', 'languages', 'countries', 'runtimes', 'ratings', 'certifications', 'networks', 'status'];
+            if (filters.indexOf(p) !== -1 && queryParts.indexOf(p+'=' + params[p]) === -1) {
+                queryParts.push(p+'=' + params[p]);
+            }
+        }
+
+        // Pagination
+        if (method.opts['pagination']) {
+            if (params['page']) queryParts.push('page=' + params['page']);
+            if (params['limit']) queryParts.push('limit=' + params['limit']);
+        }
+
+        // Extended
+        if (params['extended']) queryParts.push('extended=' + params['extended']);
 
         var url = this._settings.endpoint + pathParts.join('/');
         if (queryParts.length) url += '?' + queryParts.join('&');
