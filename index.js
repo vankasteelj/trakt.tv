@@ -27,6 +27,7 @@
 
         if (settings.plugins) {
             this._plugins(settings.plugins);
+            this._extras = settings;
         }
     };
 
