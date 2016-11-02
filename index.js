@@ -5,7 +5,6 @@
         crypto = require('crypto'),
         methods = require('./methods.json'),
         sanitizer = require('sanitizer'),
-        PinkiePromise = require('pinkie-promise'),
         assign = require('object-assign'),
         Url = 'https://api-v2launch.trakt.tv',
         Urn = 'urn:ietf:wg:oauth:2.0:oob';
@@ -336,7 +335,7 @@
 
         var begin = Date.now();
 
-        return new PinkiePromise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
             var call = function() {
                 if (begin + (poll.expires_in * 1000) <= Date.now()) {
                     clearInterval(polling);
@@ -388,7 +387,7 @@
         this._authentication.expires = token.expires;
         this._authentication.refresh_token = token.refresh_token;
 
-        return new PinkiePromise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
             if (token.expires < Date.now()) {
                 self.refresh_token()
                     .then(function() {

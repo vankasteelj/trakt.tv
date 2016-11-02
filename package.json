@@ -23,9 +23,8 @@
         "url": "https://github.com/vankasteelj/trakt.tv/issues"
     },
     "dependencies": {
-        "got": "5.x.x",
-        "object-assign": "^4.x.x",
-        "pinkie-promise": "2.x.x",
+        "got": "6.x.x",
+        "object-assign": "4.x.x",
         "sanitizer": "0.x.x"
     }
 }
