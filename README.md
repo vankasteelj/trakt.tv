@@ -94,7 +94,7 @@ See methods in [methods.json](https://github.com/vankasteelj/trakt.tv/blob/maste
 trakt.calendars.all.shows({
         start_date: '2015-11-13',
         days: '7',
-        extended: 'images'
+        extended: 'full'
     })
     .then(shows => {
         // Contains Object{} response from API (show data)
