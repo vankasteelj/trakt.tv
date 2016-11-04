@@ -597,8 +597,8 @@
             "pagination": false
         },
         "method": "GET",
-        "url": "/shows/:id/progress/collection?hidden=&specials=",
-        "optional": ["hidden", "specials"]
+        "url": "/shows/:id/progress/collection?hidden=&specials=&count_specials=",
+        "optional": ["hidden", "specials", "count_specials"]
     },
     "/shows/progress/watched": {
         "opts": {
@@ -606,8 +606,8 @@
             "pagination": false
         },
         "method": "GET",
-        "url": "/shows/:id/progress/watched?hidden=&specials=",
-        "optional": ["hidden", "specials"]
+        "url": "/shows/:id/progress/watched?hidden=&specials=&count_specials",
+        "optional": ["hidden", "specials", "count_specials"]
     },
     "/shows/people": {
         "opts": {

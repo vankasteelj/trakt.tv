@@ -26,8 +26,8 @@
         this._construct();
 
         if (settings.plugins) {
-            this._plugins(settings.plugins);
             this._extras = settings;
+            this._plugins(settings.plugins);
         }
     };
 
@@ -114,6 +114,22 @@
                     throw error;
                 }
             });
+    };
+
+    Trakt.prototype._revoke = function() {
+        var req = {
+            method: 'POST',
+            url: this._settings.endpoint + '/oauth/revoke',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization' : 'Bearer ' + this._authentication.access_token,
+                'trakt-api-version': '2',
+                'trakt-api-key': this._settings.client_id
+            },
+            body: 'token=[' + this._authentication.access_token + ']'
+        };
+        this._debug(req);
+        got(req.url, req);
     };
 
     Trakt.prototype._device_code = function(str, type) {
@@ -408,6 +424,14 @@
             expires: this._authentication.expires,
             refresh_token: this._authentication.refresh_token
         };
+    };
+
+    // Revoke token
+    Trakt.prototype.revoke_token = function() {
+        if (this._authentication.access_token) {
+            this._revoke();
+            this._authentication = {};
+        }
     };
 
     module.exports = Trakt;
