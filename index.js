@@ -26,8 +26,7 @@
         this._construct();
 
         if (settings.plugins) {
-            this._extras = settings;
-            this._plugins(settings.plugins);
+            this._plugins(settings.plugins, settings.options);
         }
     };
 
@@ -56,7 +55,7 @@
         }
     };
 
-    Trakt.prototype._plugins = function(plugins) {
+    Trakt.prototype._plugins = function(plugins, options) {
         if (typeof plugins === 'string') plugins = [plugins];
         if (typeof plugins !== 'object') return;
 
@@ -64,9 +63,17 @@
         for (var i = 0; i < plugins.length; i++) {
             var plugin = plugins[i].match('trakt.tv') !== null ? plugins[i] : 'trakt.tv-' + plugins[i];
             var name = plugin.replace('trakt.tv-', '');
+
+            // init options
+            var opts = {};
+            if (options && options[name]) {
+                opts = options[name];
+            }
+            
+            // init plugins
             try {
                 this[name] = require(plugin);
-                this[name].init(this);
+                this[name].init(this, opts);
                 this._debug('Trakt.tv ' + name + ' plugin loaded');
             } catch (e) {
                 this._debug(e);

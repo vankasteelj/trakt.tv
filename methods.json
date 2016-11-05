@@ -480,8 +480,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/search/:type?query=",
-        "optional": ["type"]
+        "url": "/search/:type?query=&fields=",
+        "optional": ["type", "fields"]
     },
     "/search/id": {
         "opts": {
@@ -489,8 +489,8 @@
             "pagination": true
         },
         "method": "GET",
-        "url": "/search/:id_type/:id?type=",
-        "optional": ["type"]
+        "url": "/search/:id_type/:id?type=&fields=",
+        "optional": ["type", "fields"]
     },
     "/shows/trending": {
         "opts": {
