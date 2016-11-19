@@ -1,5 +1,5 @@
 # trakt.tv
-<img src="http://walter.trakt.us/public/favicon.svg" width="100" height="100" />
+<img src="https://trakt.tv/assets/logos/header@2x-56e5ba415108fa367fd64e5b5df9d0c5.png" width="100" height="100" />
 
 **Trakt.tv API wrapper for Node.js, featuring:**
 
