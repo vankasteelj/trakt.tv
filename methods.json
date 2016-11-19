@@ -95,7 +95,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/checkin",
         "optional": []
     },
@@ -147,7 +147,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/comments/:id",
         "optional": []
     },
@@ -188,7 +188,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/comments/:id/like",
         "optional": []
     },
@@ -404,7 +404,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/recommendations/movies/:id",
         "optional": []
     },
@@ -422,7 +422,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/recommendations/shows/:id",
         "optional": []
     },
@@ -991,7 +991,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/users/requests/:id",
         "optional": []
     },
@@ -1077,7 +1077,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/users/:username/lists/:id",
         "optional": []
     },
@@ -1095,7 +1095,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/users/:username/lists/:id/like",
         "optional": []
     },
@@ -1149,7 +1149,7 @@
             "auth": true,
             "pagination": false
         },
-        "method": "DELETE ",
+        "method": "DELETE",
         "url": "/users/:username/follow",
         "optional": []
     },

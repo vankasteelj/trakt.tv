@@ -266,6 +266,10 @@
 
     // Parse trakt response: pagination & stuff
     Trakt.prototype._parseResponse = function (method, params, response) {
+        if (!response.body) {
+            return response.body;
+        }
+
         var parsed,
             data = JSON.parse(response.body);
 
