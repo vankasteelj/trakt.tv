@@ -777,8 +777,8 @@
             "pagination": false
         },
         "method": "GET",
-        "url": "/sync/playback",
-        "optional": []
+        "url": "/sync/playback/:type?limit=",
+        "optional": ["type", "limit"]
     },
     "/sync/playback/remove": {
         "opts": {
