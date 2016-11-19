@@ -35,6 +35,15 @@
         "url": "/calendars/my/movies/:start_date/:days",
         "optional": ["start_date", "days"]
     },
+    "/calendars/my/dvd": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/my/dvd/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
     "/calendars/all/shows": {
         "opts": {
             "auth": false,
@@ -69,6 +78,15 @@
         },
         "method": "GET",
         "url": "/calendars/all/movies/:start_date/:days",
+        "optional": ["start_date", "days"]
+    },
+    "/calendars/all/dvd": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/calendars/all/dvd/:start_date/:days",
         "optional": ["start_date", "days"]
     },
     "/checkin/add": {
