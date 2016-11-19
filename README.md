@@ -79,7 +79,7 @@ trakt.refresh_token()
 const token = trakt.export_token(); // Gets token, store it safely.
 
 trakt.import_token(token) // Injects stored token.
-    .then(shows => {
+    .then(newTokens => {
         // Contains token, refreshed if needed (store it back)
     })
     .catch(err => {
