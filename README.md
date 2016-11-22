@@ -24,7 +24,7 @@ import Trakt from 'trakt.tv';
 const trakt = new Trakt({
   client_id: 'the_client_id',
   client_secret: 'the_client_secret',
-  redirect_uri: null    // fallbacks to 'urn:ietf:wg:oauth:2.0:oob'
+  redirect_uri: null,   // fallbacks to 'urn:ietf:wg:oauth:2.0:oob'
   api_url: null         // fallbacks to 'api-v2launch.trakt.tv'
 });
 ```
