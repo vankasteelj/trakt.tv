@@ -672,7 +672,16 @@
         "url": "/shows/:id/watching",
         "optional": []
     },
-    "/episodes/last_episode": {
+    "/shows/next_episode": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/next_episode",
+        "optional": []
+    },
+    "/shows/last_episode": {
         "opts": {
             "auth": false,
             "pagination": false
@@ -769,24 +778,6 @@
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/watching",
-        "optional": []
-    },
-    "/episodes/next_episode": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
-        "method": "GET",
-        "url": "/shows/:id/next_episode",
-        "optional": []
-    },
-    "/episodes/last_episode": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
-        "method": "GET",
-        "url": "/shows/:id/last_episode",
         "optional": []
     },
     "/sync/last_activities": {
