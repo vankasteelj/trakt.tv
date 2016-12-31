@@ -672,6 +672,15 @@
         "url": "/shows/:id/watching",
         "optional": []
     },
+    "/episodes/last_episode": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/last_episode",
+        "optional": []
+    },
     "/seasons/summary": {
         "opts": {
             "auth": false,
