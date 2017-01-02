@@ -5,7 +5,6 @@
         crypto = require('crypto'),
         methods = require('./methods.json'),
         sanitizer = require('sanitizer'),
-        assign = require('object-assign'),
         Url = 'https://api-v2launch.trakt.tv',
         Urn = 'urn:ietf:wg:oauth:2.0:oob';
 
@@ -238,7 +237,7 @@
                 'trakt-api-version': '2',
                 'trakt-api-key': this._settings.client_id
             },
-            body: (method.body ? assign({}, method.body) : {})
+            body: (method.body ? Object.assign({}, method.body) : {})
         };
 
         if (method.opts['auth']) {
