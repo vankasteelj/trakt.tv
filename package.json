@@ -1,24 +1,15 @@
 {
     "name": "trakt.tv",
     "version": "2.2.0",
-    "description": "Node.js Trakt.tv api wrapper",
-    "main": "index.js",
+    "description": "Interact with Trakt.tv API in NodeJS",
+    "keywords": ["trakt", "api", "wrapper", "node"],
+    "main": "trakt.js",
+    "author": "Jean van Kasteel",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/vankasteelj/trakt.tv"
     },
-    "keywords": [
-        "trakt.tv",
-        "trakt",
-        "tv",
-        "api",
-        "wrapper"
-    ],
-    "contributors": {
-        "name": "vankasteelj",
-        "name": "Patrick Engström"
-    },
-    "license": "MIT",
     "bugs": {
         "url": "https://github.com/vankasteelj/trakt.tv/issues"
     },
