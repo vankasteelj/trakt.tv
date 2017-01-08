@@ -1,6 +1,4 @@
 # trakt.tv
-<img src="https://trakt.tv/assets/logos/header@2x-56e5ba415108fa367fd64e5b5df9d0c5.png" width="100" height="100" />
-
 **Trakt.tv API wrapper for Node.js, featuring:**
 
 - [All Trakt.tv API v2 methods](https://github.com/vankasteelj/trakt.tv/wiki/Supported-methods)
@@ -15,15 +13,15 @@
 
 #### Setup
 
-    npm install trakt.tv --save
+    npm install trakt.tv
 
 #### Initialize
 ```js
-import Trakt from 'trakt.tv';
+const Trakt = require('trakt.tv');
 
 const trakt = new Trakt({
-  client_id: 'the_client_id',
-  client_secret: 'the_client_secret',
+  client_id: <the_client_id>,
+  client_secret: <the_client_secret>,
   redirect_uri: null,   // fallbacks to 'urn:ietf:wg:oauth:2.0:oob'
   api_url: null         // fallbacks to 'api-v2launch.trakt.tv'
 });
@@ -31,60 +29,46 @@ const trakt = new Trakt({
 
 #### Generate Auth URL
 ```js
-const url = trakt.get_url();
+const traktAuthUrl = trakt.get_url();
 ```
 
 #### Verify code (and optionally state) from returned auth
 ```js
-trakt.exchange_code('code', 'csrf token (state)')
-    .then(result => {
-        // contains tokens & session information
-        // API can now be used with authorized requests
-    })
-    .catch(err => {
-        // Handles errors 
-    });
+trakt.exchange_code('code', 'csrf token (state)').then(result => {
+    // contains tokens & session information
+    // API can now be used with authorized requests
+});
 ```
 
 #### Alternate OAUTH "device" method
 ```js
-trakt.get_codes()
-    .then(poll => {
-        // Poll contains 'verification_url' you need to visit
-        // and the 'user_code' you need to use on that url
-        
-        return trakt.poll_access(poll);
-        // this second call is required to verify if app was authorized
-    })
-    .catch(error {
-        // Handles errors
-        // specific error.message == 'Expired' will be thrown
-        // in case the verification_url was not used in time
-    });
+trakt.get_codes().then(poll => {
+    // poll.verification_url: url to visit in a browser
+    // poll.user_code: the code the user needs to enter on trakt
+
+    // verify if app was authorized
+    return trakt.poll_access(poll);
+}).catch(error => {
+    // error.message == 'Expired' will be thrown if timeout is reached
+});
 ```
 
 #### Refresh token
 ```js
-trakt.refresh_token()
-    .then(results => {
-        // API now has an updated access token
-    })
-    .catch(err => {
-        // Handles errors 
-    });
+trakt.refresh_token().then(results => {
+    // results are auto-injected in the main module cache
+});
 ```
 
 #### Storing token over sessions
 ```js
-const token = trakt.export_token(); // Gets token, store it safely.
+// get token, store it safely.
+const token = trakt.export_token();
 
-trakt.import_token(token) // Injects stored token.
-    .then(newTokens => {
-        // Contains token, refreshed if needed (store it back)
-    })
-    .catch(err => {
-        // Handles errors 
-    });
+// injects back stored token on new session.
+trakt.import_token(token).then(newTokens => {
+    // Contains token, refreshed if needed (store it back)
+});
 ```
 
 #### Actual API requests
@@ -92,42 +76,30 @@ See methods in [methods.json](https://github.com/vankasteelj/trakt.tv/blob/maste
 
 ```js
 trakt.calendars.all.shows({
-        start_date: '2015-11-13',
-        days: '7',
-        extended: 'full'
-    })
-    .then(shows => {
-        // Contains Object{} response from API (show data)
-    })
-    .catch(err => {
-        // Handles errors 
-    });
+    start_date: '2015-11-13',
+    days: '7',
+    extended: 'full'
+}).then(shows => {
+    // Contains Object{} response from API (show data)
+});
 ```
 
 ```js
 trakt.search.text({
-        query: 'tron',
-        type: 'movie,person'
-    })
-    .then(response => {
-        // Contains Array[] response from API (search data)
-    })
-    .catch(err => { 
-        // Handles errors 
-    });
+    query: 'tron',
+    type: 'movie,person'
+}).then(response => {
+    // Contains Array[] response from API (search data)
+});
 ```
 
 ```js
 trakt.search.id({
-        id_type: 'imdb',
-        id: 'tt0084827'
-    })
-    .then(response => {
-        // Contains Array[] response from API (imdb data)
-    })
-    .catch(err => { 
-        // Handles errors 
-    });
+    id_type: 'imdb',
+    id: 'tt0084827'
+}).then(response => {
+    // Contains Array[] response from API (imdb data)
+});
 ```
 
 #### Using pagination
@@ -135,35 +107,31 @@ You can extend your calls with `pagination: true` to get the extra pagination in
 
 ```js
 trakt.movies.popular({
-        pagination: true
-    })
-    .then(movies => {
-        /**
-        movies = Object {
-            data: [<actual data from API>],
-            pagination: {
-                item-count: "80349",
-                limit: "10",
-                page: "1",
-                page-count: "8035"
-            }
+    pagination: true
+}).then(movies => {
+    /**
+    movies = Object {
+        data: [<actual data from API>],
+        pagination: {
+            item-count: "80349",
+            limit: "10",
+            page: "1",
+            page-count: "8035"
         }
-        **/
-    })
-    .catch(err => {
-        // Handles errors 
-    });
+    }
+    **/
+});
 ```
 
 Note: _this will contain `data` and `pagination` for all calls, even if no pagination is available. it's typically for really advanced use only_
 
 #### Load plugins
-When calling `new Trakt()`, include desired plugins (must be installed from npm):
+When calling `new Trakt()`, include desired plugins in an array (must be installed from npm):
 
 ```js
 const trakt = new Trakt({
-    client_id: '',
-    client_secret: '',
+    client_id: <the_client_id>,
+    client_secret: <the_client_secret>,
     plugins: ['ondeck'] // 'ondeck' refers to npm 'trakt.tv-ondeck' plugin
 });
 ```
@@ -177,11 +145,7 @@ See the [wiki page](https://github.com/vankasteelj/trakt.tv/wiki/Write-plugins-f
 
 ## LICENSE
 
-The MIT License (MIT)
-
-- Copyright (c) 2015-2016 vankasteelj
-
-- Copyright (c) 2015 Patrick Engström
+The MIT License (MIT) - author: Jean van Kasteel <vankasteelj@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
