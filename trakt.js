@@ -1,7 +1,7 @@
 'use strict';
 
 // default settings
-const defaultUrl = 'https://api-v2launch.trakt.tv';
+const defaultUrl = 'https://api.trakt.tv';
 const redirectUrn = 'urn:ietf:wg:oauth:2.0:oob';
 
 // requirejs modules
