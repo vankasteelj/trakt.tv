@@ -103,7 +103,7 @@ module.exports = class Trakt {
 
             return this._sanitize(body);
         }).catch(error => {
-            thow (error.response && error.response.statusCode == 401) ? Error(error.response.headers['www-authenticate']) : error;
+            throw (error.response && error.response.statusCode == 401) ? Error(error.response.headers['www-authenticate']) : error;
         });
     }
 
