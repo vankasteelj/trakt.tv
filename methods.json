@@ -381,6 +381,15 @@
         "url": "/movies/:id/watching",
         "optional": []
     },
+    "/movies/lists": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/:id/lists/:type/:sort",
+        "optional": ["type", "sort"]
+    },
     "/people/summary": {
         "opts": {
             "auth": false,
@@ -690,6 +699,15 @@
         "url": "/shows/:id/last_episode",
         "optional": []
     },
+    "/shows/lists": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/lists/:type/:sort",
+        "optional": ["type", "sort"]
+    },
     "/seasons/summary": {
         "opts": {
             "auth": false,
@@ -735,6 +753,15 @@
         "url": "/shows/:id/seasons/:season/watching",
         "optional": []
     },
+    "/seasons/lists": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/lists/:type/:sort",
+        "optional": ["type", "sort"]
+    },
     "/episodes/summary": {
         "opts": {
             "auth": false,
@@ -779,6 +806,15 @@
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/watching",
         "optional": []
+    },
+    "/episodes/lists": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode/lists/:type/:sort",
+        "optional": ["type", "sort"]
     },
     "/sync/last_activities": {
         "opts": {
