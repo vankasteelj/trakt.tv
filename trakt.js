@@ -280,10 +280,12 @@ module.exports = class Trakt {
     // Get authentication url for browsers
     get_url() {
         this._authentication.state = crypto.randomBytes(6).toString('hex');
-        return 'https://trakt.tv/oauth/authorize?response_type=code&client_id=' + this._settings.client_id + '&redirect_uri=' + this._settings.redirect_uri + '&state=' + this._authentication.state;
+        // Replace 'api' from the api_url to get the top level trakt domain
+        const base_url = this._settings.endpoint.replace('api.', '').replace('api-', '');
+        return base_url + '/oauth/authorize?response_type=code&client_id=' + this._settings.client_id + '&redirect_uri=' + this._settings.redirect_uri + '&state=' + this._authentication.state;
     }
 
-    // Verify code; optionnal state
+    // Verify code; optional state
     exchange_code(code, state) {
         if (state && state != this._authentication.state) throw Error('Invalid CSRF (State)');
 
