@@ -54,8 +54,10 @@ module.exports = class Trakt {
         for (let name in plugins) {
             if (!plugins.hasOwnProperty(name)) continue;
 
+            const opts = options && options[name] ? options[name] : {};
+
             this[name] = plugins[name];
-            this[name].init(this);
+            this[name].init(this, opts);
             this._debug('Trakt.tv ' + name + ' plugin loaded');
         }
     }
