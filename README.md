@@ -132,13 +132,18 @@ When calling `new Trakt()`, include desired plugins in an object (must be instal
 const trakt = new Trakt({
     client_id: <the_client_id>,
     client_secret: <the_client_secret>,
-    plugins: {
-        ondeck: require('trakt.tv-ondeck')
+    plugins: {  // load plugins
+        images: require('trakt.tv-images')
+    }
+    options: {  // pass options to plugins
+        images: {
+            smallerImages: true
+        }
     }
 });
 ```
 
-The plugin can be accessed with the key you specify. For example `trakt.ondeck...`.
+The plugin can be accessed with the key you specify. For example `trakt.images.get()`.
 
 #### Write plugins
 See the [wiki page](https://github.com/vankasteelj/trakt.tv/wiki/Write-plugins-for-trakt.tv).
