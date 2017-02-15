@@ -49,15 +49,12 @@ module.exports = class Trakt {
     }
 
     // Initialize plugins
-    _plugins(plugins, options) {
-        const errors = [];
+    _plugins(plugins, options = {}) {
         for (let name in plugins) {
             if (!plugins.hasOwnProperty(name)) continue;
 
-            const opts = options && options[name] ? options[name] : {};
-
             this[name] = plugins[name];
-            this[name].init(this, opts);
+            this[name].init(this, (options[name] || {}));
             this._debug('Trakt.tv ' + name + ' plugin loaded');
         }
     }
@@ -92,6 +89,7 @@ module.exports = class Trakt {
         });
     }
 
+    // De-authentication POST
     _revoke() {
         const req = {
             method: 'POST',
@@ -108,6 +106,7 @@ module.exports = class Trakt {
         got(req.url, req);
     }
 
+    // Get code to paste on login screen
     _device_code(str, type) {
         const req = {
             method: 'POST',
@@ -290,6 +289,7 @@ module.exports = class Trakt {
         }, 'code');
     }
 
+    // Calling trakt on a loop until it sends back a token
     poll_access(poll) {
         if (!poll || (poll && poll.constructor !== Object)) throw Error('Invalid Poll object');
 
