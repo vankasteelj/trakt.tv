@@ -50,30 +50,15 @@ module.exports = class Trakt {
 
     // Initialize plugins
     _plugins(plugins, options) {
-        if (typeof plugins === 'string') plugins = [plugins];
-        if (typeof plugins !== 'object') return;
-
         const errors = [];
-        for (let i = 0; i < plugins.length; i++) {
-            const plugin = plugins[i].match('trakt.tv') !== null ? plugins[i] : 'trakt.tv-' + plugins[i];
-            const name = plugin.replace('trakt.tv-', '');
+        for (let name in plugins) {
+            if (!plugins.hasOwnProperty(name)) continue;
 
-            // init options
             const opts = options && options[name] ? options[name] : {};
 
-            // init plugins
-            try {
-                this[name] = require(plugin);
-                this[name].init(this, opts);
-                this._debug('Trakt.tv ' + name + ' plugin loaded');
-            } catch (e) {
-                errors.push(name);
-                this._debug(e);
-            }
-        }
-
-        if (errors.length) {
-            throw Error(errors.join() + ': invalid plugin(s)');
+            this[name] = plugins[name];
+            this[name].init(this, opts);
+            this._debug('Trakt.tv ' + name + ' plugin loaded');
         }
     }
 

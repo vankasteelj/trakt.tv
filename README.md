@@ -126,15 +126,19 @@ trakt.movies.popular({
 Note: _this will contain `data` and `pagination` for all calls, even if no pagination is available. it's typically for really advanced use only_
 
 #### Load plugins
-When calling `new Trakt()`, include desired plugins in an array (must be installed from npm):
+When calling `new Trakt()`, include desired plugins in an object (must be installed from npm):
 
 ```js
 const trakt = new Trakt({
     client_id: <the_client_id>,
     client_secret: <the_client_secret>,
-    plugins: ['ondeck'] // 'ondeck' refers to npm 'trakt.tv-ondeck' plugin
+    plugins: {
+        ondeck: require('trakt.tv-ondeck')
+    }
 });
 ```
+
+The plugin can be accessed with the key you specify. For example `trakt.ondeck...`.
 
 #### Write plugins
 See the [wiki page](https://github.com/vankasteelj/trakt.tv/wiki/Write-plugins-for-trakt.tv).
