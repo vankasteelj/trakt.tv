@@ -1022,6 +1022,24 @@
         "url": "/users/hidden/:section?type=",
         "optional": ["type"]
     },
+    "/users/hidden/add": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/hidden/:section",
+        "optional": []
+    },
+    "/users/hidden/remove": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/hidden/:section/remove",
+        "optional": []
+    },
     "/users/requests/get": {
         "opts": {
             "auth": true,
