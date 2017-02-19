@@ -1013,7 +1013,7 @@
         "url": "/users/settings",
         "optional": []
     },
-    "/users/hidden": {
+    "/users/hidden/get": {
         "opts": {
             "auth": true,
             "pagination": true
