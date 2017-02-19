@@ -1029,6 +1029,11 @@
         },
         "method": "POST",
         "url": "/users/hidden/:section",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
+        },
         "optional": []
     },
     "/users/hidden/remove": {
@@ -1038,6 +1043,11 @@
         },
         "method": "POST",
         "url": "/users/hidden/:section/remove",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
+        },
         "optional": []
     },
     "/users/requests/get": {
