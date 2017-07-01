@@ -71,6 +71,11 @@ trakt.import_token(token).then(newTokens => {
 });
 ```
 
+#### Revoke token
+```js
+trakt.revoke_token();
+```
+
 #### Actual API requests
 See methods in [methods.json](https://github.com/vankasteelj/trakt.tv/blob/master/methods.json) or [wiki](https://github.com/vankasteelj/trakt.tv/wiki/Supported-methods).
 
