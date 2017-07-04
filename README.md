@@ -19,13 +19,15 @@
 ```js
 const Trakt = require('trakt.tv');
 
-const trakt = new Trakt({
+let options = {
   client_id: <the_client_id>,
   client_secret: <the_client_secret>,
   redirect_uri: null,   // defaults to 'urn:ietf:wg:oauth:2.0:oob'
   api_url: null         // defaults to 'https://api.trakt.tv'
-});
+};
+const trakt = new Trakt(options);
 ```
+Add `debug: true` to the `options` object to get debug logs of the requests executed in your console.
 
 #### OAUTH
 
