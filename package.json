@@ -1,6 +1,6 @@
 {
     "name": "trakt.tv",
-    "version": "5.0.1",
+    "version": "5.1.0",
     "description": "Interact with Trakt.tv API in NodeJS",
     "keywords": ["trakt", "api", "wrapper", "node"],
     "main": "trakt.js",
