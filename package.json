@@ -18,6 +18,6 @@
         "sanitizer": "0.x.x"
     },
     "scripts": {
-        "docs": "node docs-gen"
+        "docs": "node docs/methods-generator"
     }
 }

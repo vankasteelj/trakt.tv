@@ -1,9 +1,8 @@
 // generate formatted helpdocation
 
 const fs = require('fs')
-const path = require('path')
-const methods = require('./methods.json')
-const pkjson = require('./package.json')
+const methods = require('../methods.json')
+const pkjson = require('../package.json')
 
 let helpdoc = Array()
 
@@ -139,4 +138,4 @@ for (let m in methods) {
     helpdoc.push(`| ${method} | ${auth} | ${required} | ${optional} | ${pag} | ${type} | ${uri} |`)
 }
 
-fs.writeFileSync('./DOCUMENTATION.md', helpdoc.join('\n'));
+fs.writeFileSync('./docs/available_methods.md', helpdoc.join('\n'));
