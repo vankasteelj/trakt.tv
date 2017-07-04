@@ -27,12 +27,16 @@ const trakt = new Trakt({
 });
 ```
 
-#### Generate Auth URL
+#### OAUTH
+
+1. Generate Auth URL
 ```js
 const traktAuthUrl = trakt.get_url();
 ```
 
-#### Verify code (and optionally state) from returned auth
+2. Authentication is done at that URL, it redirects to the provided uri with a code and a state
+
+3. Verify code (and optionally state for better security) from returned auth, and get a token in exchange
 ```js
 trakt.exchange_code('code', 'csrf token (state)').then(result => {
     // contains tokens & session information
