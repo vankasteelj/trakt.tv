@@ -83,7 +83,7 @@ trakt.revoke_token();
 ```
 
 #### Actual API requests
-See methods in [methods.json](https://github.com/vankasteelj/trakt.tv/blob/master/methods.json) or [wiki](https://github.com/vankasteelj/trakt.tv/wiki/Supported-methods).
+See methods in [methods.json](methods.json) or [the docs](docs/available_methods.md).
 
 ```js
 trakt.calendars.all.shows({
@@ -157,7 +157,7 @@ const trakt = new Trakt({
 The plugin can be accessed with the key you specify. For example `trakt.images.get()`.
 
 #### Write plugins
-See the [wiki page](https://github.com/vankasteelj/trakt.tv/wiki/Write-plugins-for-trakt.tv).
+See the [documentation](docs/writing_plugins.md).
 
 #### Notes
 - You can use 'me' as username if the user is authenticated.
