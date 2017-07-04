@@ -16,5 +16,8 @@
     "dependencies": {
         "got": "7.x.x",
         "sanitizer": "0.x.x"
+    },
+    "scripts": {
+        "docs": "node docs-gen"
     }
 }

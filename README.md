@@ -1,7 +1,7 @@
 # trakt.tv
 **Trakt.tv API wrapper for Node.js, featuring:**
 
-- [All Trakt.tv API v2 methods](https://github.com/vankasteelj/trakt.tv/wiki/Supported-methods)
+- [All Trakt.tv API v2 methods](https://github.com/vankasteelj/trakt.tv/blob/master/DOCUMENTATION.md)
 - Promises
 - Forget JSON, use Objects, Arrays and Strings directly
 - Enhanced protection against: CSRF (session riding) and XSS (content spoofing) attacks, using Crypto and Sanitizer
