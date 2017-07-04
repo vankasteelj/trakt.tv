@@ -1,6 +1,6 @@
 # Trakt.tv available methods 
 
-This help doc was last generated for trakt.tv@5.0.1 on Tue Jul 04 2017
+This help doc was last generated for trakt.tv@5.1.0 on Tue Jul 04 2017
 
 ## How to read the table ?
 
