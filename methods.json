@@ -786,8 +786,8 @@
             "pagination": false
         },
         "method": "GET",
-        "url": "/shows/:id/seasons/:season/episodes/:episode",
-        "optional": []
+        "url": "/shows/:id/seasons/:season/episodes/:episode?extended=",
+        "optional": ["extended"]
     },
     "/episodes/comments": {
         "opts": {
