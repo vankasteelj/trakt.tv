@@ -370,4 +370,11 @@ module.exports = class Trakt {
             this._authentication = {};
         }
     }
+    
+    // Remove token
+    remove_token() {
+      if (this._authentication.access_token) {
+            this._authentication = {};
+        }
+    }
 };
