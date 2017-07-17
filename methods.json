@@ -987,11 +987,11 @@
     "/sync/watchlist/get": {
         "opts": {
             "auth": true,
-            "pagination": "optionnal"
+            "pagination": "optional"
         },
         "method": "GET",
         "url": "/sync/watchlist/:type",
-        "optional": []
+        "optional": ["type"]
     },
     "/sync/watchlist/add": {
         "opts": {
@@ -1305,7 +1305,7 @@
         },
         "method": "GET",
         "url": "/users/:username/watchlist/:type",
-        "optional": []
+        "optional": ["type"]
     },
     "/users/watching": {
         "opts": {
