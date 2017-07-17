@@ -987,7 +987,7 @@
     "/sync/watchlist/get": {
         "opts": {
             "auth": true,
-            "pagination": "optional"
+            "pagination": "optionnal"
         },
         "method": "GET",
         "url": "/sync/watchlist/:type",
