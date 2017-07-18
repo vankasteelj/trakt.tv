@@ -3,6 +3,7 @@
 // default settings
 const defaultUrl = 'https://api.trakt.tv';
 const redirectUrn = 'urn:ietf:wg:oauth:2.0:oob';
+const defaultUserAgent = 'Node.js/' + process.version + ' trakt.tv/v' + require('./package.json').version;
 
 // requirejs modules
 const got = require('got');
@@ -10,9 +11,19 @@ const crypto = require('crypto');
 const methods = require('./methods.json');
 const sanitizer = require('sanitizer').sanitize;
 
+
+
 module.exports = class Trakt {
     constructor(settings = {}, debug) {
         if (!settings.client_id) throw Error('Missing client_id');
+
+        let u_a;
+        if (settings.user_agent == null) {
+            u_a = defaultUserAgent;
+        }
+        else {
+            u_a = settings.user_agent;
+        }
 
         this._authentication = {};
         this._settings = {
@@ -20,7 +31,8 @@ module.exports = class Trakt {
             client_secret: settings.client_secret,
             redirect_uri: settings.redirect_uri || redirectUrn,
             debug: settings.debug || debug,
-            endpoint: settings.api_url || defaultUrl
+            endpoint: settings.api_url || defaultUrl,
+            user_agent: u_a
         };
 
         this._construct();
@@ -70,6 +82,7 @@ module.exports = class Trakt {
             method: 'POST',
             url: this._settings.endpoint + '/oauth/token',
             headers: {
+                'User-Agent': this._settings.user_agent,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(str)
@@ -95,6 +108,7 @@ module.exports = class Trakt {
             method: 'POST',
             url: this._settings.endpoint + '/oauth/revoke',
             headers: {
+                'User-Agent': this._settings.user_agent,
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization' : 'Bearer ' + this._authentication.access_token,
                 'trakt-api-version': '2',
@@ -112,6 +126,7 @@ module.exports = class Trakt {
             method: 'POST',
             url: this._settings.endpoint + '/oauth/device/' + type,
             headers: {
+                'User-Agent': this._settings.user_agent,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(str)
@@ -126,7 +141,7 @@ module.exports = class Trakt {
     // Parse url before api call
     _parse(method, params) {
         if (!params) params = {};
-        
+
         const queryParts = [];
         const pathParts = [];
 
@@ -185,6 +200,7 @@ module.exports = class Trakt {
             method: method.method,
             url: this._parse(method, params),
             headers: {
+                'User-Agent': this._settings.user_agent,
                 'Content-Type': 'application/json',
                 'trakt-api-version': '2',
                 'trakt-api-key': this._settings.client_id
