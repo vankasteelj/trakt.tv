@@ -591,7 +591,8 @@
     },
     "/shows/progress/watched": {
         "opts": {
-            "auth": true
+            "auth": true,
+            "extended": ["full"]
         },
         "method": "GET",
         "url": "/shows/:id/progress/watched?hidden=&specials=&count_specials",
