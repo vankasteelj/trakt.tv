@@ -1022,7 +1022,7 @@
         "url": "/users/:username/collection/:type",
         "optional": []
     },
-    "/users/comment": {
+    "/users/comments": {
         "opts": {
             "auth": "optional",
             "pagination": true,
