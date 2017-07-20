@@ -253,7 +253,7 @@
         },
         "method": "GET",
         "url": "/movies/played/:period",
-        "optional": []
+        "optional": ["period"]
     },
     "/movies/watched": {
         "opts": {
@@ -262,7 +262,7 @@
         },
         "method": "GET",
         "url": "/movies/watched/:period",
-        "optional": []
+        "optional": ["period"]
     },
     "/movies/collected": {
         "opts": {
@@ -271,7 +271,7 @@
         },
         "method": "GET",
         "url": "/movies/collected/:period",
-        "optional": []
+        "optional": ["period"]
     },
     "/movies/anticipated": {
         "opts": {
@@ -285,7 +285,7 @@
     "/movies/boxoffice": {
         "opts": {
             "auth": false,
-            "pagination": true
+            "pagination": false
         },
         "method": "GET",
         "url": "/movies/boxoffice",
@@ -345,6 +345,15 @@
         "url": "/movies/:id/comments/:sort",
         "optional": ["sort"]
     },
+    "/movies/lists": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/movies/:id/lists/:type/:sort",
+        "optional": ["type", "sort"]
+    },
     "/movies/people": {
         "opts": {
             "auth": false,
@@ -390,15 +399,6 @@
         "url": "/movies/:id/watching",
         "optional": []
     },
-    "/movies/lists": {
-        "opts": {
-            "auth": false,
-            "pagination": true
-        },
-        "method": "GET",
-        "url": "/movies/:id/lists/:type/:sort",
-        "optional": ["type", "sort"]
-    },
     "/networks": {
         "opts": {
             "auth": false,
@@ -438,11 +438,11 @@
     "/recommendations/movies/get": {
         "opts": {
             "auth": true,
-            "pagination": true
+            "pagination": false
         },
         "method": "GET",
-        "url": "/recommendations/movies",
-        "optional": []
+        "url": "/recommendations/movies/?limit=",
+        "optional": ["limit"]
     },
     "/recommendations/movies/hide": {
         "opts": {
@@ -456,11 +456,11 @@
     "/recommendations/shows/get": {
         "opts": {
             "auth": true,
-            "pagination": true
+            "pagination": false
         },
         "method": "GET",
-        "url": "/recommendations/shows",
-        "optional": []
+        "url": "/recommendations/shows/?limit=",
+        "optional": ["limit"]
     },
     "/recommendations/shows/hide": {
         "opts": {
@@ -526,7 +526,7 @@
         },
         "method": "GET",
         "url": "/search/:type?query=&fields=",
-        "optional": ["type", "fields"]
+        "optional": ["fields"]
     },
     "/search/id": {
         "opts": {
@@ -636,6 +636,15 @@
         "url": "/shows/:id/comments/:sort",
         "optional": ["sort"]
     },
+    "/shows/lists": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/lists/:type/:sort",
+        "optional": ["type", "sort"]
+    },
     "/shows/progress/collection": {
         "opts": {
             "auth": true,
@@ -675,11 +684,11 @@
     "/shows/related": {
         "opts": {
             "auth": false,
-            "pagination": false
+            "pagination": true
         },
         "method": "GET",
-        "url": "/shows/:id/related?limit=",
-        "optional": ["limit"]
+        "url": "/shows/:id/related",
+        "optional": []
     },
     "/shows/stats": {
         "opts": {
@@ -717,15 +726,6 @@
         "url": "/shows/:id/last_episode",
         "optional": []
     },
-    "/shows/lists": {
-        "opts": {
-            "auth": false,
-            "pagination": true
-        },
-        "method": "GET",
-        "url": "/shows/:id/lists/:type/:sort",
-        "optional": ["type", "sort"]
-    },
     "/seasons/summary": {
         "opts": {
             "auth": false,
@@ -741,8 +741,8 @@
             "pagination": false
         },
         "method": "GET",
-        "url": "/shows/:id/seasons/:season",
-        "optional": []
+        "url": "/shows/:id/seasons/:season?translation=",
+        "optional": ["translation"]
     },
     "/seasons/comments": {
         "opts": {
@@ -752,6 +752,15 @@
         "method": "GET",
         "url": "/shows/:id/seasons/:season/comments/:sort",
         "optional": ["sort"]
+    },
+    "/seasons/lists": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/lists/:type/:sort",
+        "optional": ["type", "sort"]
     },
     "/seasons/ratings": {
         "opts": {
@@ -771,15 +780,6 @@
         "url": "/shows/:id/seasons/:season/watching",
         "optional": []
     },
-    "/seasons/lists": {
-        "opts": {
-            "auth": false,
-            "pagination": true
-        },
-        "method": "GET",
-        "url": "/shows/:id/seasons/:season/lists/:type/:sort",
-        "optional": ["type", "sort"]
-    },
     "/episodes/summary": {
         "opts": {
             "auth": false,
@@ -789,6 +789,15 @@
         "url": "/shows/:id/seasons/:season/episodes/:episode",
         "optional": []
     },
+    "/episodes/translations": {
+        "opts": {
+            "auth": false,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode/translations/:language",
+        "optional": ["language"]
+    },
     "/episodes/comments": {
         "opts": {
             "auth": false,
@@ -797,6 +806,15 @@
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/comments/:sort",
         "optional": ["sort"]
+    },
+    "/episodes/lists": {
+        "opts": {
+            "auth": false,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode/lists/:type/:sort",
+        "optional": ["type", "sort"]
     },
     "/episodes/ratings": {
         "opts": {
@@ -824,15 +842,6 @@
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/watching",
         "optional": []
-    },
-    "/episodes/lists": {
-        "opts": {
-            "auth": false,
-            "pagination": true
-        },
-        "method": "GET",
-        "url": "/shows/:id/seasons/:season/episodes/:episode/lists/:type/:sort",
-        "optional": ["type", "sort"]
     },
     "/sync/last_activities": {
         "opts": {
@@ -1031,6 +1040,34 @@
         "url": "/users/settings",
         "optional": []
     },
+    "/users/requests/get": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "GET",
+        "url": "/users/requests",
+        "optional": []
+    },
+    "/users/requests/approve": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "POST",
+        "url": "/users/requests/:id",
+        "optional": []
+    },
+    "/users/requests/deny": {
+        "opts": {
+            "auth": true,
+            "pagination": false
+        },
+        "method": "DELETE",
+        "url": "/users/requests/:id",
+        "optional": []
+    },
+
     "/users/hidden/get": {
         "opts": {
             "auth": true,
@@ -1068,32 +1105,14 @@
         },
         "optional": []
     },
-    "/users/requests/get": {
+    "/users/likes": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "pagination": true
         },
         "method": "GET",
-        "url": "/users/requests",
-        "optional": []
-    },
-    "/users/requests/approve": {
-        "opts": {
-            "auth": true,
-            "pagination": false
-        },
-        "method": "POST",
-        "url": "/users/requests/:id",
-        "optional": []
-    },
-    "/users/requests/deny": {
-        "opts": {
-            "auth": true,
-            "pagination": false
-        },
-        "method": "DELETE",
-        "url": "/users/requests/:id",
-        "optional": []
+        "url": "/users/:username/likes/:type",
+        "optional": ["type"]
     },
     "/users/profile": {
         "opts": {
