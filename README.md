@@ -23,7 +23,8 @@ let options = {
   client_id: <the_client_id>,
   client_secret: <the_client_secret>,
   redirect_uri: null,   // defaults to 'urn:ietf:wg:oauth:2.0:oob'
-  api_url: null         // defaults to 'https://api.trakt.tv'
+  api_url: null,        // defaults to 'https://api.trakt.tv'
+  pagination: true      // defaults to false, activates global pagination (see below)
 };
 const trakt = new Trakt(options);
 ```
@@ -134,7 +135,7 @@ trakt.movies.popular({
 });
 ```
 
-Note: _this will contain `data` and `pagination` for all calls, even if no pagination is available. it's typically for really advanced use only_
+Note: _this will contain `data` and `pagination` for all calls, even if no pagination is available (`result.pagination` will be `false`). it's typically for advanced use only_
 
 #### Load plugins
 When calling `new Trakt()`, include desired plugins in an object (must be installed from npm):
