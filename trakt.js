@@ -10,6 +10,8 @@ const crypto = require('crypto');
 const methods = require('./methods.json');
 const sanitizer = require('sanitizer').sanitize;
 
+
+
 module.exports = class Trakt {
     constructor(settings = {}, debug) {
         if (!settings.client_id) throw Error('Missing client_id');
@@ -20,7 +22,8 @@ module.exports = class Trakt {
             client_secret: settings.client_secret,
             redirect_uri: settings.redirect_uri || redirectUrn,
             debug: settings.debug || debug,
-            endpoint: settings.api_url || defaultUrl
+            endpoint: settings.api_url || defaultUrl,
+            user_agent: settings.user_agent
         };
 
         this._construct();
@@ -74,6 +77,7 @@ module.exports = class Trakt {
             },
             body: JSON.stringify(str)
         };
+        this._settings.user_agent && (req.headers['User-Agent'] = this._settings.user_agent);
 
         this._debug(req);
         return got(req.url, req).then(response => {
@@ -102,6 +106,7 @@ module.exports = class Trakt {
             },
             body: 'token=[' + this._authentication.access_token + ']'
         };
+        this._settings.user_agent && (req.headers['User-Agent'] = this._settings.user_agent);
         this._debug(req);
         got(req.url, req);
     }
@@ -116,6 +121,7 @@ module.exports = class Trakt {
             },
             body: JSON.stringify(str)
         };
+        this._settings.user_agent && (req.headers['User-Agent'] = this._settings.user_agent);
 
         this._debug(req);
         return got(req.url, req).then(response => this._sanitize(JSON.parse(response.body))).catch(error => {
@@ -126,7 +132,7 @@ module.exports = class Trakt {
     // Parse url before api call
     _parse(method, params) {
         if (!params) params = {};
-        
+
         const queryParts = [];
         const pathParts = [];
 
@@ -191,6 +197,7 @@ module.exports = class Trakt {
             },
             body: (method.body ? Object.assign({}, method.body) : {})
         };
+        this._settings.user_agent && (req.headers['User-Agent'] = this._settings.user_agent);
 
         if (method.opts['auth']) req.headers['Authorization'] = 'Bearer ' + this._authentication.access_token;
 

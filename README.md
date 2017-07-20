@@ -24,10 +24,13 @@ let options = {
   client_secret: <the_client_secret>,
   redirect_uri: null,   // defaults to 'urn:ietf:wg:oauth:2.0:oob'
   api_url: null         // defaults to 'https://api.trakt.tv'
+  user_agent: null      // defaults to something like 'Node.js/8.0.0 trakt.tv/v5.1.0'
 };
 const trakt = new Trakt(options);
 ```
 Add `debug: true` to the `options` object to get debug logs of the requests executed in your console.
+
+Version numbers in the default user agent string are determined at runtime.
 
 #### OAUTH
 
