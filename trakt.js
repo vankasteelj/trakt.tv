@@ -126,7 +126,7 @@ module.exports = class Trakt {
     // Parse url before api call
     _parse(method, params) {
         if (!params) params = {};
-        
+
         const queryParts = [];
         const pathParts = [];
 
