@@ -171,8 +171,8 @@ module.exports = class Trakt {
         }
 
         // Extended
-        if (method.opts['extended']) {
-            params['extended'] && queryParts.push('extended=' + params['extended']);
+        if (method.opts['extended'] && params['extended']) {            
+            queryParts.push('extended=' + params['extended']);
         }
 
         let url = this._settings.endpoint + pathParts.join('/');
