@@ -35,14 +35,15 @@ trakt.seasons.comments({ \n\
 - **Required arguments**: they need to be passed as arguments (embded in a object) to the Method function\n\
 - **Optional arguments**: arguments not required by the API, can also be embded in the same object as above\n\
 - **Pagination**: you can send `pagination:true` in the object arg to trigger the pagination, or `page:X,limit:Y` (where X,Y are integers) to navigate in further calls\n\
-- **Type**: the HTTP method used under the hood. \n\
+- **Extended**: the method can be extended with one (or all) of the keywords\n\
+- **Type**: the HTTP method used under the hood \n\
 - **URI**: the actual URL contacted at api.trakt.tv\n\n\
 ")
 
 // table markdown
 helpdoc.push('## Table')
-helpdoc.push('| Method | OAUTH | Required arguments | Optional arguments | Pagination | Type | URI |')
-helpdoc.push('|--------|:-----:|--------------------|--------------------|:----------:|:----:|----:|')
+helpdoc.push('| Method | OAUTH | Required arguments | Optional arguments | Pagination | Extended | Type | URI |')
+helpdoc.push('|--------|:-----:|--------------------|--------------------|:----------:|----------|:----:|----:|')
 
 // methods
 for (let m in methods) {
@@ -61,6 +62,15 @@ for (let m in methods) {
 
     // STRING:paginated
     let pag = methods[m].opts.pagination === true ? 'paginated' : methods[m].opts.pagination === 'optional' ? '*optional*' : '*none*'
+
+    // ARRAY:extended
+    let extended = function () {
+        let ext = methods[m].opts.extended || Array()
+        for (let i = 0; i < ext.length; i++) {
+            ext[i] = '"' + ext[i] + '"';
+        }
+        return ext;
+    }()
 
     // ARRAY:optional arguments
     let optional = methods[m].optional || Array()
@@ -132,10 +142,11 @@ for (let m in methods) {
 
     // format the arrays
     required = required.length ? required.join(', ') : '*none*'
+    extended = extended.length ? extended.join(', ') : '*none*'
     optional = optional.length ? optional.join(', ') : '*none*'
 
     // push line
-    helpdoc.push(`| ${method} | ${auth} | ${required} | ${optional} | ${pag} | ${type} | ${uri} |`)
+    helpdoc.push(`| ${method} | ${auth} | ${required} | ${optional} | ${pag} | ${extended} | ${type} | ${uri} |`)
 }
 
 fs.writeFileSync('./docs/available_methods.md', helpdoc.join('\n'));
