@@ -23,7 +23,8 @@ let options = {
   client_id: <the_client_id>,
   client_secret: <the_client_secret>,
   redirect_uri: null,   // defaults to 'urn:ietf:wg:oauth:2.0:oob'
-  api_url: null         // defaults to 'https://api.trakt.tv'
+  api_url: null,        // defaults to 'https://api.trakt.tv'
+  user_agent: null      // defaults to GOT (http client) user agent
 };
 const trakt = new Trakt(options);
 ```
