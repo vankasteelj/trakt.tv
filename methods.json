@@ -2,7 +2,7 @@
     "/calendars/my/shows": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/my/shows/:start_date/:days",
@@ -11,7 +11,7 @@
     "/calendars/my/new_shows": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/my/shows/new/:start_date/:days",
@@ -20,7 +20,7 @@
     "/calendars/my/premieres_shows": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/my/shows/premieres/:start_date/:days",
@@ -29,7 +29,7 @@
     "/calendars/my/movies": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/my/movies/:start_date/:days",
@@ -38,7 +38,7 @@
     "/calendars/my/dvd": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/my/dvd/:start_date/:days",
@@ -46,8 +46,7 @@
     },
     "/calendars/all/shows": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/all/shows/:start_date/:days",
@@ -55,8 +54,7 @@
     },
     "/calendars/all/new_shows": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/all/shows/new/:start_date/:days",
@@ -64,8 +62,7 @@
     },
     "/calendars/all/premieres_shows": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/all/shows/premieres/:start_date/:days",
@@ -73,8 +70,7 @@
     },
     "/calendars/all/movies": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/all/movies/:start_date/:days",
@@ -82,8 +78,7 @@
     },
     "/calendars/all/dvd": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/calendars/all/dvd/:start_date/:days",
@@ -91,8 +86,7 @@
     },
     "/checkin/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/checkin",
@@ -110,26 +104,21 @@
     },
     "/checkin/delete": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/checkin",
         "optional": []
     },
     "/certifications": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/certifications/:type",
         "optional": []
     },
     "/comments/comment/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/comments",
@@ -146,18 +135,14 @@
         "optional": []
     },
     "/comments/comment/get": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/comments/:id",
         "optional": []
     },
     "/comments/comment/update": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "PUT",
         "url": "/comments/:id",
@@ -171,8 +156,7 @@
     },
     "/comments/comment/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/comments/:id",
@@ -189,8 +173,7 @@
     },
     "/comments/replies/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/comments/:id/replies",
@@ -203,8 +186,7 @@
     },
     "/comments/like/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/comments/:id/like",
@@ -212,26 +194,22 @@
     },
     "/comments/like/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/comments/:id/like",
         "optional": []
     },
     "/genres": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/genres/:type",
         "optional": []
     },
     "/movies/trending": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/trending",
@@ -239,8 +217,8 @@
     },
     "/movies/popular": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/popular",
@@ -248,8 +226,8 @@
     },
     "/movies/played": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/played/:period",
@@ -257,8 +235,8 @@
     },
     "/movies/watched": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/watched/:period",
@@ -266,8 +244,8 @@
     },
     "/movies/collected": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/collected/:period",
@@ -275,8 +253,8 @@
     },
     "/movies/anticipated": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/anticipated",
@@ -284,8 +262,7 @@
     },
     "/movies/boxoffice": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/boxoffice",
@@ -293,8 +270,8 @@
     },
     "/movies/updates": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/updates/:start_date",
@@ -302,43 +279,32 @@
     },
     "/movies/summary": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/:id",
         "optional": []
     },
     "/movies/aliases": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/movies/:id/aliases",
         "optional": []
     },
     "/movies/releases": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/movies/:id/releases/:country",
         "optional": ["country"]
     },
     "/movies/translations": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/movies/:id/translations/:language",
         "optional": ["language"]
     },
     "/movies/comments": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -347,7 +313,6 @@
     },
     "/movies/lists": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -356,62 +321,49 @@
     },
     "/movies/people": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/:id/people",
         "optional": []
     },
     "/movies/ratings": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/movies/:id/ratings",
         "optional": []
     },
     "/movies/related": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/:id/related?limit=",
         "optional": ["limit"]
     },
     "/movies/stats": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/movies/:id/stats",
         "optional": []
     },
     "/movies/watching": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/movies/:id/watching",
         "optional": []
     },
     "/networks": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/networks",
         "optional": []
     },
     "/people/summary": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/people/:id",
@@ -419,8 +371,7 @@
     },
     "/people/movies": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/people/:id/movies",
@@ -428,8 +379,7 @@
     },
     "/people/shows": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/people/:id/shows",
@@ -438,7 +388,7 @@
     "/recommendations/movies/get": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/recommendations/movies/?limit=",
@@ -446,8 +396,7 @@
     },
     "/recommendations/movies/hide": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/recommendations/movies/:id",
@@ -456,7 +405,7 @@
     "/recommendations/shows/get": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/recommendations/shows/?limit=",
@@ -464,8 +413,7 @@
     },
     "/recommendations/shows/hide": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/recommendations/shows/:id",
@@ -473,8 +421,7 @@
     },
     "/scrobble/start": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/scrobble/start",
@@ -489,8 +436,7 @@
     },
     "/scrobble/pause": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/scrobble/pause",
@@ -505,8 +451,7 @@
     },
     "/scrobble/stop": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/scrobble/stop",
@@ -521,8 +466,8 @@
     },
     "/search/text": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/search/:type?query=&fields=",
@@ -530,8 +475,8 @@
     },
     "/search/id": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/search/:id_type/:id?type=&fields=",
@@ -539,8 +484,8 @@
     },
     "/shows/trending": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/trending",
@@ -548,8 +493,8 @@
     },
     "/shows/popular": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/popular",
@@ -557,8 +502,8 @@
     },
     "/shows/played": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/played/:period",
@@ -566,8 +511,8 @@
     },
     "/shows/watched": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/watched/:period",
@@ -575,8 +520,8 @@
     },
     "/shows/collected": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/collected",
@@ -584,8 +529,8 @@
     },
     "/shows/anticipated": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/anticipated",
@@ -593,8 +538,8 @@
     },
     "/shows/updates": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/updates/:start_date",
@@ -602,34 +547,26 @@
     },
     "/shows/summary": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id",
         "optional": []
     },
     "/shows/aliases": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/shows/:id/aliases",
         "optional": []
     },
     "/shows/translations": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/shows/:id/translations/:language",
         "optional": ["language"]
     },
     "/shows/comments": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -638,7 +575,6 @@
     },
     "/shows/lists": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -647,8 +583,7 @@
     },
     "/shows/progress/collection": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "GET",
         "url": "/shows/:id/progress/collection?hidden=&specials=&count_specials=",
@@ -656,8 +591,7 @@
     },
     "/shows/progress/watched": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "GET",
         "url": "/shows/:id/progress/watched?hidden=&specials=&count_specials",
@@ -665,44 +599,36 @@
     },
     "/shows/people": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/people",
         "optional": []
     },
     "/shows/ratings": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/shows/:id/ratings",
         "optional": []
     },
     "/shows/related": {
         "opts": {
-            "auth": false,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/related",
         "optional": []
     },
     "/shows/stats": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/shows/:id/stats",
         "optional": []
     },
     "/shows/watching": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/watching",
@@ -710,8 +636,7 @@
     },
     "/shows/next_episode": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/next_episode",
@@ -719,8 +644,7 @@
     },
     "/shows/last_episode": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/last_episode",
@@ -728,8 +652,7 @@
     },
     "/seasons/summary": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/seasons",
@@ -737,8 +660,7 @@
     },
     "/seasons/season": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season?translation=",
@@ -746,7 +668,6 @@
     },
     "/seasons/comments": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -755,7 +676,6 @@
     },
     "/seasons/lists": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -763,18 +683,14 @@
         "optional": ["type", "sort"]
     },
     "/seasons/ratings": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/shows/:id/seasons/:season/ratings",
         "optional": []
     },
     "/seasons/watching": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season/watching",
@@ -782,25 +698,20 @@
     },
     "/episodes/summary": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode",
         "optional": []
     },
     "/episodes/translations": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/translations/:language",
         "optional": ["language"]
     },
     "/episodes/comments": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -809,7 +720,6 @@
     },
     "/episodes/lists": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -817,27 +727,20 @@
         "optional": ["type", "sort"]
     },
     "/episodes/ratings": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/ratings",
         "optional": []
     },
     "/episodes/stats": {
-        "opts": {
-            "auth": false,
-            "pagination": false
-        },
+        "opts": {},
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/stats",
         "optional": []
     },
     "/episodes/watching": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/shows/:id/seasons/:season/episodes/:episode/watching",
@@ -845,8 +748,7 @@
     },
     "/sync/last_activities": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "GET",
         "url": "/sync/last_activities",
@@ -854,8 +756,7 @@
     },
     "/sync/playback/get": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "GET",
         "url": "/sync/playback/:type?limit=",
@@ -863,8 +764,7 @@
     },
     "/sync/playback/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/sync/playback/:id",
@@ -873,7 +773,7 @@
     "/sync/collection/get": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/sync/collection/:type",
@@ -881,8 +781,7 @@
     },
     "/sync/collection/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/sync/collection",
@@ -896,8 +795,7 @@
     },
     "/sync/collection/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/sync/collection/remove",
@@ -911,7 +809,7 @@
     "/sync/watched": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/sync/watched/:type",
@@ -920,7 +818,8 @@
     "/sync/history/get": {
         "opts": {
             "auth": true,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/sync/history/:type/:id?start_at=&end_at=",
@@ -928,8 +827,7 @@
     },
     "/sync/history/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/sync/history",
@@ -942,8 +840,7 @@
     },
     "/sync/history/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/sync/history/remove",
@@ -957,7 +854,7 @@
     "/sync/ratings/get": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/sync/ratings/:type/:rating",
@@ -965,8 +862,7 @@
     },
     "/sync/ratings/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/sync/ratings",
@@ -980,8 +876,7 @@
     },
     "/sync/ratings/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/sync/ratings/remove",
@@ -996,7 +891,8 @@
     "/sync/watchlist/get": {
         "opts": {
             "auth": true,
-            "pagination": "optional"
+            "pagination": "optional",
+            "extended": true
         },
         "method": "GET",
         "url": "/sync/watchlist/:type",
@@ -1004,8 +900,7 @@
     },
     "/sync/watchlist/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/sync/watchlist",
@@ -1019,8 +914,7 @@
     },
     "/sync/watchlist/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/sync/watchlist/remove",
@@ -1033,8 +927,7 @@
     },
     "/users/settings": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "GET",
         "url": "/users/settings",
@@ -1043,7 +936,7 @@
     "/users/requests/get": {
         "opts": {
             "auth": true,
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/users/requests",
@@ -1051,8 +944,7 @@
     },
     "/users/requests/approve": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/users/requests/:id",
@@ -1060,8 +952,7 @@
     },
     "/users/requests/deny": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/users/requests/:id",
@@ -1071,7 +962,8 @@
     "/users/hidden/get": {
         "opts": {
             "auth": true,
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/users/hidden/:section?type=",
@@ -1079,8 +971,7 @@
     },
     "/users/hidden/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/users/hidden/:section",
@@ -1093,8 +984,7 @@
     },
     "/users/hidden/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/users/hidden/:section/remove",
@@ -1117,7 +1007,7 @@
     "/users/profile": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username",
@@ -1126,7 +1016,7 @@
     "/users/collection": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/collection/:type",
@@ -1135,7 +1025,8 @@
     "/users/comment": {
         "opts": {
             "auth": "optional",
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/comments/:comment_type/:type",
@@ -1143,8 +1034,7 @@
     },
     "/users/lists/get": {
         "opts": {
-            "auth": "optional",
-            "pagination": false
+            "auth": "optional"
         },
         "method": "GET",
         "url": "/users/:username/lists",
@@ -1152,8 +1042,7 @@
     },
     "/users/lists/create": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/users/:username/lists",
@@ -1168,8 +1057,7 @@
     },
     "/users/list/get": {
         "opts": {
-            "auth": "optional",
-            "pagination": false
+            "auth": "optional"
         },
         "method": "GET",
         "url": "/users/:username/lists/:id",
@@ -1177,8 +1065,7 @@
     },
     "/users/list/update": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "PUT",
         "url": "/users/:username/lists/:id",
@@ -1193,8 +1080,7 @@
     },
     "/users/list/delete": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/users/:username/lists/:id",
@@ -1202,8 +1088,7 @@
     },
     "/users/list/like/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/users/:username/lists/:id/like",
@@ -1211,8 +1096,7 @@
     },
     "/users/list/like/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/users/:username/lists/:id/like",
@@ -1221,7 +1105,8 @@
     "/users/list/items/get": {
         "opts": {
             "auth": "optional",
-            "pagination": "optional"
+            "pagination": "optional",
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/lists/:id/items?type=",
@@ -1229,8 +1114,7 @@
     },
     "/users/list/items/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/users/:username/lists/:id/items",
@@ -1238,8 +1122,7 @@
     },
     "/users/list/items/remove": {
         "opts": {
-            "auth": false,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/users/:username/lists/:id/items/remove",
@@ -1247,7 +1130,6 @@
     },
     "/users/list/comments": {
         "opts": {
-            "auth": false,
             "pagination": true
         },
         "method": "GET",
@@ -1256,8 +1138,7 @@
     },
     "/users/follow/add": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "POST",
         "url": "/users/:username/follow",
@@ -1265,8 +1146,7 @@
     },
     "/users/follow/remove": {
         "opts": {
-            "auth": true,
-            "pagination": false
+            "auth": true
         },
         "method": "DELETE",
         "url": "/users/:username/follow",
@@ -1275,7 +1155,7 @@
     "/users/followers": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/followers",
@@ -1284,7 +1164,7 @@
     "/users/following": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/following",
@@ -1293,7 +1173,7 @@
     "/users/friends": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/friends",
@@ -1302,7 +1182,8 @@
     "/users/history": {
         "opts": {
             "auth": "optional",
-            "pagination": true
+            "pagination": true,
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/history/:type/:item_id?start_at=&end_at=",
@@ -1311,7 +1192,7 @@
     "/users/ratings": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/ratings/:type/:rating",
@@ -1320,7 +1201,8 @@
     "/users/watchlist": {
         "opts": {
             "auth": "optional",
-            "pagination": "optional"
+            "pagination": "optional",
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/watchlist/:type",
@@ -1328,8 +1210,7 @@
     },
     "/users/watching": {
         "opts": {
-            "auth": "optional",
-            "pagination": false
+            "auth": "optional"
         },
         "method": "GET",
         "url": "/users/:username/watching",
@@ -1338,7 +1219,7 @@
     "/users/watched": {
         "opts": {
             "auth": "optional",
-            "pagination": false
+            "extended": true
         },
         "method": "GET",
         "url": "/users/:username/watched/:type",
@@ -1346,8 +1227,7 @@
     },
     "/users/stats": {
         "opts": {
-            "auth": "optional",
-            "pagination": false
+            "auth": "optional"
         },
         "method": "GET",
         "url": "/users/:username/stats",
