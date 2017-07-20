@@ -20,7 +20,8 @@ module.exports = class Trakt {
             client_secret: settings.client_secret,
             redirect_uri: settings.redirect_uri || redirectUrn,
             debug: settings.debug || debug,
-            endpoint: settings.api_url || defaultUrl
+            endpoint: settings.api_url || defaultUrl,
+            pagination: settings.pagination
         };
 
         this._construct();
@@ -214,7 +215,7 @@ module.exports = class Trakt {
         const data = JSON.parse(response.body);
         let parsed = data;
 
-        if (params && params.pagination) {
+        if ((params && params.pagination) || this._settings.pagination) {
             parsed = {
                 data: data
             };
