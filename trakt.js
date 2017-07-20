@@ -1,14 +1,16 @@
 'use strict';
 
-// default settings
-const defaultUrl = 'https://api.trakt.tv';
-const redirectUrn = 'urn:ietf:wg:oauth:2.0:oob';
-
 // requirejs modules
 const got = require('got');
 const crypto = require('crypto');
 const methods = require('./methods.json');
 const sanitizer = require('sanitizer').sanitize;
+const pkg = require('./package.json');
+
+// default settings
+const defaultUrl = 'https://api.trakt.tv';
+const redirectUrn = 'urn:ietf:wg:oauth:2.0:oob';
+const defaultUa = `${pkg.name}/${pkg.version} (NodeJS; +${pkg.repository.url})`;
 
 module.exports = class Trakt {
     constructor(settings = {}, debug) {
@@ -22,7 +24,7 @@ module.exports = class Trakt {
             debug: settings.debug || debug,
             endpoint: settings.api_url || defaultUrl,
             pagination: settings.pagination,
-            user_agent: settings.user_agent
+            useragent: settings.useragent || defaultUa
         };
 
         this._construct();
@@ -48,6 +50,8 @@ module.exports = class Trakt {
                 };
             })();
         }
+
+        this._debug(`Trakt.tv: module loaded, as ${this._settings.useragent}`);
     }
 
     // Initialize plugins
@@ -57,26 +61,26 @@ module.exports = class Trakt {
 
             this[name] = plugins[name];
             this[name].init(this, (options[name] || {}));
-            this._debug('Trakt.tv ' + name + ' plugin loaded');
+            this._debug(`Trakt.tv: ${name} plugin loaded`);
         }
     }
 
     // Debug & Print
     _debug(req) {
-        this._settings.debug && console.log(req.method ? req.method + (req.headers['Authorization'] ? ' (oauth)' : '') + ': ' + req.url : req);
+        this._settings.debug && console.log(req.method ? `${req.method}: ${req.url}` : req);
     }
 
     // Authentication calls
     _exchange(str) {
         const req = {
             method: 'POST',
-            url: this._settings.endpoint + '/oauth/token',
+            url: `${this._settings.endpoint}/oauth/token`,
             headers: {
+                'User-Agent': this._settings.useragent,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(str)
         };
-        this._settings.user_agent && (req.headers['User-Agent'] = this._settings.user_agent);
 
         this._debug(req);
         return got(req.url, req).then(response => {
@@ -96,16 +100,16 @@ module.exports = class Trakt {
     _revoke() {
         const req = {
             method: 'POST',
-            url: this._settings.endpoint + '/oauth/revoke',
+            url: `${this._settings.endpoint}/oauth/revoke`,
             headers: {
+                'User-Agent': this._settings.useragent,
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization' : 'Bearer ' + this._authentication.access_token,
+                'Authorization' : `Bearer ${this._authentication.access_token}`,
                 'trakt-api-version': '2',
                 'trakt-api-key': this._settings.client_id
             },
-            body: 'token=[' + this._authentication.access_token + ']'
+            body: `token=[${this._authentication.access_token}]`
         };
-        this._settings.user_agent && (req.headers['User-Agent'] = this._settings.user_agent);
         this._debug(req);
         got(req.url, req);
     }
@@ -114,13 +118,13 @@ module.exports = class Trakt {
     _device_code(str, type) {
         const req = {
             method: 'POST',
-            url: this._settings.endpoint + '/oauth/device/' + type,
+            url: `${this._settings.endpoint}/oauth/device/${type}`,
             headers: {
+                'User-Agent': this._settings.useragent,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(str)
         };
-        this._settings.user_agent && (req.headers['User-Agent'] = this._settings.user_agent);
 
         this._debug(req);
         return got(req.url, req).then(response => this._sanitize(JSON.parse(response.body))).catch(error => {
@@ -141,7 +145,7 @@ module.exports = class Trakt {
             const queryParams = queryPart.split('&');
             for (let i in queryParams) {
                 const name = queryParams[i].split('=')[0];
-                (params[name] || params[name] === 0) && queryParts.push(name + '=' + params[name]);
+                (params[name] || params[name] === 0) && queryParts.push(`${name}=${params[name]}`);
             }
         }
 
@@ -157,7 +161,7 @@ module.exports = class Trakt {
                     pathParts.push(param);
                 } else {
                     // check for missing required params
-                    if (method.optional && method.optional.indexOf(pathParams[k].substr(1)) === -1) throw Error('Missing mandatory paramater: ' + pathParams[k].substr(1));
+                    if (method.optional && method.optional.indexOf(pathParams[k].substr(1)) === -1) throw Error(`Missing mandatory paramater: ${pathParams[k].substr(1)}`);
                 }
             }
         }
@@ -165,23 +169,25 @@ module.exports = class Trakt {
         // Filters
         const filters = ['query', 'years', 'genres', 'languages', 'countries', 'runtimes', 'ratings', 'certifications', 'networks', 'status'];
         for (let p in params) {
-            filters.indexOf(p) !== -1 && queryParts.indexOf(p+'=' + params[p]) === -1 && queryParts.push(p+'=' + params[p]);
+            filters.indexOf(p) !== -1 && queryParts.indexOf(`${p}=${params[p]}`) === -1 && queryParts.push(`${p}=${params[p]}`);
         }
 
         // Pagination
         if (method.opts['pagination']) {
-            params['page'] && queryParts.push('page=' + params['page']);
-            params['limit'] && queryParts.push('limit=' + params['limit']);
+            params['page'] && queryParts.push(`page=${params['page']}`);
+            params['limit'] && queryParts.push(`limit=${params['limit']}`);
         }
 
         // Extended
         if (method.opts['extended'] && params['extended']) {            
-            queryParts.push('extended=' + params['extended']);
+            queryParts.push(`extended=${params['extended']}`);
         }
 
-        let url = this._settings.endpoint + pathParts.join('/');
-        if (queryParts.length) url += '?' + queryParts.join('&');
-        return url;
+        return [
+            this._settings.endpoint,
+            pathParts.join('/'),
+            queryParts.length ? `?${queryParts.join('&')}` : ''
+        ].join('');
     }
 
     // Parse methods then hit trakt
@@ -192,15 +198,15 @@ module.exports = class Trakt {
             method: method.method,
             url: this._parse(method, params),
             headers: {
+                'User-Agent': this._settings.useragent,
                 'Content-Type': 'application/json',
                 'trakt-api-version': '2',
                 'trakt-api-key': this._settings.client_id
             },
             body: (method.body ? Object.assign({}, method.body) : {})
         };
-        this._settings.user_agent && (req.headers['User-Agent'] = this._settings.user_agent);
 
-        if (method.opts['auth']) req.headers['Authorization'] = 'Bearer ' + this._authentication.access_token;
+        if (method.opts['auth']) req.headers['Authorization'] = `Bearer ${this._authentication.access_token}`;
 
         for (let k in params) {
             if (k in req.body) req.body[k] = params[k];
@@ -273,8 +279,8 @@ module.exports = class Trakt {
     get_url() {
         this._authentication.state = crypto.randomBytes(6).toString('hex');
         // Replace 'api' from the api_url to get the top level trakt domain
-        const base_url = this._settings.endpoint.replace('api.', '').replace('api-', '');
-        return base_url + '/oauth/authorize?response_type=code&client_id=' + this._settings.client_id + '&redirect_uri=' + this._settings.redirect_uri + '&state=' + this._authentication.state;
+        const base_url = this._settings.endpoint.replace(/api\W/, '');
+        return `${base_url}/oauth/authorize?response_type=code&client_id=${this._settings.client_id}&redirect_uri=${this._settings.redirect_uri}&state=${this._authentication.state}`;
     }
 
     // Verify code; optional state
