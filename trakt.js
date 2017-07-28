@@ -233,12 +233,15 @@ module.exports = class Trakt {
                 data: data
             };
 
-            if (method.opts.pagination) {
+            if (method.opts.pagination && response.headers) {
+                // http headers field names are case-insensitive
+                let headers = JSON.parse(JSON.stringify(response.headers).toLowerCase());
+                
                 parsed.pagination = {
-                    'item-count': response.headers['x-pagination-item-count'],
-                    'limit': response.headers['x-pagination-limit'],
-                    'page': response.headers['x-pagination-page'],
-                    'page-count': response.headers['x-pagination-page-count'],
+                    'item-count': headers['x-pagination-item-count'],
+                    'limit': headers['x-pagination-limit'],
+                    'page': headers['x-pagination-page'],
+                    'page-count': headers['x-pagination-page-count'],
                 };
             } else {
                 parsed.pagination = false;
