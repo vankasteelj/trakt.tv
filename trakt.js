@@ -21,7 +21,7 @@ module.exports = class Trakt {
             redirect_uri: settings.redirect_uri || redirectUrn,
             debug: settings.debug || debug,
             endpoint: settings.api_url || defaultUrl,
-            useElectronNet: settings.useElectronNet || true,
+            useElectronNet: !!settings.useElectronNet,
         };
 
         this._construct();
