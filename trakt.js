@@ -20,7 +20,8 @@ module.exports = class Trakt {
             client_secret: settings.client_secret,
             redirect_uri: settings.redirect_uri || redirectUrn,
             debug: settings.debug || debug,
-            endpoint: settings.api_url || defaultUrl
+            endpoint: settings.api_url || defaultUrl,
+            useElectronNet: settings.useElectronNet || true,
         };
 
         this._construct();
@@ -72,7 +73,8 @@ module.exports = class Trakt {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(str)
+            body: JSON.stringify(str),
+            useElectronNet: this._settings.useElectronNet,
         };
 
         this._debug(req);
@@ -100,7 +102,8 @@ module.exports = class Trakt {
                 'trakt-api-version': '2',
                 'trakt-api-key': this._settings.client_id
             },
-            body: 'token=[' + this._authentication.access_token + ']'
+            body: 'token=[' + this._authentication.access_token + ']',
+            useElectronNet: this._settings.useElectronNet,
         };
         this._debug(req);
         got(req.url, req);
@@ -114,7 +117,8 @@ module.exports = class Trakt {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(str)
+            body: JSON.stringify(str),
+            useElectronNet: this._settings.useElectronNet,
         };
 
         this._debug(req);
@@ -126,7 +130,7 @@ module.exports = class Trakt {
     // Parse url before api call
     _parse(method, params) {
         if (!params) params = {};
-        
+
         const queryParts = [];
         const pathParts = [];
 
@@ -189,7 +193,8 @@ module.exports = class Trakt {
                 'trakt-api-version': '2',
                 'trakt-api-key': this._settings.client_id
             },
-            body: (method.body ? Object.assign({}, method.body) : {})
+            body: (method.body ? Object.assign({}, method.body) : {}),
+            useElectronNet: this._settings.useElectronNet,
         };
 
         if (method.opts['auth']) req.headers['Authorization'] = 'Bearer ' + this._authentication.access_token;
