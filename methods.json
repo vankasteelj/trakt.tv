@@ -1120,6 +1120,11 @@
         },
         "method": "POST",
         "url": "/users/:username/lists/:id/items",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
+        },
         "optional": []
     },
     "/users/list/items/remove": {
@@ -1128,6 +1133,11 @@
         },
         "method": "POST",
         "url": "/users/:username/lists/:id/items/remove",
+        "body": {
+            "movies": null,
+            "shows": null,
+            "episodes": null
+        },
         "optional": []
     },
     "/users/list/comments": {
