@@ -664,8 +664,8 @@
             "extended": ["full"]
         },
         "method": "GET",
-        "url": "/shows/:id/seasons/:season?translation=",
-        "optional": ["translation"]
+        "url": "/shows/:id/seasons/:season?translations=",
+        "optional": ["translations"]
     },
     "/seasons/comments": {
         "opts": {
