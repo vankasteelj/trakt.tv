@@ -183,6 +183,14 @@
         },
         "optional": []
     },
+    "/comments/item": {
+        "opts": {
+            "extended": ["full"]
+        },
+        "method": "GET",
+        "url": "/comments/:id/item",
+        "optional": []
+    },
     "/comments/like/add": {
         "opts": {
             "auth": true
