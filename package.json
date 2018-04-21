@@ -14,7 +14,7 @@
         "url": "https://github.com/vankasteelj/trakt.tv/issues"
     },
     "dependencies": {
-        "got": "7.x.x",
+        "got": "8.x.x",
         "sanitizer": "0.x.x"
     },
     "scripts": {
