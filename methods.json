@@ -443,6 +443,14 @@
         "url": "/people/:id/shows",
         "optional": []
     },
+    "/people/lists": {
+        "opts": {
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/people/:id/lists/:type/:sort",
+        "optional": ["type", "sort"]
+    },
     "/recommendations/movies/get": {
         "opts": {
             "auth": true,
