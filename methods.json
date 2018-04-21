@@ -191,6 +191,14 @@
         "url": "/comments/:id/item",
         "optional": []
     },
+    "/comments/likes": {
+        "opts": {
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/comments/:id/likes",
+        "optional": []
+    },
     "/comments/like/add": {
         "opts": {
             "auth": true
