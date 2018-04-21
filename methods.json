@@ -1085,8 +1085,8 @@
             "extended": ["full"]
         },
         "method": "GET",
-        "url": "/users/:username/comments/:comment_type/:type",
-        "optional": ["comment_type", "type"]
+        "url": "/users/:username/comments/:comment_type/:type?include_replies=",
+        "optional": ["comment_type", "type", "include_replies"]
     },
     "/users/lists/get": {
         "opts": {
