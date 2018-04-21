@@ -224,6 +224,22 @@
         "url": "/comments/recent/:comment_type/:type?include_replies=",
         "optional": ["comment_type", "type", "include_replies"]
     },
+    "/lists/trending": {
+        "opts": {
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/lists/trending",
+        "optional": []
+    },
+    "/lists/popular": {
+        "opts": {
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/lists/popular",
+        "optional": []
+    },
     "/genres": {
         "opts": {},
         "method": "GET",
