@@ -207,6 +207,15 @@
         "url": "/comments/:id/like",
         "optional": []
     },
+    "/comments/recent": {
+        "opts": {
+            "pagination": true,
+            "extended": ["full"]
+        },
+        "method": "GET",
+        "url": "/comments/recent/:comment_type/:type?include_replies=",
+        "optional": ["comment_type", "type", "include_replies"]
+    },
     "/genres": {
         "opts": {},
         "method": "GET",
