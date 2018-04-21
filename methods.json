@@ -215,6 +215,15 @@
         "url": "/comments/:id/like",
         "optional": []
     },
+    "/comments/trending": {
+        "opts": {
+            "pagination": true,
+            "extended": ["full"]
+        },
+        "method": "GET",
+        "url": "/comments/trending/:comment_type/:type?include_replies=",
+        "optional": ["comment_type", "type", "include_replies"]
+    },
     "/comments/recent": {
         "opts": {
             "pagination": true,
@@ -222,6 +231,15 @@
         },
         "method": "GET",
         "url": "/comments/recent/:comment_type/:type?include_replies=",
+        "optional": ["comment_type", "type", "include_replies"]
+    },
+    "/comments/updates": {
+        "opts": {
+            "pagination": true,
+            "extended": ["full"]
+        },
+        "method": "GET",
+        "url": "/comments/updates/:comment_type/:type?include_replies=",
         "optional": ["comment_type", "type", "include_replies"]
     },
     "/lists/trending": {
