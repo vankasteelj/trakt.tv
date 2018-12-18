@@ -14,8 +14,8 @@
         "url": "https://github.com/vankasteelj/trakt.tv/issues"
     },
     "dependencies": {
-        "got": "8.x.x",
-        "sanitizer": "0.x.x"
+        "got": "^9.5.0",
+        "sanitizer": "^0.1.3"
     },
     "scripts": {
         "docs": "node docs/methods-generator"
