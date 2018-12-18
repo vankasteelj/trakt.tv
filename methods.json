@@ -1119,6 +1119,17 @@
         },
         "optional": []
     },
+    "/users/lists/reorder": {
+        "opts": {
+            "auth": true
+        },
+        "method": "POST",
+        "url": "/users/:username/lists/reorder",
+        "body": {
+            "rank": null
+        },
+        "optional": []
+    },
     "/users/list/get": {
         "opts": {
             "auth": "optional"
@@ -1199,6 +1210,17 @@
             "movies": null,
             "shows": null,
             "people": null
+        },
+        "optional": []
+    },
+    "/users/list/items/reorder": {
+        "opts": {
+            "auth": true
+        },
+        "method": "POST",
+        "url": "/users/:username/lists/:id/items/reorder",
+        "body": {
+            "rank": null
         },
         "optional": []
     },
