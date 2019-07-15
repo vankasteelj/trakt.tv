@@ -664,8 +664,8 @@
             "auth": true
         },
         "method": "GET",
-        "url": "/shows/:id/progress/collection?hidden=&specials=&count_specials=",
-        "optional": ["hidden", "specials", "count_specials"]
+        "url": "/shows/:id/progress/collection?hidden=&specials=&count_specials=&last_activity=",
+        "optional": ["hidden", "specials", "count_specials", "last_activity"]
     },
     "/shows/progress/watched": {
         "opts": {
@@ -673,8 +673,8 @@
             "extended": ["full"]
         },
         "method": "GET",
-        "url": "/shows/:id/progress/watched?hidden=&specials=&count_specials",
-        "optional": ["hidden", "specials", "count_specials"]
+        "url": "/shows/:id/progress/watched?hidden=&specials=&count_specials=&last_activity=",
+        "optional": ["hidden", "specials", "count_specials", "last_activity"]
     },
     "/shows/people": {
         "opts": {
