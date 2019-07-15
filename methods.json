@@ -867,6 +867,7 @@
         "body": {
             "movies": null,
             "shows": null,
+            "seasons": null,
             "episodes": null
         },
         "optional": []
@@ -880,6 +881,7 @@
         "body": {
             "movies": null,
             "shows": null,
+            "seasons": null,
             "episodes": null
         },
         "optional": []
