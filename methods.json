@@ -242,6 +242,12 @@
         "url": "/comments/updates/:comment_type/:type?include_replies=",
         "optional": ["comment_type", "type", "include_replies"]
     },
+    "/countries": {
+        "opts": {},
+        "method": "GET",
+        "url": "/countries/:type",
+        "optional": []
+    },
     "/lists/trending": {
         "opts": {
             "pagination": true
