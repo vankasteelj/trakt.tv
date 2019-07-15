@@ -2,7 +2,12 @@
     "name": "trakt.tv",
     "version": "7.1.0",
     "description": "Interact with Trakt.tv API in NodeJS",
-    "keywords": ["trakt", "api", "wrapper", "node"],
+    "keywords": [
+        "trakt",
+        "api",
+        "wrapper",
+        "node"
+    ],
     "main": "trakt.js",
     "author": "Jean van Kasteel",
     "license": "MIT",
@@ -14,7 +19,7 @@
         "url": "https://github.com/vankasteelj/trakt.tv/issues"
     },
     "dependencies": {
-        "got": "^9.5.0",
+        "got": "^9.6.0",
         "sanitizer": "^0.1.3"
     },
     "scripts": {
