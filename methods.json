@@ -469,8 +469,8 @@
             "extended": ["full"]
         },
         "method": "GET",
-        "url": "/recommendations/movies/?limit=",
-        "optional": ["limit"]
+        "url": "/recommendations/movies/?limit=&ignore_collected=",
+        "optional": ["limit", "ignore_collected"]
     },
     "/recommendations/movies/hide": {
         "opts": {
@@ -486,8 +486,8 @@
             "extended": ["full"]
         },
         "method": "GET",
-        "url": "/recommendations/shows/?limit=",
-        "optional": ["limit"]
+        "url": "/recommendations/shows/?limit=&ignore_collected=",
+        "optional": ["limit", "ignore_collected"]
     },
     "/recommendations/shows/hide": {
         "opts": {
