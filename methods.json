@@ -248,6 +248,18 @@
         "url": "/countries/:type",
         "optional": []
     },
+    "/genres": {
+        "opts": {},
+        "method": "GET",
+        "url": "/genres/:type",
+        "optional": []
+    },
+    "/languages": {
+        "opts": {},
+        "method": "GET",
+        "url": "/languages/:type",
+        "optional": []
+    },
     "/lists/trending": {
         "opts": {
             "pagination": true
@@ -262,12 +274,6 @@
         },
         "method": "GET",
         "url": "/lists/popular",
-        "optional": []
-    },
-    "/genres": {
-        "opts": {},
-        "method": "GET",
-        "url": "/genres/:type",
         "optional": []
     },
     "/movies/trending": {
