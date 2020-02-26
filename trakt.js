@@ -83,7 +83,7 @@ module.exports = class Trakt {
         };
 
         this._debug(req);
-        return got(req.url, req).then(response => {
+        return got(req).then(response => {
             const body = JSON.parse(response.body);
 
             this._authentication.refresh_token = body.refresh_token;
@@ -112,7 +112,7 @@ module.exports = class Trakt {
             })
         };
         this._debug(req);
-        got(req.url, req);
+        got(req);
     }
 
     // Get code to paste on login screen
@@ -128,7 +128,7 @@ module.exports = class Trakt {
         };
 
         this._debug(req);
-        return got(req.url, req).then(response => this._sanitize(JSON.parse(response.body))).catch(error => {
+        return got(req).then(response => this._sanitize(JSON.parse(response.body))).catch(error => {
             throw (error.response && error.response.statusCode == 401) ? Error(error.response.headers['www-authenticate']) : error;
         });
     }
@@ -216,10 +216,14 @@ module.exports = class Trakt {
             if (!req.body[k]) delete req.body[k];
         }
 
-        req.body = JSON.stringify(req.body);
+        if (method.method === 'GET') {
+            delete req.body;
+        } else {
+            req.body = JSON.stringify(req.body);
+        }
 
         this._debug(req);
-        return got(req.url, req).then(response => this._parseResponse(method, params, response));
+        return got(req).then(response => this._parseResponse(method, params, response));
     }
 
     // Parse trakt response: pagination & stuff
