@@ -146,7 +146,7 @@ module.exports = class Trakt {
             const queryParams = queryPart.split('&');
             for (let i in queryParams) {
                 const name = queryParams[i].split('=')[0];
-                (params[name] || params[name] === 0) && queryParts.push(`${name}=${params[name]}`);
+                (params[name] || params[name] === 0) && queryParts.push(`${name}=${encodeURIComponent(params[name])}`);
             }
         }
 
@@ -170,7 +170,7 @@ module.exports = class Trakt {
         // Filters
         const filters = ['query', 'years', 'genres', 'languages', 'countries', 'runtimes', 'ratings', 'certifications', 'networks', 'status'];
         for (let p in params) {
-            filters.indexOf(p) !== -1 && queryParts.indexOf(`${p}=${params[p]}`) === -1 && queryParts.push(`${p}=${params[p]}`);
+            filters.indexOf(p) !== -1 && queryParts.indexOf(`${p}=${encodeURIComponent(params[p])}`) === -1 && queryParts.push(`${p}=${encodeURIComponent(params[p])}`);
         }
 
         // Pagination
