@@ -813,6 +813,14 @@
         "url": "/shows/:id/seasons/:season/episodes/:episode/lists/:type/:sort",
         "optional": ["type", "sort"]
     },
+    "/episodes/people": {
+        "opts": {
+            "extended": ["guest_stars"]
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/episodes/:episode/people",
+        "optional": []
+    },
     "/episodes/ratings": {
         "opts": {},
         "method": "GET",
