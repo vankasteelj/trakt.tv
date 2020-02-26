@@ -936,6 +936,7 @@
     "/sync/ratings/get": {
         "opts": {
             "auth": true,
+            "pagination": "optional",
             "extended": ["full"]
         },
         "method": "GET",
@@ -1304,6 +1305,7 @@
     "/users/ratings": {
         "opts": {
             "auth": "optional",
+            "pagination": "optional",
             "extended": ["full"]
         },
         "method": "GET",
