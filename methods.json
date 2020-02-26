@@ -678,7 +678,7 @@
     },
     "/shows/people": {
         "opts": {
-            "extended": ["full"]
+            "extended": ["full", "guest_stars"]
         },
         "method": "GET",
         "url": "/shows/:id/people",
@@ -760,6 +760,14 @@
         "method": "GET",
         "url": "/shows/:id/seasons/:season/lists/:type/:sort",
         "optional": ["type", "sort"]
+    },
+    "/seasons/people": {
+        "opts": {
+            "extended": ["guest_stars"]
+        },
+        "method": "GET",
+        "url": "/shows/:id/seasons/:season/people",
+        "optional": []
     },
     "/seasons/ratings": {
         "opts": {},
