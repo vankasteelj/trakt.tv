@@ -321,6 +321,15 @@
         "url": "/movies/collected/:period",
         "optional": ["period"]
     },
+    "/movies/recommended/": {
+        "opts": {
+            "pagination": true,
+            "extended": ["full"]
+        },
+        "method": "GET",
+        "url": "/movies/recommended/:period?query=&years=&genres=&languages=&countries=&runtimes=&ratings=&certifications=",
+        "optional": ["period", "query", "years", "genres", "languages", "countries", "runtimes", "ratings", "certifications"]
+    },
     "/movies/anticipated": {
         "opts": {
             "pagination": true,
@@ -595,6 +604,15 @@
         "method": "GET",
         "url": "/shows/watched/:period",
         "optional": ["period"]
+    },
+    "/shows/recommended/": {
+        "opts": {
+            "pagination": true,
+            "extended": ["full"]
+        },
+        "method": "GET",
+        "url": "/shows/recommended/:period?query=&years=&genres=&languages=&countries=&runtimes=&ratings=&certifications=&networks=&status=",
+        "optional": ["period", "query", "years", "genres", "languages", "countries", "runtimes", "ratings", "certifications", "networks", "status"]
     },
     "/shows/collected": {
         "opts": {
