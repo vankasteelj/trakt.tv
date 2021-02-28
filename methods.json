@@ -321,7 +321,7 @@
         "url": "/movies/collected/:period",
         "optional": ["period"]
     },
-    "/movies/recommended/": {
+    "/movies/recommended": {
         "opts": {
             "pagination": true,
             "extended": ["full"]
@@ -605,7 +605,7 @@
         "url": "/shows/watched/:period",
         "optional": ["period"]
     },
-    "/shows/recommended/": {
+    "/shows/recommended": {
         "opts": {
             "pagination": true,
             "extended": ["full"]
