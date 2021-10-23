@@ -4,7 +4,6 @@
 const got = require('got');
 const crypto = require('crypto');
 const methods = require('./methods.json');
-const sanitizer = require('sanitizer').sanitize;
 const pkg = require('./package.json');
 
 // default settings
@@ -90,7 +89,7 @@ module.exports = class Trakt {
             this._authentication.access_token = body.access_token;
             this._authentication.expires = (body.created_at + body.expires_in) * 1000;
 
-            return this._sanitize(body);
+            return body;
         }).catch(error => {
             throw (error.response && error.response.statusCode == 401) ? Error(error.response.headers['www-authenticate']) : error;
         });
@@ -128,7 +127,7 @@ module.exports = class Trakt {
         };
 
         this._debug(req);
-        return got(req).then(response => this._sanitize(JSON.parse(response.body))).catch(error => {
+        return got(req).then(response => JSON.parse(response.body)).catch(error => {
             throw (error.response && error.response.statusCode == 401) ? Error(error.response.headers['www-authenticate']) : error;
         });
     }
@@ -253,34 +252,7 @@ module.exports = class Trakt {
             }
         }
 
-        return this._sanitize(parsed);
-    }
-
-    // Sanitize output (xss)
-    _sanitize(input) {
-        const sanitizeString = string => sanitizer(string);
-
-        const sanitizeObject = obj => {
-            const result = obj;
-            for (let prop in obj) {
-                result[prop] = obj[prop];
-                if (obj[prop] && (obj[prop].constructor === Object || obj[prop].constructor === Array)) {
-                    result[prop] = sanitizeObject(obj[prop]);
-                } else if (obj[prop] && obj[prop].constructor === String) {
-                    result[prop] = sanitizeString(obj[prop]);
-                }
-            }
-            return result;
-        }
-
-        let output = input;
-        if (input && (input.constructor === Object || input.constructor === Array)) {
-            output = sanitizeObject(input);
-        } else if (input && input.constructor === String) {
-            output = sanitizeString(input);
-        }
-
-        return output;
+        return parsed;
     }
 
     // Get authentication url for browsers
