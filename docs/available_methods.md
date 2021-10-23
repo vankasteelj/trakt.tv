@@ -1,6 +1,6 @@
 # Trakt.tv available methods 
 
-This help doc was last generated for trakt.tv@8.0.0 on Wed Feb 26 2020
+This help doc was last generated for trakt.tv@8.1.1 on Sun Oct 24 2021
 
 ## How to read the table ?
 
@@ -68,14 +68,20 @@ trakt.seasons.comments({
 | trakt.languages() | *none* | type | *none* | *none* | *none* | GET | api.trakt.tv/languages/**type** |
 | trakt.lists.trending() | *none* | *none* | *none* | paginated | *none* | GET | api.trakt.tv/lists/trending |
 | trakt.lists.popular() | *none* | *none* | *none* | paginated | *none* | GET | api.trakt.tv/lists/popular |
+| trakt.lists.get() | *none* | id | *none* | *none* | *none* | GET | api.trakt.tv/lists/**id** |
+| trakt.lists.likes() | *none* | id | *none* | paginated | *none* | GET | api.trakt.tv/lists/**id**/likes |
+| trakt.lists.items() | *none* | id, type | *none* | *optional* | "full" | GET | api.trakt.tv/lists/**id**/items/**type** |
+| trakt.lists.comments() | *none* | id | sort | paginated | *none* | GET | api.trakt.tv/lists/**id**/comments |
 | trakt.movies.trending() | *none* | *none* | *none* | paginated | "full" | GET | api.trakt.tv/movies/trending |
 | trakt.movies.popular() | *none* | *none* | *none* | paginated | "full" | GET | api.trakt.tv/movies/popular |
+| trakt.movies.recommended() | *none* | *none* | period | paginated | "full" | GET | api.trakt.tv/movies/recommended |
 | trakt.movies.played() | *none* | *none* | period | paginated | "full" | GET | api.trakt.tv/movies/played |
 | trakt.movies.watched() | *none* | *none* | period | paginated | "full" | GET | api.trakt.tv/movies/watched |
 | trakt.movies.collected() | *none* | *none* | period | paginated | "full" | GET | api.trakt.tv/movies/collected |
 | trakt.movies.anticipated() | *none* | *none* | *none* | paginated | "full" | GET | api.trakt.tv/movies/anticipated |
 | trakt.movies.boxoffice() | *none* | *none* | *none* | *none* | "full" | GET | api.trakt.tv/movies/boxoffice |
 | trakt.movies.updates() | *none* | *none* | start_date | paginated | "full" | GET | api.trakt.tv/movies/updates |
+| trakt.movies.updated_ids() | *none* | *none* | start_date | paginated | *none* | GET | api.trakt.tv/movies/updates/id |
 | trakt.movies.summary() | *none* | id | *none* | *none* | "full" | GET | api.trakt.tv/movies/**id** |
 | trakt.movies.aliases() | *none* | id | *none* | *none* | *none* | GET | api.trakt.tv/movies/**id**/aliases |
 | trakt.movies.releases() | *none* | id | country | *none* | *none* | GET | api.trakt.tv/movies/**id**/releases |
@@ -103,18 +109,23 @@ trakt.seasons.comments({
 | trakt.search.id() | *none* | id_type, id | type, fields | paginated | "full" | GET | api.trakt.tv/search/**id_type**/**id** |
 | trakt.shows.trending() | *none* | *none* | *none* | paginated | "full" | GET | api.trakt.tv/shows/trending |
 | trakt.shows.popular() | *none* | *none* | *none* | paginated | "full" | GET | api.trakt.tv/shows/popular |
+| trakt.shows.recommended() | *none* | *none* | period | paginated | "full" | GET | api.trakt.tv/shows/recommended |
 | trakt.shows.played() | *none* | *none* | period | paginated | "full" | GET | api.trakt.tv/shows/played |
 | trakt.shows.watched() | *none* | *none* | period | paginated | "full" | GET | api.trakt.tv/shows/watched |
 | trakt.shows.collected() | *none* | *none* | period | paginated | "full" | GET | api.trakt.tv/shows/collected |
 | trakt.shows.anticipated() | *none* | *none* | *none* | paginated | "full" | GET | api.trakt.tv/shows/anticipated |
 | trakt.shows.updates() | *none* | *none* | start_date | paginated | "full" | GET | api.trakt.tv/shows/updates |
+| trakt.shows.updated_ids() | *none* | *none* | start_date | paginated | *none* | GET | api.trakt.tv/shows/updates/id |
 | trakt.shows.summary() | *none* | id | *none* | *none* | "full" | GET | api.trakt.tv/shows/**id** |
 | trakt.shows.aliases() | *none* | id | *none* | *none* | *none* | GET | api.trakt.tv/shows/**id**/aliases |
+| trakt.shows.certifications() | *none* | id | *none* | *none* | *none* | GET | api.trakt.tv/shows/**id**/certifications |
 | trakt.shows.translations() | *none* | id | language | *none* | *none* | GET | api.trakt.tv/shows/**id**/translations |
 | trakt.shows.comments() | *none* | id | sort | paginated | *none* | GET | api.trakt.tv/shows/**id**/comments |
 | trakt.shows.lists() | *none* | id | type, sort | paginated | *none* | GET | api.trakt.tv/shows/**id**/lists |
 | trakt.shows.progress.collection() | required | id | hidden, specials, count_specials, last_activity | *none* | *none* | GET | api.trakt.tv/shows/**id**/progress/collection |
 | trakt.shows.progress.watched() | required | id | hidden, specials, count_specials, last_activity | *none* | "full" | GET | api.trakt.tv/shows/**id**/progress/watched |
+| trakt.shows.progress.reset() | required | id | *none* | *none* | *none* | POST | api.trakt.tv/shows/**id**/progress/watched/reset |
+| trakt.shows.progress.undo_reset() | required | id | *none* | *none* | *none* | DELETE | api.trakt.tv/shows/**id**/progress/watched/reset |
 | trakt.shows.people() | *none* | id | *none* | *none* | "full", "guest_stars" | GET | api.trakt.tv/shows/**id**/people |
 | trakt.shows.ratings() | *none* | id | *none* | *none* | *none* | GET | api.trakt.tv/shows/**id**/ratings |
 | trakt.shows.related() | *none* | id | *none* | paginated | "full" | GET | api.trakt.tv/shows/**id**/related |
@@ -128,6 +139,7 @@ trakt.seasons.comments({
 | trakt.seasons.lists() | *none* | id, season | type, sort | paginated | *none* | GET | api.trakt.tv/shows/**id**/seasons/**season**/lists |
 | trakt.seasons.people() | *none* | id, season | *none* | *none* | "guest_stars" | GET | api.trakt.tv/shows/**id**/seasons/**season**/people |
 | trakt.seasons.ratings() | *none* | id, season | *none* | *none* | *none* | GET | api.trakt.tv/shows/**id**/seasons/**season**/ratings |
+| trakt.seasons.stats() | *none* | id, season | *none* | *none* | *none* | GET | api.trakt.tv/shows/**id**/seasons/**season**/stats |
 | trakt.seasons.watching() | *none* | id, season | *none* | *none* | "full" | GET | api.trakt.tv/shows/**id**/seasons/**season**/watching |
 | trakt.episodes.summary() | *none* | id, season, episode | *none* | *none* | "full" | GET | api.trakt.tv/shows/**id**/seasons/**season**/episodes/**episode** |
 | trakt.episodes.translations() | *none* | id, season, episode | language | *none* | *none* | GET | api.trakt.tv/shows/**id**/seasons/**season**/episodes/**episode**/translations |
@@ -153,7 +165,13 @@ trakt.seasons.comments({
 | trakt.sync.watchlist.get() | required | *none* | type | *optional* | "full" | GET | api.trakt.tv/sync/watchlist |
 | trakt.sync.watchlist.add() | required | *none* | movies, shows, episodes | *none* | *none* | POST | api.trakt.tv/sync/watchlist |
 | trakt.sync.watchlist.remove() | required | *none* | movies, shows, episodes | *none* | *none* | POST | api.trakt.tv/sync/watchlist/remove |
+| trakt.sync.watchlist.reorder() | required | *none* | rank | *none* | *none* | POST | api.trakt.tv/sync/watchlist/reorder |
+| trakt.sync.recommendations.get() | required | type, sort | *none* | *optional* | "full" | GET | api.trakt.tv/sync/recommendations/**type**/**sort** |
+| trakt.sync.recommendations.add() | required | *none* | movies, shows | *none* | *none* | POST | api.trakt.tv/sync/recommendations |
+| trakt.sync.recommendations.remove() | required | *none* | movies, shows | *none* | *none* | POST | api.trakt.tv/sync/recommendations/remove |
+| trakt.sync.recommendations.reorder() | required | *none* | rank | *none* | *none* | POST | api.trakt.tv/sync/recommendations/reorder |
 | trakt.users.settings() | required | *none* | *none* | *none* | *none* | GET | api.trakt.tv/users/settings |
+| trakt.users.requests.following() | required | *none* | *none* | *none* | "full" | GET | api.trakt.tv/users/requests/following |
 | trakt.users.requests.get() | required | *none* | *none* | *none* | "full" | GET | api.trakt.tv/users/requests |
 | trakt.users.requests.approve() | required | id | *none* | *none* | *none* | POST | api.trakt.tv/users/requests/**id** |
 | trakt.users.requests.deny() | required | id | *none* | *none* | *none* | DELETE | api.trakt.tv/users/requests/**id** |
@@ -170,6 +188,7 @@ trakt.seasons.comments({
 | trakt.users.list.get() | *optional* | username, id | *none* | *none* | *none* | GET | api.trakt.tv/users/**username**/lists/**id** |
 | trakt.users.list.update() | required | username, id | name, description, privacy, display_numbers, allow_comments | *none* | *none* | PUT | api.trakt.tv/users/**username**/lists/**id** |
 | trakt.users.list.delete() | required | username, id | *none* | *none* | *none* | DELETE | api.trakt.tv/users/**username**/lists/**id** |
+| trakt.users.list.likes() | *optional* | username, id | *none* | paginated | *none* | GET | api.trakt.tv/users/**username**/lists/**id**/likes |
 | trakt.users.list.like.add() | required | username, id | *none* | *none* | *none* | POST | api.trakt.tv/users/**username**/lists/**id**/like |
 | trakt.users.list.like.remove() | required | username, id | *none* | *none* | *none* | DELETE | api.trakt.tv/users/**username**/lists/**id**/like |
 | trakt.users.list.items.get() | *optional* | username, id | type | *optional* | "full" | GET | api.trakt.tv/users/**username**/lists/**id**/items |
@@ -185,6 +204,7 @@ trakt.seasons.comments({
 | trakt.users.history() | *optional* | username | type, item_id, start_at, end_at | paginated | "full" | GET | api.trakt.tv/users/**username**/history |
 | trakt.users.ratings() | *optional* | username | rating, type | *optional* | "full" | GET | api.trakt.tv/users/**username**/ratings |
 | trakt.users.watchlist() | *optional* | username | type | *optional* | "full" | GET | api.trakt.tv/users/**username**/watchlist |
+| trakt.users.recommendations() | required | username | type, sort | *optional* | "full" | GET | api.trakt.tv/users/**username**/recommendations |
 | trakt.users.watching() | *optional* | username | *none* | *none* | *none* | GET | api.trakt.tv/users/**username**/watching |
 | trakt.users.watched() | *optional* | username, type | *none* | *none* | "full", "noseasons" | GET | api.trakt.tv/users/**username**/watched/**type** |
 | trakt.users.stats() | *optional* | username | *none* | *none* | *none* | GET | api.trakt.tv/users/**username**/stats |
