@@ -1252,7 +1252,7 @@
     },
     "/users/likes": {
         "opts": {
-            "auth": true,
+            "auth": "optional",
             "pagination": true
         },
         "method": "GET",
