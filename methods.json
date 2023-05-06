@@ -465,6 +465,12 @@
         "url": "/movies/:id/stats",
         "optional": []
     },
+    "/movies/studios": {
+        "opts": {},
+        "method": "GET",
+        "url": "/movies/:id/studios",
+        "optional": []
+    },
     "/movies/watching": {
         "opts": {
             "extended": ["full"]
@@ -807,6 +813,12 @@
         "opts": {},
         "method": "GET",
         "url": "/shows/:id/stats",
+        "optional": []
+    },
+    "/shows/studios": {
+        "opts": {},
+        "method": "GET",
+        "url": "/shows/:id/studios",
         "optional": []
     },
     "/shows/watching": {
