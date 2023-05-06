@@ -511,6 +511,23 @@
         "url": "/people/:id/lists/:type/:sort",
         "optional": ["type", "sort"]
     },
+    "/people/updates/get": {
+        "opts": {
+            "pagination": true,
+            "extended": ["full"]
+        },
+        "method": "GET",
+        "url": "/people/updates/:start_date?limit=",
+        "optional": ["limit"]
+    },
+    "/people/updates/id": {
+        "opts": {
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/people/updates/id/:start_date?limit=",
+        "optional": ["limit"]
+    },
     "/recommendations/movies/get": {
         "opts": {
             "auth": true,
