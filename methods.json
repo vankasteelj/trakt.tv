@@ -1295,6 +1295,14 @@
         "url": "/users/:username/lists",
         "optional": []
     },
+    "/users/lists/collaborations": {
+        "opts": {
+            "auth": "optional"
+        },
+        "method": "GET",
+        "url": "/users/:username/lists/collaborations",
+        "optional": []
+    },
     "/users/lists/create": {
         "opts": {
             "auth": true
