@@ -1259,6 +1259,15 @@
         "url": "/users/:username/likes/:type",
         "optional": ["type"]
     },
+    "/users/saved_filters": {
+        "opts": {
+            "auth": true,
+            "pagination": true
+        },
+        "method": "GET",
+        "url": "/users/saved_filters/:section",
+        "optional": []
+    },
     "/users/profile": {
         "opts": {
             "auth": "optional",
