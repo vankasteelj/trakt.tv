@@ -1,6 +1,6 @@
 # Trakt.tv available methods 
 
-This help doc was last generated for trakt.tv@8.2.0 on Sat May 06 2023
+This help doc was last generated for trakt.tv@8.2.0 on Mon Jul 31 2023
 
 ## How to read the table ?
 
@@ -23,11 +23,11 @@ trakt.seasons.comments({
 }).then(console.log) 
 ```
 
-## Fields explaination 
+## Fields explanation 
 - **Method**: provided that `trakt` is the spawned instance of the 'trakt.tv' client, it's the function to call in order to request the API 
 - **OAUTH**: if you need a user to be authenticated and logged in to make the call 
-- **Required arguments**: they need to be passed as arguments (embded in a object) to the Method function
-- **Optional arguments**: arguments not required by the API, can also be embded in the same object as above
+- **Required arguments**: they need to be passed as arguments (embedded in a object) to the Method function
+- **Optional arguments**: arguments not required by the API, can also be embedded in the same object as above
 - **Pagination**: you can send `pagination:true` in the object arg to trigger the pagination, or `page:X,limit:Y` (where X,Y are integers) to navigate in further calls
 - **Extended**: the method can be extended with one (or all) of the keywords
 - **Type**: the HTTP method used under the hood 

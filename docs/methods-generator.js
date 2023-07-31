@@ -29,11 +29,11 @@ trakt.seasons.comments({ \n\
   limit: 5 \n\
 }).then(console.log) \n\
 ```\n\n\
-## Fields explaination \n\
+## Fields explanation \n\
 - **Method**: provided that `trakt` is the spawned instance of the 'trakt.tv' client, it's the function to call in order to request the API \n\
 - **OAUTH**: if you need a user to be authenticated and logged in to make the call \n\
-- **Required arguments**: they need to be passed as arguments (embded in a object) to the Method function\n\
-- **Optional arguments**: arguments not required by the API, can also be embded in the same object as above\n\
+- **Required arguments**: they need to be passed as arguments (embedded in a object) to the Method function\n\
+- **Optional arguments**: arguments not required by the API, can also be embedded in the same object as above\n\
 - **Pagination**: you can send `pagination:true` in the object arg to trigger the pagination, or `page:X,limit:Y` (where X,Y are integers) to navigate in further calls\n\
 - **Extended**: the method can be extended with one (or all) of the keywords\n\
 - **Type**: the HTTP method used under the hood \n\
