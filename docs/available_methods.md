@@ -1,6 +1,6 @@
 # Trakt.tv available methods 
 
-This help doc was last generated for trakt.tv@8.2.0 on Mon Jul 31 2023
+This help doc was last generated for trakt.tv@8.3.0 on Tue Nov 03 2026
 
 ## How to read the table ?
 
@@ -159,7 +159,7 @@ trakt.seasons.comments({
 | trakt.sync.collection.get() | required | type | *none* | *none* | "full", "metadata" | GET | api.trakt.tv/sync/collection/**type** |
 | trakt.sync.collection.add() | required | *none* | movies, shows, seasons, episodes | *none* | *none* | POST | api.trakt.tv/sync/collection |
 | trakt.sync.collection.remove() | required | *none* | movies, shows, seasons, episodes | *none* | *none* | POST | api.trakt.tv/sync/collection/remove |
-| trakt.sync.watched() | required | type | *none* | *none* | "full", "noseasons" | GET | api.trakt.tv/sync/watched/**type** |
+| trakt.sync.watched() | required | type | limit | paginated | "full", "min", "progress" | GET | api.trakt.tv/sync/watched/**type** |
 | trakt.sync.history.get() | required | *none* | type, id, start_at, end_at | paginated | "full" | GET | api.trakt.tv/sync/history |
 | trakt.sync.history.add() | required | *none* | movies, shows, seasons, episodes | *none* | *none* | POST | api.trakt.tv/sync/history |
 | trakt.sync.history.remove() | required | *none* | movies, shows, episodes, ids | *none* | *none* | POST | api.trakt.tv/sync/history/remove |

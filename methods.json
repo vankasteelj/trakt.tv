@@ -1027,11 +1027,12 @@
     "/sync/watched": {
         "opts": {
             "auth": true,
-            "extended": ["full", "noseasons"]
+            "pagination": true,
+            "extended": ["full", "min", "progress"]
         },
         "method": "GET",
         "url": "/sync/watched/:type",
-        "optional": []
+        "optional": ["limit"]
     },
     "/sync/history/get": {
         "opts": {
